@@ -1,24 +1,50 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Nav } from "@/components/site/Nav";
+import { Footer } from "@/components/site/Footer";
+import { Hero } from "@/components/site/Hero";
+import { TrustBar } from "@/components/site/TrustBar";
+import { Problem } from "@/components/site/Problem";
+import { Solution } from "@/components/site/Solution";
+import { Features } from "@/components/site/Features";
+import { WhyBactoAI } from "@/components/site/WhyBactoAI";
+import { ProductDemo } from "@/components/site/ProductDemo";
+import { Technology } from "@/components/site/Technology";
+import { Validation } from "@/components/site/Validation";
+import { Impact } from "@/components/site/Impact";
+import { Team } from "@/components/site/Team";
+import { Roadmap } from "@/components/site/Roadmap";
+import { Partners } from "@/components/site/Partners";
+import { Research } from "@/components/site/Research";
+import { FAQ } from "@/components/site/FAQ";
+import { Contact } from "@/components/site/Contact";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background">
+      <Nav />
+      <main>
+        <Hero />
+        <TrustBar />
+        <Problem />
+        <Solution />
+        <Features />
+        <WhyBactoAI />
+        <ProductDemo />
+        <Technology />
+        <Validation />
+        <Impact />
+        <Research />
+        <Team />
+        <Partners />
+        <Roadmap />
+        <FAQ />
+        <Contact />
+      </main>
+      <Footer />
     </div>
   );
 }
