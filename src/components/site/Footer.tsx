@@ -1,5 +1,31 @@
 import logo from "@/assets/bactoai-logo.svg";
-import { Linkedin, Mail } from "lucide-react";
+import { Linkedin, Mail, MapPin, ArrowUpRight } from "lucide-react";
+
+const productLinks = [
+  { label: "Technology", href: "#technology" },
+  { label: "Platform demo", href: "#product" },
+  { label: "Validation", href: "#validation" },
+  { label: "Roadmap", href: "#roadmap" },
+  { label: "FAQ", href: "#faq" },
+];
+
+const companyLinks = [
+  { label: "The problem", href: "#problem" },
+  { label: "Our team", href: "#team" },
+  { label: "Research & awards", href: "#research" },
+  { label: "Partners", href: "#partners" },
+];
+
+const actionLinks = [
+  { label: "Request a demo", href: "#contact" },
+  { label: "Partner with us", href: "#partner-inquiry" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/bactoai-model-32303335a",
+    external: true,
+  },
+  { label: "Email us", href: "mailto:bactoai01@gmail.com" },
+];
 
 export function Footer() {
   return (
@@ -10,49 +36,66 @@ export function Footer() {
           <p className="mt-4 text-sm leading-relaxed text-white/60">
             AI-powered antimicrobial resistance prediction from bacterial genomes.
           </p>
-          <div className="mt-6 flex gap-3">
-            <a
-              href="https://www.linkedin.com/in/bactoai-model-32303335a"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition"
-            >
-              <Linkedin size={16} />
-            </a>
-            <a
-              href="mailto:bactoai01@gmail.com"
-              aria-label="Email"
-              className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition"
-            >
-              <Mail size={16} />
-            </a>
-          </div>
+          <ul className="mt-6 space-y-2 text-sm text-white/70">
+            <li className="flex items-center gap-2">
+              <Mail size={14} className="text-primary-glow" />
+              <a href="mailto:bactoai01@gmail.com" className="hover:text-white transition">
+                bactoai01@gmail.com
+              </a>
+            </li>
+            <li className="flex items-center gap-2">
+              <Linkedin size={14} className="text-primary-glow" />
+              <a
+                href="https://www.linkedin.com/in/bactoai-model-32303335a"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition"
+              >
+                LinkedIn
+              </a>
+            </li>
+            <li className="flex items-start gap-2">
+              <MapPin size={14} className="text-primary-glow mt-0.5" />
+              <span>Kenyatta University, Nairobi, Kenya</span>
+            </li>
+          </ul>
         </div>
         <div>
           <div className="text-sm font-semibold text-white mb-4">Product</div>
           <ul className="space-y-2 text-sm text-white/60">
-            <li><a href="#technology" className="hover:text-white">Technology</a></li>
-            <li><a href="#product" className="hover:text-white">Platform</a></li>
-            <li><a href="#roadmap" className="hover:text-white">Roadmap</a></li>
-            <li><a href="#contact" className="hover:text-white">Request Demo</a></li>
+            {productLinks.map((l) => (
+              <li key={l.href}>
+                <a href={l.href} className="hover:text-white transition">{l.label}</a>
+              </li>
+            ))}
           </ul>
         </div>
         <div>
           <div className="text-sm font-semibold text-white mb-4">Company</div>
           <ul className="space-y-2 text-sm text-white/60">
-            <li><a href="#team" className="hover:text-white">Team</a></li>
-            <li><a href="#research" className="hover:text-white">Research</a></li>
-            <li><a href="#partners" className="hover:text-white">Partners</a></li>
-            <li><a href="#" className="hover:text-white">Careers</a></li>
+            {companyLinks.map((l) => (
+              <li key={l.href}>
+                <a href={l.href} className="hover:text-white transition">{l.label}</a>
+              </li>
+            ))}
           </ul>
         </div>
         <div>
-          <div className="text-sm font-semibold text-white mb-4">Legal</div>
+          <div className="text-sm font-semibold text-white mb-4">Get involved</div>
           <ul className="space-y-2 text-sm text-white/60">
-            <li><a href="#" className="hover:text-white">Privacy Policy</a></li>
-            <li><a href="#" className="hover:text-white">Terms of Service</a></li>
-            <li><a href="#" className="hover:text-white">Resources</a></li>
+            {actionLinks.map((l) => (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  target={l.external ? "_blank" : undefined}
+                  rel={l.external ? "noopener noreferrer" : undefined}
+                  className="inline-flex items-center gap-1 hover:text-white transition"
+                >
+                  {l.label}
+                  {l.external && <ArrowUpRight size={12} />}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
