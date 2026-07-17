@@ -25,8 +25,10 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  useAutoReveal();
   return (
     <div className="min-h-screen bg-background">
+      <ScrollProgressBar />
       <Nav />
       <main>
         <Hero />
