@@ -1,4 +1,4 @@
-import { Mail, Linkedin, Github, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Linkedin, MapPin, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 export function Contact() {
@@ -18,9 +18,21 @@ export function Contact() {
                 our pilot program or request a live demonstration.
               </p>
               <ul className="mt-8 space-y-3 text-sm">
-                <li className="flex items-center gap-3"><Mail size={16} className="text-primary" /> hello@bactoai.com</li>
-                <li className="flex items-center gap-3"><Linkedin size={16} className="text-primary" /> linkedin.com/company/bactoai</li>
-                <li className="flex items-center gap-3"><Github size={16} className="text-primary" /> github.com/bactoai</li>
+                <li className="flex items-center gap-3">
+                  <Mail size={16} className="text-primary" />
+                  <a href="mailto:bactoai01@gmail.com" className="hover:text-primary transition">bactoai01@gmail.com</a>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Linkedin size={16} className="text-primary" />
+                  <a
+                    href="https://www.linkedin.com/in/bactoai-model-32303335a"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition"
+                  >
+                    linkedin.com/in/bactoai-model
+                  </a>
+                </li>
                 <li className="flex items-center gap-3"><MapPin size={16} className="text-primary" /> Kenyatta University, Nairobi, Kenya</li>
               </ul>
             </div>

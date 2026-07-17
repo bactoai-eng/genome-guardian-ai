@@ -1,5 +1,5 @@
 import logo from "@/assets/bactoai-logo.svg";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 
 export function Footer() {
   return (
@@ -11,9 +11,22 @@ export function Footer() {
             AI-powered antimicrobial resistance prediction from bacterial genomes.
           </p>
           <div className="mt-6 flex gap-3">
-            <a href="#" className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition"><Linkedin size={16} /></a>
-            <a href="#" className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition"><Github size={16} /></a>
-            <a href="mailto:hello@bactoai.com" className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition"><Mail size={16} /></a>
+            <a
+              href="https://www.linkedin.com/in/bactoai-model-32303335a"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition"
+            >
+              <Linkedin size={16} />
+            </a>
+            <a
+              href="mailto:bactoai01@gmail.com"
+              aria-label="Email"
+              className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition"
+            >
+              <Mail size={16} />
+            </a>
           </div>
         </div>
         <div>
