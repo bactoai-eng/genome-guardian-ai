@@ -1,4 +1,4 @@
-import { Mail, Linkedin, Github, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Linkedin, MapPin, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 export function Contact() {
