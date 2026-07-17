@@ -17,6 +17,8 @@ import { Partners } from "@/components/site/Partners";
 import { Research } from "@/components/site/Research";
 import { FAQ } from "@/components/site/FAQ";
 import { Contact } from "@/components/site/Contact";
+import { ScrollProgressBar } from "@/components/site/ScrollProgressBar";
+import { useAutoReveal } from "@/hooks/use-auto-reveal";
 
 export const Route = createFileRoute("/")({
   component: Index,
