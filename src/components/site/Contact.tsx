@@ -1,8 +1,35 @@
-import { Mail, Linkedin, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Linkedin, MapPin, ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+
+type Status = "idle" | "loading" | "success" | "error";
 
 export function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const [form, setForm] = useState({ name: "", email: "", organization: "", message: "" });
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (status === "loading" || status === "success") return;
+    setStatus("loading");
+    const { error } = await supabase.from("contact_submissions").insert({
+      form_type: "demo",
+      full_name: form.name.trim(),
+      email: form.email.trim(),
+      organization: form.organization.trim() || null,
+      message: form.message.trim() || null,
+    });
+    if (error) {
+      console.error("Contact submission failed", error);
+      setStatus("error");
+      toast.error("We couldn't send your message. Please email bactoai01@gmail.com.");
+      return;
+    }
+    setStatus("success");
+    toast.success("Thanks — we'll be in touch within 2 business days.");
+  }
+
   return (
     <section id="contact" className="py-24 md:py-32 bg-card/40">
       <div className="mx-auto max-w-7xl px-6">
@@ -37,28 +64,67 @@ export function Contact() {
               </ul>
             </div>
             <form
-              onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
+              onSubmit={handleSubmit}
               className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-4"
             >
               <div>
                 <label className="text-xs font-semibold text-muted-foreground">Full name</label>
-                <input required className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                <input
+                  required
+                  maxLength={100}
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  disabled={status === "success"}
+                  className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                />
               </div>
               <div>
                 <label className="text-xs font-semibold text-muted-foreground">Work email</label>
-                <input type="email" required className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                <input
+                  type="email"
+                  required
+                  maxLength={255}
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  disabled={status === "success"}
+                  className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                />
               </div>
               <div>
                 <label className="text-xs font-semibold text-muted-foreground">Organization</label>
-                <input className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                <input
+                  maxLength={150}
+                  value={form.organization}
+                  onChange={(e) => setForm({ ...form, organization: e.target.value })}
+                  disabled={status === "success"}
+                  className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                />
               </div>
               <div>
                 <label className="text-xs font-semibold text-muted-foreground">How can we help?</label>
-                <textarea rows={4} className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                <textarea
+                  rows={4}
+                  maxLength={1000}
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  disabled={status === "success"}
+                  className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                />
               </div>
-              <button type="submit" className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary py-3 text-sm font-semibold text-primary-foreground shadow-elegant hover:opacity-95 transition">
-                {submitted ? "Thanks — we'll be in touch" : (<>Request a Demo <ArrowRight size={16} /></>)}
+              <button
+                type="submit"
+                disabled={status === "loading" || status === "success"}
+                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary py-3 text-sm font-semibold text-primary-foreground shadow-elegant hover:opacity-95 transition disabled:opacity-70"
+              >
+                {status === "loading" && (<><Loader2 size={16} className="animate-spin" /> Sending…</>)}
+                {status === "success" && (<><CheckCircle2 size={16} /> Message received</>)}
+                {(status === "idle" || status === "error") && (<>Request a Demo <ArrowRight size={16} /></>)}
               </button>
+              {status === "error" && (
+                <p className="text-[11px] text-destructive text-center">
+                  Something went wrong. Please try again or email us directly.
+                </p>
+              )}
               <p className="text-[11px] text-muted-foreground text-center">
                 We respond within 2 business days. Your information stays private.
               </p>

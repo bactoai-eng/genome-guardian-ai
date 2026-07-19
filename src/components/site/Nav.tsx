@@ -2,15 +2,16 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/bactoai-logo.svg";
+import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
-  { href: "#technology", label: "Technology" },
-  { href: "#product", label: "Product" },
-  { href: "#research", label: "Research" },
-  { href: "#impact", label: "Impact" },
-  { href: "#team", label: "Team" },
-  { href: "#roadmap", label: "Roadmap" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#technology", label: "Technology" },
+  { href: "/#product", label: "Product" },
+  { href: "/#research", label: "Research" },
+  { href: "/#team", label: "Team" },
+  { href: "/#partners", label: "Partners" },
+  { href: "/resources", label: "Resources", route: true },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export function Nav() {
@@ -34,47 +35,72 @@ export function Nav() {
         <Link to="/" className="flex items-center gap-2">
           <img src={logo} alt="BactoAI" className="h-10 w-auto" />
         </Link>
-        <nav className="hidden lg:flex items-center gap-8">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
-            >
-              {l.label}
-            </a>
-          ))}
+        <nav className="hidden lg:flex items-center gap-7">
+          {links.map((l) =>
+            l.route ? (
+              <Link
+                key={l.href}
+                to={l.href}
+                className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
+              >
+                {l.label}
+              </Link>
+            ) : (
+              <a
+                key={l.href}
+                href={l.href}
+                className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
+              >
+                {l.label}
+              </a>
+            ),
+          )}
         </nav>
         <div className="hidden lg:flex items-center gap-3">
+          <ThemeToggle />
           <a
-            href="#contact"
+            href="/#contact"
             className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft hover:shadow-elegant transition-shadow"
           >
             Request Demo
           </a>
         </div>
-        <button
-          className="lg:hidden text-foreground p-2"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Menu"
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="lg:hidden flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            className="text-foreground p-2"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Menu"
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
       {open && (
         <div className="lg:hidden glass border-t border-border px-6 py-4 space-y-3">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="block text-base font-medium text-foreground/80"
-              onClick={() => setOpen(false)}
-            >
-              {l.label}
-            </a>
-          ))}
+          {links.map((l) =>
+            l.route ? (
+              <Link
+                key={l.href}
+                to={l.href}
+                className="block text-base font-medium text-foreground/80"
+                onClick={() => setOpen(false)}
+              >
+                {l.label}
+              </Link>
+            ) : (
+              <a
+                key={l.href}
+                href={l.href}
+                className="block text-base font-medium text-foreground/80"
+                onClick={() => setOpen(false)}
+              >
+                {l.label}
+              </a>
+            ),
+          )}
           <a
-            href="#contact"
+            href="/#contact"
             onClick={() => setOpen(false)}
             className="block text-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
           >

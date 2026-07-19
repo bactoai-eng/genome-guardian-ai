@@ -1,30 +1,39 @@
+import { Link } from "@tanstack/react-router";
 import logo from "@/assets/bactoai-logo.svg";
-import { Linkedin, Mail, MapPin, ArrowUpRight } from "lucide-react";
+import { Linkedin, Mail, MapPin, Github, ArrowUpRight } from "lucide-react";
 
 const productLinks = [
-  { label: "Technology", href: "#technology" },
-  { label: "Platform demo", href: "#product" },
-  { label: "Validation", href: "#validation" },
-  { label: "Roadmap", href: "#roadmap" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Technology", href: "/#technology" },
+  { label: "Platform demo", href: "/#product" },
+  { label: "Validation", href: "/#validation" },
+  { label: "Roadmap", href: "/#roadmap" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
-const companyLinks = [
-  { label: "The problem", href: "#problem" },
-  { label: "Our team", href: "#team" },
-  { label: "Research & awards", href: "#research" },
-  { label: "Partners", href: "#partners" },
+const companyLinks: { label: string; href: string; route?: boolean }[] = [
+  { label: "The problem", href: "/#problem" },
+  { label: "Our team", href: "/#team" },
+  { label: "Research & awards", href: "/#research" },
+  { label: "Partners", href: "/#partners" },
+  { label: "Careers", href: "/careers", route: true },
+  { label: "Resources", href: "/resources", route: true },
 ];
 
-const actionLinks = [
-  { label: "Request a demo", href: "#contact" },
-  { label: "Partner with us", href: "#partner-inquiry" },
+const actionLinks: { label: string; href: string; external?: boolean }[] = [
+  { label: "Request a demo", href: "/#contact" },
+  { label: "Partner with us", href: "/#partner-inquiry" },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/bactoai-model-32303335a",
     external: true,
   },
+  { label: "GitHub", href: "https://github.com/bactoai", external: true },
   { label: "Email us", href: "mailto:bactoai01@gmail.com" },
+];
+
+const legalLinks: { label: string; href: string; route?: boolean }[] = [
+  { label: "Privacy Policy", href: "/privacy", route: true },
+  { label: "Terms of Service", href: "/terms", route: true },
 ];
 
 export function Footer() {
@@ -54,6 +63,17 @@ export function Footer() {
                 LinkedIn
               </a>
             </li>
+            <li className="flex items-center gap-2">
+              <Github size={14} className="text-primary-glow" />
+              <a
+                href="https://github.com/bactoai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition"
+              >
+                GitHub
+              </a>
+            </li>
             <li className="flex items-start gap-2">
               <MapPin size={14} className="text-primary-glow mt-0.5" />
               <span>Kenyatta University, Nairobi, Kenya</span>
@@ -75,7 +95,11 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-white/60">
             {companyLinks.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="hover:text-white transition">{l.label}</a>
+                {l.route ? (
+                  <Link to={l.href} className="hover:text-white transition">{l.label}</Link>
+                ) : (
+                  <a href={l.href} className="hover:text-white transition">{l.label}</a>
+                )}
               </li>
             ))}
           </ul>
@@ -100,9 +124,17 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-white/50">
+        <div className="mx-auto max-w-7xl px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/50">
           <div>© {new Date().getFullYear()} BactoAI. All rights reserved.</div>
-          <div>Built at Kenyatta University · Nairobi, Kenya</div>
+          <div className="flex items-center gap-5">
+            {legalLinks.map((l) => (
+              <Link key={l.href} to={l.href} className="hover:text-white transition">
+                {l.label}
+              </Link>
+            ))}
+            <span className="hidden md:inline text-white/30">·</span>
+            <span>Built at Kenyatta University · Nairobi, Kenya</span>
+          </div>
         </div>
       </div>
     </footer>

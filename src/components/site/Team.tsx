@@ -1,11 +1,31 @@
 import teamPhoto from "@/assets/team-photo.jpg";
 
 const team = [
-  { name: "Samwel Elegwa", role: "Founder & CEO", bio: "Biotechnology researcher focused on AI for antimicrobial resistance." },
-  { name: "Sheila Okwisa", role: "Chief Technology Officer", bio: "Software engineering, cloud infrastructure, platform development." },
-  { name: "William Otieno", role: "Machine Learning Engineer", bio: "Electrical engineer specializing in AI, ML, and predictive analytics." },
-  { name: "Sylvia Jane Nyambura", role: "Chief Operating Officer", bio: "Operations, execution, and organizational strategy." },
-  { name: "Carolyne Mboya", role: "Business Partnerships Lead", bio: "Strategic partnerships, stakeholder engagement, commercialization." },
+  {
+    name: "Samwel Elegwa",
+    role: "Founder & CEO",
+    bio: "Biotechnology researcher at Kenyatta University with hands-on analytical experience from a Kenya Bureau of Standards attachment (gravimetry, titrimetry, spectroscopy). Alumnus of the NextGen Antimicrobial Stewards Initiative and 2nd-place finisher at Kenyatta's Entrepreneur in Science bootcamp, where BactoAI was first pitched.",
+  },
+  {
+    name: "Sheila Okwisa",
+    role: "Chief Technology Officer",
+    bio: "Software engineer leading BactoAI's platform, cloud infrastructure, and deployment tooling. Focused on making genome-in / report-out AMR pipelines reliable enough for low-resource clinical labs.",
+  },
+  {
+    name: "William Otieno",
+    role: "Machine Learning Engineer",
+    bio: "Electrical engineer specializing in applied machine learning and predictive analytics. Owns the AMR prediction models — training, evaluation, and interpretability for clinician-facing outputs.",
+  },
+  {
+    name: "Sylvia Jane Nyambura",
+    role: "Chief Operating Officer",
+    bio: "Runs day-to-day operations, pilot logistics, and organizational strategy — the connective tissue between our scientific, engineering, and partnership tracks.",
+  },
+  {
+    name: "Carolyne Mboya",
+    role: "Business Partnerships Lead",
+    bio: "Leads partnerships with hospitals, research institutes, and funders — translating BactoAI's clinical value into deployment-ready collaborations across East Africa.",
+  },
 ];
 
 const advisors = [
