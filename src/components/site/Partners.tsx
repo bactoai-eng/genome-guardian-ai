@@ -204,11 +204,14 @@ export function Partners() {
               </div>
               <button
                 type="submit"
-                disabled={submitted}
+                disabled={status === "loading" || status === "success"}
                 className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary py-3 text-sm font-semibold text-primary-foreground shadow-elegant hover:opacity-95 transition disabled:opacity-70"
               >
-                {submitted ? "Thanks — we'll be in touch shortly" : (<>Submit partnership inquiry <ArrowRight size={16} /></>)}
+                {status === "loading" && (<><Loader2 size={16} className="animate-spin" /> Sending…</>)}
+                {status === "success" && (<><CheckCircle2 size={16} /> Inquiry received</>)}
+                {(status === "idle" || status === "error") && (<>Submit partnership inquiry <ArrowRight size={16} /></>)}
               </button>
+
               <p className="text-[11px] text-muted-foreground text-center">
                 Your details stay private. We reply within 2 business days.
               </p>
