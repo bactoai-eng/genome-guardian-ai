@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { ArrowRight, Handshake } from "lucide-react";
+import { ArrowRight, Handshake, Loader2, CheckCircle2 } from "lucide-react";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import kenyattaLogo from "@/assets/kenyatta-university-logo.png";
 import kemriLogo from "@/assets/kemri-logo.png";
 import lancasterLogo from "@/assets/lancaster-logo.svg";
@@ -7,6 +9,7 @@ import cdieLogo from "@/assets/cdie-logo.png";
 import thriveLogo from "@/assets/thrive-logo.png";
 import nanoporeLogo from "@/assets/oxford-nanopore-logo.jpg";
 import { Reveal } from "./Reveal";
+
 
 const logoPartners = [
   { name: "Kenyatta University", src: kenyattaLogo },
@@ -29,7 +32,7 @@ const partnershipTypes = [
 ];
 
 export function Partners() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -38,6 +41,30 @@ export function Partners() {
     type: partnershipTypes[0],
     message: "",
   });
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!form.name.trim() || !form.email.trim()) return;
+    if (status === "loading" || status === "success") return;
+    setStatus("loading");
+    const { error } = await supabase.from("contact_submissions").insert({
+      form_type: "partner",
+      full_name: form.name.trim(),
+      email: form.email.trim(),
+      organization: form.organization.trim() || null,
+      message: form.message.trim() || null,
+      metadata: { role: form.role || null, partnership_type: form.type },
+    });
+    if (error) {
+      console.error("Partner submission failed", error);
+      setStatus("error");
+      toast.error("We couldn't send your inquiry. Please email bactoai01@gmail.com.");
+      return;
+    }
+    setStatus("success");
+    toast.success("Thanks — we'll be in touch within 2 business days.");
+  }
+
 
   return (
     <section id="partners" className="relative py-24 bg-card/40 border-y border-border overflow-hidden">
@@ -108,13 +135,10 @@ export function Partners() {
 
           <Reveal variant="right" delay={120} className="lg:col-span-3">
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (!form.name.trim() || !form.email.trim()) return;
-                setSubmitted(true);
-              }}
+              onSubmit={handleSubmit}
               className="rounded-2xl border border-border bg-background p-6 md:p-8 shadow-soft space-y-4"
             >
+
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="text-xs font-semibold text-muted-foreground">Full name</label>
