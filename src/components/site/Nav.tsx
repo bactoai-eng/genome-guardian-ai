@@ -4,13 +4,13 @@ import { Menu, X } from "lucide-react";
 import logo from "@/assets/bactoai-logo.svg";
 import { ThemeToggle } from "./ThemeToggle";
 
-const links = [
+const links: { href: string; label: string; route?: boolean }[] = [
   { href: "/#technology", label: "Technology" },
-  { href: "/#product", label: "Product" },
-  { href: "/#research", label: "Research" },
+  { href: "/#demo", label: "Product" },
+  { href: "/#testimonials", label: "Customers" },
+  { href: "/pricing", label: "Pricing", route: true },
   { href: "/#team", label: "Team" },
-  { href: "/#partners", label: "Partners" },
-  { href: "/resources", label: "Resources", route: true },
+  { href: "/blog", label: "Blog", route: true },
   { href: "/#contact", label: "Contact" },
 ];
 
