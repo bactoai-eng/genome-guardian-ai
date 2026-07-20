@@ -4,10 +4,14 @@ import { ChevronDown } from "lucide-react";
 const faqs = [
   { q: "What is BactoAI?", a: "BactoAI is an AI-powered platform that predicts antimicrobial resistance from bacterial whole-genome sequences to support faster, precision antibiotic decisions." },
   { q: "Does BactoAI replace laboratory testing?", a: "No. BactoAI is a decision-support tool that complements laboratory workflows by providing rapid predictive insights while conventional testing is completed." },
-  { q: "What sequencing files are supported?", a: "BactoAI accepts standard bacterial whole-genome sequencing inputs including FASTA and FASTQ files from short- and long-read platforms." },
-  { q: "How accurate are predictions?", a: "Performance varies by antibiotic and organism. Reported metrics are from internal validation on training genomes; prospective clinical validation is ongoing." },
-  { q: "Who can use BactoAI?", a: "Clinical laboratories, hospitals, researchers, and public-health institutions. Access is currently via our pilot program." },
-  { q: "How is patient data protected?", a: "BactoAI is designed with strict access control, encryption in transit and at rest, and supports on-premises deployment for restricted environments." },
+  { q: "What sequencing files are supported?", a: "BactoAI accepts standard bacterial whole-genome sequencing inputs including FASTA and FASTQ files from short- and long-read platforms (Illumina and Oxford Nanopore)." },
+  { q: "How accurate are predictions?", a: "Performance varies by antibiotic and organism. Our Meropenem model reports 0.952 ROC-AUC on internal validation. Prospective clinical validation is ongoing and results are published transparently." },
+  { q: "How is patient data protected?", a: "BactoAI is built with strict access control, encryption in transit and at rest, and supports on-premises deployment for restricted environments. We follow HIPAA and GDPR principles by design." },
+  { q: "Can BactoAI integrate with our LIMS?", a: "Yes. The Clinical and Enterprise tiers include a REST API and pre-built connectors for common LIMS platforms. Custom integrations are available at the Enterprise tier." },
+  { q: "Is BactoAI regulatory-approved?", a: "BactoAI is currently offered as decision-support software. We are actively engaging with regulators (FDA, CE-IVD, PPB) as prospective clinical validation matures." },
+  { q: "How do pilot programs work?", a: "Pilots are 8–12 weeks, include onboarding for your lab, model validation against your isolates, and a joint outcomes review. Pilot pricing is available for LMIC academic and public-health partners." },
+  { q: "Which antibiotics do you support today?", a: "The current panel covers Meropenem, Ciprofloxacin, Cefotaxime, Gentamicin, Tetracycline, and Ampicillin. The roadmap expands to the WHO priority pathogens list." },
+  { q: "Who founded BactoAI?", a: "BactoAI was founded at Kenyatta University by Samwel Elegwa, alongside a team of clinical microbiologists, AI researchers, and public-health advisors from Kenya and the UK." },
 ];
 
 export function FAQ() {
