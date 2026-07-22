@@ -143,7 +143,7 @@ function AdminSubmissions() {
                         {row.message || <span className="italic">No message</span>}
                         {row.metadata != null && (
                           <pre className="mt-1 text-[10px] font-mono text-muted-foreground/70 whitespace-pre-wrap">
-                            {JSON.stringify(row.metadata, null, 2)}
+                            {row.metadata}
                           </pre>
                         )}
                       </td>
