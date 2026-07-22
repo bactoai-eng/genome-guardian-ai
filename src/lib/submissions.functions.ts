@@ -8,7 +8,7 @@ export type ContactSubmissionRow = {
   email: string;
   organization: string | null;
   message: string | null;
-  metadata: unknown;
+  metadata: Record<string, unknown> | null;
   created_at: string;
 };
 
