@@ -8,13 +8,13 @@ export type ContactSubmissionRow = {
   email: string;
   organization: string | null;
   message: string | null;
-  metadata: Record<string, unknown> | null;
+  metadata: string | null;
   created_at: string;
 };
 
 export const listContactSubmissions = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
-  .handler(async ({ context }): Promise<ContactSubmissionRow[]> => {
+  .handler(async ({ context }) => {
     const { data, error } = await context.supabase
       .from("contact_submissions")
       .select("id, form_type, full_name, email, organization, message, metadata, created_at")
@@ -22,8 +22,17 @@ export const listContactSubmissions = createServerFn({ method: "GET" })
       .limit(500);
 
     if (error) {
-      // RLS denies non-admins — surface as Forbidden.
       throw new Error(error.message || "Forbidden");
     }
-    return (data ?? []) as ContactSubmissionRow[];
+    const rows: ContactSubmissionRow[] = (data ?? []).map((r) => ({
+      id: r.id,
+      form_type: r.form_type,
+      full_name: r.full_name,
+      email: r.email,
+      organization: r.organization,
+      message: r.message,
+      metadata: r.metadata == null ? null : JSON.stringify(r.metadata),
+      created_at: r.created_at,
+    }));
+    return rows;
   });
