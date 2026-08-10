@@ -6,6 +6,9 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/auth")({
   ssr: false,
+  validateSearch: (s: Record<string, unknown>): { next?: string } =>
+    typeof s.next === "string" ? { next: s.next } : {},
+
   head: () => ({
     meta: [
       { title: "Sign in — BactoAI" },
@@ -16,8 +19,15 @@ export const Route = createFileRoute("/auth")({
   component: AuthPage,
 });
 
+// Only same-origin relative paths are safe redirect targets.
+function safeNext(next?: string) {
+  return next && next.startsWith("/") && !next.startsWith("//") ? next : null;
+}
+
 function AuthPage() {
   const navigate = useNavigate();
+  const { next } = Route.useSearch();
+  const target = safeNext(next);
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,9 +35,12 @@ function AuthPage() {
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
-      if (data.user) navigate({ to: "/admin/submissions", replace: true });
+      if (!data.user) return;
+      if (target) window.location.href = target;
+      else navigate({ to: "/admin/submissions", replace: true });
     });
-  }, [navigate]);
+  }, [navigate, target]);
+
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -37,7 +50,9 @@ function AuthPage() {
         const { error } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: window.location.origin + "/admin/submissions" },
+          options: {
+            emailRedirectTo: window.location.origin + (target ?? "/admin/submissions"),
+          },
         });
         if (error) throw error;
         toast.success("Account created. Check your email if confirmation is required.");
@@ -45,8 +60,10 @@ function AuthPage() {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
         toast.success("Signed in.");
-        navigate({ to: "/admin/submissions", replace: true });
+        if (target) window.location.href = target;
+        else navigate({ to: "/admin/submissions", replace: true });
       }
+
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Authentication failed.");
     } finally {
