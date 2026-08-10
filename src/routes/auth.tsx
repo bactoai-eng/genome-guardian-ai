@@ -50,7 +50,9 @@ function AuthPage() {
         const { error } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: window.location.origin + "/admin/submissions" },
+          options: {
+            emailRedirectTo: window.location.origin + (target ?? "/admin/submissions"),
+          },
         });
         if (error) throw error;
         toast.success("Account created. Check your email if confirmation is required.");
@@ -58,8 +60,10 @@ function AuthPage() {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
         toast.success("Signed in.");
-        navigate({ to: "/admin/submissions", replace: true });
+        if (target) window.location.href = target;
+        else navigate({ to: "/admin/submissions", replace: true });
       }
+
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Authentication failed.");
     } finally {
