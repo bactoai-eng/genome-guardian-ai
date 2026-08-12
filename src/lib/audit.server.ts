@@ -18,7 +18,7 @@ export async function recordAuditEvent(entry: AuditEntry): Promise<void> {
       action: entry.action,
       target_table: entry.targetTable ?? null,
       target_id: entry.targetId ?? null,
-      details: entry.details ?? null,
+      details: (entry.details ?? null) as never,
     });
     if (error) console.error("audit log insert failed", error.message);
   } catch (err) {
