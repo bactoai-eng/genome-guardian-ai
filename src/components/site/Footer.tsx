@@ -17,6 +17,7 @@ const companyLinks: { label: string; href: string; route?: boolean }[] = [
   { label: "Partners", href: "/#partners" },
   { label: "Careers", href: "/careers", route: true },
   { label: "Resources", href: "/resources", route: true },
+  { label: "MCP for assistants", href: "/docs/mcp", route: true },
 ];
 
 const actionLinks: { label: string; href: string; external?: boolean }[] = [
