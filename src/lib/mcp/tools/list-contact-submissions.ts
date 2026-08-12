@@ -28,6 +28,13 @@ export default defineTool({
     if (form_type) query = query.eq("form_type", form_type);
     const { data, error } = await query;
     if (error) return { content: [{ type: "text", text: error.message }], isError: true };
+    const { recordAuditEvent } = await import("@/lib/audit.server");
+    await recordAuditEvent({
+      actorId: ctx.getUserId() ?? null,
+      action: "contact_submissions_viewed_mcp",
+      targetTable: "contact_submissions",
+      details: { source: "mcp", form_type: form_type ?? null, rows_returned: data?.length ?? 0 },
+    });
     if (!data?.length)
       return {
         content: [

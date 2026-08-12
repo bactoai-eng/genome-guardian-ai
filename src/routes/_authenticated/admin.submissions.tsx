@@ -58,14 +58,23 @@ function AdminSubmissions() {
             </Link>
             <h1 className="text-xl font-bold text-foreground">Contact submissions</h1>
           </div>
-          <button
-            onClick={handleSignOut}
-            className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-semibold hover:bg-card transition"
-          >
-            <LogOut size={14} /> Sign out
-          </button>
+          <div className="flex items-center gap-2">
+            <Link
+              to="/admin/audit"
+              className="rounded-full border border-border px-4 py-2 text-xs font-semibold hover:bg-card transition"
+            >
+              Audit log
+            </Link>
+            <button
+              onClick={handleSignOut}
+              className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-semibold hover:bg-card transition"
+            >
+              <LogOut size={14} /> Sign out
+            </button>
+          </div>
         </div>
       </header>
+
 
       <main className="mx-auto max-w-7xl px-6 py-10">
         {isLoading && (
