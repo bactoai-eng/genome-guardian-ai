@@ -29,6 +29,13 @@ export default defineTool({
       by_form_type: byType,
       latest: rows[0]?.created_at ?? null,
     };
+    const { recordAuditEvent } = await import("@/lib/audit.server");
+    await recordAuditEvent({
+      actorId: ctx.getUserId() ?? null,
+      action: "submission_stats_viewed_mcp",
+      targetTable: "contact_submissions",
+      details: { source: "mcp", rows_scanned: rows.length },
+    });
     return {
       content: [{ type: "text", text: JSON.stringify(stats, null, 2) }],
       structuredContent: stats,
