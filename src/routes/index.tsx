@@ -52,6 +52,8 @@ function Index() {
         <Testimonials />
         <Impact />
         <Research />
+        <PartnerLabs />
+
         <Team />
         <Partners />
         <Roadmap />
