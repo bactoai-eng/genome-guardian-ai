@@ -9,6 +9,8 @@ import { Solution } from "@/components/site/Solution";
 import { Features } from "@/components/site/Features";
 import { WhyBactoAI } from "@/components/site/WhyBactoAI";
 import { ProductDemo } from "@/components/site/ProductDemo";
+import { PartnerLabs } from "@/components/site/PartnerLabs";
+
 import { Technology } from "@/components/site/Technology";
 import { Validation } from "@/components/site/Validation";
 import { Impact } from "@/components/site/Impact";
@@ -50,6 +52,8 @@ function Index() {
         <Testimonials />
         <Impact />
         <Research />
+        <PartnerLabs />
+
         <Team />
         <Partners />
         <Roadmap />

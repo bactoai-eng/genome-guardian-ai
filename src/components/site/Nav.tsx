@@ -7,6 +7,8 @@ import { ThemeToggle } from "./ThemeToggle";
 const links: { href: string; label: string; route?: boolean }[] = [
   { href: "/#technology", label: "Technology" },
   { href: "/#demo", label: "Product" },
+  { href: "/#labs", label: "Labs" },
+
   { href: "/#testimonials", label: "Customers" },
   { href: "/pricing", label: "Pricing", route: true },
   { href: "/#team", label: "Team" },

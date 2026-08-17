@@ -25,10 +25,48 @@ export function WhyBactoAI() {
         <div className="max-w-3xl">
           <div className="text-sm font-semibold text-primary uppercase tracking-widest">Why BactoAI</div>
           <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-            One platform. Three audiences. Real clinical impact.
+            A genomic prediction engine — the diagnostic layer other AMR tools build on.
           </h2>
+          <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+            BactoAI predicts antimicrobial resistance directly from a bacterial genome sequence,
+            before or without a completed lab culture. We are not a lab-logistics or sample-booking
+            marketplace, and not a guideline-based prescribing chatbot. Those tools move samples or
+            protocols faster; BactoAI generates the resistance data point they both depend on.
+          </p>
         </div>
+
+        <div className="mt-12 grid gap-4 md:grid-cols-3">
+          {[
+            {
+              label: "Lab-booking / logistics tools",
+              body: "Route samples to labs faster — but still wait 48–72 hrs for a culture result.",
+            },
+            {
+              label: "Prescribing-guideline chatbots",
+              body: "Apply WHO or national decision trees to symptoms — no organism-specific resistance evidence.",
+            },
+            {
+              label: "BactoAI — genomic prediction",
+              body: "Predicts per-antibiotic resistance from the genome in under 5 minutes. Complementary infrastructure both categories can plug into.",
+              highlight: true,
+            },
+          ].map((c) => (
+            <div
+              key={c.label}
+              className={`rounded-2xl border p-6 ${
+                c.highlight ? "border-primary bg-primary/5" : "border-border bg-background"
+              }`}
+            >
+              <div className={`text-sm font-semibold ${c.highlight ? "text-primary" : "text-foreground"}`}>
+                {c.label}
+              </div>
+              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{c.body}</p>
+            </div>
+          ))}
+        </div>
+
         <div className="mt-16 grid gap-6 md:grid-cols-3">
+
           {cols.map((c) => (
             <div
               key={c.title}
