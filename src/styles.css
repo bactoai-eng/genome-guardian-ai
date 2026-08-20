@@ -133,43 +133,41 @@
 }
 
 @utility text-gradient {
-  background: linear-gradient(135deg, oklch(0.475 0.09 168), oklch(0.62 0.12 190));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--primary-glow);
 }
 
+/* The single gradient on the page — hero headline only. */
 @utility text-hero-gradient {
-  background: linear-gradient(120deg, #ffffff 0%, #a7f3e4 50%, #00D4AA 100%);
+  background: linear-gradient(120deg, #F5F7F6 0%, #9FE3CE 55%, #38BDF8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 @utility glass {
-  background: color-mix(in oklab, white 60%, transparent);
+  background: color-mix(in oklab, var(--background) 78%, transparent);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid color-mix(in oklab, white 40%, transparent);
+  border: 1px solid var(--border);
 }
 
 @utility glass-dark {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(245, 247, 246, 0.04);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  border: 1px solid rgba(245, 247, 246, 0.10);
 }
 
 @utility shadow-elegant {
-  box-shadow: 0 20px 60px -20px oklch(0.475 0.09 168 / 0.25);
+  box-shadow: 0 24px 70px -24px rgba(0, 0, 0, 0.6);
 }
 
 @utility shadow-soft {
-  box-shadow: 0 8px 30px -10px oklch(0.3 0.05 240 / 0.12);
+  box-shadow: 0 10px 34px -14px rgba(0, 0, 0, 0.45);
 }
 
 @utility shadow-glow-teal {
-  box-shadow: 0 0 40px -6px rgba(0, 212, 170, 0.55), 0 20px 50px -20px rgba(0, 212, 170, 0.35);
+  box-shadow: 0 0 40px -8px rgba(23, 185, 143, 0.45), 0 20px 50px -22px rgba(23, 185, 143, 0.30);
 }
 
 @keyframes float {
