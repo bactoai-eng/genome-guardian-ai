@@ -17,7 +17,7 @@ export const posts: Post[] = [
     category: "Clinical",
     date: "May 8, 2026",
     readTime: "6 min read",
-    gradient: "from-emerald-500 to-cyan-400",
+    gradient: "from-primary to-primary",
   },
   {
     slug: "validating-meropenem-model",
@@ -27,7 +27,7 @@ export const posts: Post[] = [
     category: "Research",
     date: "April 22, 2026",
     readTime: "9 min read",
-    gradient: "from-teal-500 to-blue-500",
+    gradient: "from-primary to-primary",
   },
   {
     slug: "amr-in-lmic-hospitals",
@@ -37,7 +37,7 @@ export const posts: Post[] = [
     category: "Public Health",
     date: "April 3, 2026",
     readTime: "5 min read",
-    gradient: "from-amber-500 to-rose-500",
+    gradient: "from-primary to-primary",
   },
   {
     slug: "bactoai-api-launch",
@@ -47,7 +47,7 @@ export const posts: Post[] = [
     category: "Product",
     date: "March 19, 2026",
     readTime: "4 min read",
-    gradient: "from-indigo-500 to-purple-500",
+    gradient: "from-primary to-primary",
   },
   {
     slug: "confidence-scores-clinical",
@@ -57,7 +57,7 @@ export const posts: Post[] = [
     category: "Clinical",
     date: "March 2, 2026",
     readTime: "7 min read",
-    gradient: "from-cyan-500 to-emerald-500",
+    gradient: "from-primary to-primary",
   },
   {
     slug: "who-priority-pathogens",
@@ -67,6 +67,6 @@ export const posts: Post[] = [
     category: "Public Health",
     date: "February 14, 2026",
     readTime: "8 min read",
-    gradient: "from-orange-500 to-red-500",
+    gradient: "from-primary to-primary",
   },
 ];
