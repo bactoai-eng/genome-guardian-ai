@@ -228,12 +228,12 @@ export function ProductDemo() {
               </div>
 
               <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-hero opacity-20 blur-3xl rounded-3xl" />
+                <div className="absolute -inset-4 bg-primary opacity-10 blur-3xl rounded-3xl" />
                 <div className="relative rounded-3xl border border-border bg-card shadow-elegant overflow-hidden">
                   <div className="flex items-center gap-2 px-5 py-3 border-b border-border bg-muted/40">
-                    <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-green-400" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-destructive/60" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-muted-foreground/40" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-susceptible/60" />
                     <div className="ml-4 text-xs text-muted-foreground font-mono">app.bactoai.com/predict</div>
                     <div className="ml-auto flex items-center gap-2">
                       {phase !== "idle" && (
@@ -252,7 +252,7 @@ export function ProductDemo() {
                       </div>
                       <div className={`text-xs px-3 py-1 rounded-full font-semibold ${
                         phase === "done"
-                          ? "bg-emerald-500/10 text-emerald-600"
+                          ? "bg-susceptible/10 text-susceptible"
                           : phase === "idle"
                           ? "bg-muted text-muted-foreground"
                           : "bg-primary/10 text-primary"
@@ -287,7 +287,7 @@ export function ProductDemo() {
                       {phase !== "idle" && (
                         <div className="mt-4 h-1.5 bg-muted rounded-full overflow-hidden">
                           <div
-                            className="h-full bg-gradient-hero transition-[width] duration-150"
+                            className="h-full bg-accent transition-[width] duration-150"
                             style={{ width: `${progress}%` }}
                           />
                         </div>
@@ -311,20 +311,20 @@ export function ProductDemo() {
                                 <div className="flex items-center justify-between">
                                   <div className="flex items-center gap-2">
                                     {isR ? (
-                                      <AlertOctagon size={14} className="text-red-500" />
+                                      <AlertOctagon size={14} className="text-resistant" />
                                     ) : (
-                                      <CheckCircle2 size={14} className="text-emerald-500" />
+                                      <CheckCircle2 size={14} className="text-susceptible" />
                                     )}
                                     <div className="text-sm font-semibold">{r.drug}</div>
                                   </div>
-                                  <div className={`text-[11px] font-semibold ${isR ? "text-red-600" : "text-emerald-600"}`}>
+                                  <div className={`text-[11px] font-semibold ${isR ? "text-resistant" : "text-susceptible"}`}>
                                     {r.status}
                                   </div>
                                 </div>
                                 <div className="mt-3 flex items-center gap-3">
                                   <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                                     <div
-                                      className={`h-full ${isR ? "bg-red-500" : "bg-emerald-500"}`}
+                                      className={`h-full ${isR ? "bg-resistant" : "bg-susceptible"}`}
                                       style={{
                                         width: `${r.confidence}%`,
                                         animation: `bar-fill 900ms cubic-bezier(.2,.9,.3,1.2) ${i * 60 + 100}ms both`,

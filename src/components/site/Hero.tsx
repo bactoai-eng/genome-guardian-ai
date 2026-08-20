@@ -46,7 +46,7 @@ function HelixCanvas() {
           if (p.y < 0 || p.y > h) p.vy *= -1;
         }
         ctx.beginPath();
-        ctx.fillStyle = `rgba(167, 243, 228, ${p.a})`;
+        ctx.fillStyle = `rgba(159, 227, 206, ${p.a * 0.7})`;
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fill();
       }
@@ -64,18 +64,18 @@ function HelixCanvas() {
         const x2 = cx - Math.sin(phase) * amp;
         const alpha = 0.15 + 0.35 * (0.5 + 0.5 * Math.cos(phase));
 
-        ctx.strokeStyle = `rgba(0, 212, 170, ${alpha * 0.35})`;
+        ctx.strokeStyle = `rgba(23, 185, 143, ${alpha * 0.35})`;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(x1, y);
         ctx.lineTo(x2, y);
         ctx.stroke();
 
-        ctx.fillStyle = `rgba(0, 212, 170, ${alpha})`;
+        ctx.fillStyle = `rgba(23, 185, 143, ${alpha})`;
         ctx.beginPath();
         ctx.arc(x1, y, 2.4, 0, Math.PI * 2);
         ctx.fill();
-        ctx.fillStyle = `rgba(120, 200, 255, ${alpha})`;
+        ctx.fillStyle = `rgba(56, 189, 248, ${alpha * 0.8})`;
         ctx.beginPath();
         ctx.arc(x2, y, 2.4, 0, Math.PI * 2);
         ctx.fill();
@@ -107,11 +107,11 @@ export function Hero() {
     <section className="relative overflow-hidden bg-ink text-white min-h-[92vh] flex items-center pt-28 pb-20">
       <div className="absolute inset-0 bg-ink-mesh" />
       <HelixCanvas />
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#061020]/90" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#070B0A]/95" />
 
       <div className="relative mx-auto max-w-7xl px-6 grid lg:grid-cols-[1.15fr_.85fr] gap-16 items-center w-full">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-teal-300 backdrop-blur">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-[color:var(--color-teal-glow-soft)] backdrop-blur">
             <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--color-teal-glow)] animate-pulse-dot" />
             AI · Genomics · Precision Medicine
           </div>

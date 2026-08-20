@@ -4,19 +4,20 @@ type Theme = "light" | "dark";
 const KEY = "bactoai-theme";
 
 function getInitial(): Theme {
-  if (typeof window === "undefined") return "light";
+  if (typeof window === "undefined") return "dark";
   const stored = window.localStorage.getItem(KEY) as Theme | null;
   if (stored === "light" || stored === "dark") return stored;
-  return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return "dark";
 }
 
 function apply(theme: Theme) {
   const root = document.documentElement;
+  root.classList.toggle("light", theme === "light");
   root.classList.toggle("dark", theme === "dark");
 }
 
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
