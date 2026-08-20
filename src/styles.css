@@ -39,13 +39,15 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-resistant: var(--resistant);
+  --color-susceptible: var(--susceptible);
 
   /* Cinematic tokens (dark hero + Stakes band) */
-  --color-ink: #0A1628;
-  --color-ink-2: #102A43;
-  --color-ink-3: #1B3358;
-  --color-teal-glow: #00D4AA;
-  --color-teal-glow-soft: #4ee9c6;
+  --color-ink: #0A0F0D;
+  --color-ink-2: #0F1714;
+  --color-ink-3: #17211D;
+  --color-teal-glow: #17B98F;
+  --color-teal-glow-soft: #6fd9be;
 }
 
 :root {
