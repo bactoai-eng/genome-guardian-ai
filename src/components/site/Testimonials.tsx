@@ -91,7 +91,7 @@ export function Testimonials() {
                   <div className="text-xs text-muted-foreground">{t.title} · {t.org}</div>
                 </div>
               </div>
-              <div className="flex items-center gap-1 text-amber-400">
+              <div className="flex items-center gap-1 text-[color:var(--color-primary-glow)]">
                 {Array.from({ length: 5 }).map((_, k) => <Star key={k} size={16} fill="currentColor" />)}
               </div>
             </div>

@@ -8,10 +8,10 @@ export function PreFooterCTA() {
         <div className="absolute -top-40 left-1/3 w-[520px] h-[520px] rounded-full bg-[color:var(--color-teal-glow)]/15 blur-3xl" />
       </div>
       <div className="relative mx-auto max-w-4xl px-6 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-teal-300">
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-[color:var(--color-teal-glow-soft)]">
           Ready to transform AMR diagnostics?
         </div>
-        <h2 className="mt-6 text-3xl md:text-5xl font-bold tracking-tight text-hero-gradient">
+        <h2 className="mt-6 text-3xl md:text-5xl font-bold tracking-tight text-foreground">
           Bring genome-driven decisions into your hospital or lab.
         </h2>
         <p className="mt-5 text-white/70 text-lg max-w-2xl mx-auto">
