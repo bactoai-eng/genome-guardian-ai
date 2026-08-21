@@ -75,7 +75,7 @@ function HelixCanvas() {
         ctx.beginPath();
         ctx.arc(x1, y, 2.4, 0, Math.PI * 2);
         ctx.fill();
-        ctx.fillStyle = `rgba(56, 189, 248, ${alpha * 0.8})`;
+        ctx.fillStyle = `rgba(56, 189, 248, ${alpha * 0.45})`;
         ctx.beginPath();
         ctx.arc(x2, y, 2.4, 0, Math.PI * 2);
         ctx.fill();

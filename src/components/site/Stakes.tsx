@@ -47,8 +47,8 @@ function BigCount() {
 
 const cards = [
   { icon: Clock, k: "48–72h", label: "Traditional lab turnaround", tone: "text-resistant" },
-  { icon: Skull, k: "10M", label: "Projected annual AMR deaths by 2050", tone: "text-orange-300" },
-  { icon: Globe2, k: "$100T", label: "Cumulative global economic cost by 2050", tone: "text-[color:var(--color-accent)]" },
+  { icon: Skull, k: "10M", label: "Projected annual AMR deaths by 2050", tone: "text-resistant/80" },
+  { icon: Globe2, k: "$100T", label: "Cumulative global economic cost by 2050", tone: "text-accent" },
 ];
 
 export function Stakes() {
@@ -57,7 +57,7 @@ export function Stakes() {
       <div className="absolute inset-0 bg-ink-mesh opacity-90" />
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-[color:var(--color-teal-glow)]/10 blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 w-[520px] h-[520px] rounded-full bg-sky-400/10 blur-3xl" />
+        <div className="absolute -bottom-32 -right-32 w-[520px] h-[520px] rounded-full bg-accent/10 blur-3xl" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-6">

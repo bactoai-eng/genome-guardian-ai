@@ -138,7 +138,7 @@
 
 /* The single gradient on the page — hero headline only. */
 @utility text-hero-gradient {
-  background: linear-gradient(120deg, #F5F7F6 0%, #9FE3CE 55%, #38BDF8 100%);
+  background: linear-gradient(118deg, #F5F7F6 0%, #F0F5F3 38%, #C8E8DC 72%, #A8D4E4 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
