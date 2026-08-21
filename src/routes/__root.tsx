@@ -12,6 +12,7 @@ import { Toaster } from "sonner";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { ContrastAudit } from "../components/dev/ContrastAudit";
 
 
 function NotFoundComponent() {
@@ -138,7 +139,9 @@ function RootComponent() {
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <Toaster position="top-right" richColors closeButton />
+      <ContrastAudit />
     </QueryClientProvider>
+
 
   );
 }
