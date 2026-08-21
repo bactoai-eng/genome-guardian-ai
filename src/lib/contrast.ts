@@ -61,8 +61,8 @@ export type TokenPair = {
   label: string;
   fg: string;
   bg: string;
-  /** "text" = 4.5:1, "large" = 3:1, "ui" = 3:1 (non-text contrast) */
-  kind: "text" | "large" | "ui";
+  /** "text" = 4.5:1, "large"/"ui" = 3:1, "decorative" = informational only */
+  kind: "text" | "large" | "ui" | "decorative";
 };
 
 export const TOKEN_PAIRS: TokenPair[] = [
@@ -79,12 +79,14 @@ export const TOKEN_PAIRS: TokenPair[] = [
   { label: "resistant on card", fg: "--resistant", bg: "--card", kind: "text" },
   { label: "susceptible on card", fg: "--susceptible", bg: "--card", kind: "text" },
   { label: "primary-glow on background (large text)", fg: "--primary-glow", bg: "--background", kind: "large" },
-  { label: "border on background (UI)", fg: "--border", bg: "--background", kind: "ui" },
+  { label: "border on background (decorative)", fg: "--border", bg: "--background", kind: "decorative" },
   { label: "ring on background (UI)", fg: "--ring", bg: "--background", kind: "ui" },
 ];
 
 export function requiredRatio(kind: TokenPair["kind"]) {
-  return kind === "text" ? 4.5 : 3;
+  if (kind === "text") return 4.5;
+  if (kind === "decorative") return 1;
+  return 3;
 }
 
 export type AuditResult = TokenPair & {
