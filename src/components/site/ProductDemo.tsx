@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Upload, FileDown, CheckCircle2, AlertOctagon, RotateCcw, Sparkles, FlaskConical } from "lucide-react";
+import { Upload, FileDown, CheckCircle2, AlertOctagon, RotateCcw, Sparkles, FlaskConical, ArrowRight, Loader2 } from "lucide-react";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 type Result = { drug: string; status: "Resistant" | "Susceptible"; confidence: number };
 
