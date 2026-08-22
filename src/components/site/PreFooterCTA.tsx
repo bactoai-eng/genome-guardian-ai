@@ -19,7 +19,7 @@ export function PreFooterCTA() {
         </p>
         <div className="mt-10 flex flex-wrap gap-3 justify-center">
           <a
-            href="/#contact"
+            href="/contact"
             className="group inline-flex items-center gap-2 rounded-full bg-[color:var(--color-teal-glow)] px-7 py-3.5 text-sm font-semibold text-[color:var(--color-ink)] shadow-glow-teal hover:brightness-110 transition"
           >
             Request a Demo <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

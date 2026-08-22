@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { BookOpen, Linkedin, FileText, Newspaper } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
+import { BlogPreview } from "@/components/site/BlogPreview";
 
 export const Route = createFileRoute("/resources")({
   head: () => ({
@@ -103,6 +104,7 @@ function ResourcesPage() {
             })}
           </div>
         </div>
+        <BlogPreview />
       </main>
       <Footer />
     </div>

@@ -129,7 +129,7 @@ export function PartnerLabs() {
           {filtered.length === 0 && (
             <div className="md:col-span-2 lg:col-span-3 rounded-3xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
               No partner labs match that search yet. We're expanding the network —{" "}
-              <a href="#contact" className="text-primary font-semibold hover:underline">
+              <a href="/contact" className="text-primary font-semibold hover:underline">
                 tell us where you need coverage
               </a>
               .
@@ -145,7 +145,7 @@ export function PartnerLabs() {
             listed? Join the partner network.
           </p>
           <a
-            href="#contact"
+            href="/contact"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-soft hover:shadow-elegant transition-shadow shrink-0"
           >
             List your lab <ArrowRight size={16} />

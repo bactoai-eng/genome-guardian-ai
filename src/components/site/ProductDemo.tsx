@@ -371,7 +371,7 @@ export function ProductDemo() {
                         </button>
                         <p className="mt-3 text-center text-xs text-muted-foreground">
                           Need a confirmatory culture workup?{" "}
-                          <a href="#labs" className="text-primary font-semibold hover:underline">
+                          <a href="/research#labs" className="text-primary font-semibold hover:underline">
                             Find a partner lab near you
                           </a>
                           .
