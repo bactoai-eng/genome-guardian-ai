@@ -1,14 +1,19 @@
-import teamPhoto from "@/assets/team-photo.jpg";
+import samwelPhoto from "@/assets/samwel-elegwa.png.asset.json";
+import sheilaPhoto from "@/assets/sheila-okwisa.png.asset.json";
 
-const team = [
+type Member = { name: string; role: string; bio: string; photo?: string };
+
+const team: Member[] = [
   {
     name: "Samwel Elegwa",
     role: "Founder & CEO",
+    photo: samwelPhoto.url,
     bio: "Biotechnology researcher at Kenyatta University with hands-on analytical experience from a Kenya Bureau of Standards attachment (gravimetry, titrimetry, spectroscopy). Alumnus of the NextGen Antimicrobial Stewards Initiative and 2nd-place finisher at Kenyatta's Entrepreneur in Science bootcamp, where BactoAI was first pitched.",
   },
   {
     name: "Sheila Okwisa",
     role: "Chief Technology Officer",
+    photo: sheilaPhoto.url,
     bio: "Software engineer leading BactoAI's platform, cloud infrastructure, and deployment tooling. Focused on making genome-in / report-out AMR pipelines reliable enough for low-resource clinical labs.",
   },
   {
@@ -49,17 +54,31 @@ export function Team() {
           </h2>
         </div>
 
-        <div className="mt-14 rounded-3xl overflow-hidden border border-border shadow-soft">
-          <img src={teamPhoto} alt="BactoAI team" className="w-full h-64 md:h-80 object-cover" />
+        <div
+          className="mt-14 rounded-3xl border border-dashed border-border/70 bg-card/30 h-64 md:h-80 flex items-center justify-center"
+          aria-hidden="true"
+        >
+          <span className="text-xs uppercase tracking-widest text-muted-foreground">
+            Team photo coming soon
+          </span>
         </div>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((m) => (
             <div key={m.name} className="rounded-2xl border border-border bg-background p-6 shadow-soft hover:shadow-elegant transition">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-gradient-hero text-white flex items-center justify-center font-bold">
-                  {initials(m.name)}
-                </div>
+                {m.photo ? (
+                  <img
+                    src={m.photo}
+                    alt={`${m.name}, ${m.role} at BactoAI`}
+                    loading="lazy"
+                    className="w-14 h-14 rounded-full object-cover border border-border"
+                  />
+                ) : (
+                  <div className="w-14 h-14 rounded-full bg-gradient-hero text-white flex items-center justify-center font-bold">
+                    {initials(m.name)}
+                  </div>
+                )}
                 <div>
                   <div className="font-semibold text-foreground">{m.name}</div>
                   <div className="text-xs text-primary font-medium">{m.role}</div>
