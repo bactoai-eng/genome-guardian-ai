@@ -1,9 +1,13 @@
-import teamPhoto from "@/assets/team-photo.jpg";
+import samwelPhoto from "@/assets/samwel-elegwa.png.asset.json";
+import sheilaPhoto from "@/assets/sheila-okwisa.png.asset.json";
 
-const team = [
+type Member = { name: string; role: string; bio: string; photo?: string };
+
+const team: Member[] = [
   {
     name: "Samwel Elegwa",
     role: "Founder & CEO",
+    photo: samwelPhoto.url,
     bio: "Biotechnology researcher at Kenyatta University with hands-on analytical experience from a Kenya Bureau of Standards attachment (gravimetry, titrimetry, spectroscopy). Alumnus of the NextGen Antimicrobial Stewards Initiative and 2nd-place finisher at Kenyatta's Entrepreneur in Science bootcamp, where BactoAI was first pitched.",
   },
   {
