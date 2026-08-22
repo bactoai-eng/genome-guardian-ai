@@ -6,25 +6,9 @@ import { Stakes } from "@/components/site/Stakes";
 import { TrustBar } from "@/components/site/TrustBar";
 import { Problem } from "@/components/site/Problem";
 import { Solution } from "@/components/site/Solution";
-import { Features } from "@/components/site/Features";
-import { WhyBactoAI } from "@/components/site/WhyBactoAI";
 import { ProductDemo } from "@/components/site/ProductDemo";
-import { PartnerLabs } from "@/components/site/PartnerLabs";
-
-import { Technology } from "@/components/site/Technology";
 import { Validation } from "@/components/site/Validation";
-import { Impact } from "@/components/site/Impact";
-import { Testimonials } from "@/components/site/Testimonials";
-import { Team } from "@/components/site/Team";
-import { Roadmap } from "@/components/site/Roadmap";
-import { Partners } from "@/components/site/Partners";
-import { Research } from "@/components/site/Research";
-import { Pricing } from "@/components/site/Pricing";
-import { FAQ } from "@/components/site/FAQ";
-import { BlogPreview } from "@/components/site/BlogPreview";
-import { Newsletter } from "@/components/site/Newsletter";
 import { PreFooterCTA } from "@/components/site/PreFooterCTA";
-import { Contact } from "@/components/site/Contact";
 import { ScrollProgressBar } from "@/components/site/ScrollProgressBar";
 import { useAutoReveal } from "@/hooks/use-auto-reveal";
 
@@ -45,23 +29,7 @@ function Index() {
         <Problem />
         <Solution />
         <ProductDemo />
-        <Features />
-        <WhyBactoAI />
-        <Technology />
         <Validation />
-        <Testimonials />
-        <Impact />
-        <Research />
-        <PartnerLabs />
-
-        <Team />
-        <Partners />
-        <Roadmap />
-        <Pricing />
-        <FAQ />
-        <BlogPreview />
-        <Contact />
-        <Newsletter />
         <PreFooterCTA />
       </main>
       <Footer />

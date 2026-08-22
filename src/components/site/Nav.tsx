@@ -1,30 +1,45 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import logo from "@/assets/bactoai-logo.svg";
 import { ThemeToggle } from "./ThemeToggle";
 
-const links: { href: string; label: string; route?: boolean }[] = [
-  { href: "/#technology", label: "Technology" },
-  { href: "/#demo", label: "Product" },
-  { href: "/#labs", label: "Labs" },
+type NavLink = { href: string; label: string; route?: boolean };
 
-  { href: "/#testimonials", label: "Customers" },
-  { href: "/pricing", label: "Pricing", route: true },
-  { href: "/#team", label: "Team" },
+const primaryLinks: NavLink[] = [
+  { href: "/technology", label: "Technology", route: true },
+  { href: "/pricing", label: "Product & Pricing", route: true },
+  { href: "/research", label: "Research", route: true },
+  { href: "/about", label: "About", route: true },
+];
+
+const moreLinks: NavLink[] = [
+  { href: "/resources", label: "Resources", route: true },
   { href: "/blog", label: "Blog", route: true },
-  { href: "/#contact", label: "Contact" },
+  { href: "/careers", label: "Careers", route: true },
+  { href: "/docs/mcp", label: "MCP for assistants", route: true },
+  { href: "/contact", label: "Contact", route: true },
 ];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (moreRef.current && !moreRef.current.contains(e.target as Node)) setMoreOpen(false);
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
   }, []);
 
   return (
@@ -38,34 +53,48 @@ export function Nav() {
           <img src={logo} alt="BactoAI" className="h-10 w-auto" />
         </Link>
         <nav className="hidden lg:flex items-center gap-7">
-          {links.map((l) =>
-            l.route ? (
-              <Link
-                key={l.href}
-                to={l.href}
-                className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
-              >
-                {l.label}
-              </Link>
-            ) : (
-              <a
-                key={l.href}
-                href={l.href}
-                className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
-              >
-                {l.label}
-              </a>
-            ),
-          )}
+          {primaryLinks.map((l) => (
+            <Link
+              key={l.href}
+              to={l.href}
+              className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
+              activeProps={{ className: "text-sm font-medium text-primary" }}
+            >
+              {l.label}
+            </Link>
+          ))}
+          <div className="relative" ref={moreRef}>
+            <button
+              onClick={() => setMoreOpen((v) => !v)}
+              aria-expanded={moreOpen}
+              className="inline-flex items-center gap-1 text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
+            >
+              More <ChevronDown size={14} />
+            </button>
+            {moreOpen && (
+              <div className="absolute right-0 mt-3 w-56 rounded-2xl border border-border bg-card p-2 shadow-elegant">
+                {moreLinks.map((l) => (
+                  <Link
+                    key={l.href}
+                    to={l.href}
+                    onClick={() => setMoreOpen(false)}
+                    className="block rounded-xl px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-muted hover:text-primary transition-colors"
+                  >
+                    {l.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
         </nav>
         <div className="hidden lg:flex items-center gap-3">
           <ThemeToggle />
-          <a
-            href="/#contact"
+          <Link
+            to="/contact"
             className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft hover:shadow-elegant transition-shadow"
           >
             Request Demo
-          </a>
+          </Link>
         </div>
         <div className="lg:hidden flex items-center gap-2">
           <ThemeToggle />
@@ -80,34 +109,23 @@ export function Nav() {
       </div>
       {open && (
         <div className="lg:hidden glass border-t border-border px-6 py-4 space-y-3">
-          {links.map((l) =>
-            l.route ? (
-              <Link
-                key={l.href}
-                to={l.href}
-                className="block text-base font-medium text-foreground/80"
-                onClick={() => setOpen(false)}
-              >
-                {l.label}
-              </Link>
-            ) : (
-              <a
-                key={l.href}
-                href={l.href}
-                className="block text-base font-medium text-foreground/80"
-                onClick={() => setOpen(false)}
-              >
-                {l.label}
-              </a>
-            ),
-          )}
-          <a
-            href="/#contact"
+          {[...primaryLinks, ...moreLinks].map((l) => (
+            <Link
+              key={l.href}
+              to={l.href}
+              className="block text-base font-medium text-foreground/80"
+              onClick={() => setOpen(false)}
+            >
+              {l.label}
+            </Link>
+          ))}
+          <Link
+            to="/contact"
             onClick={() => setOpen(false)}
             className="block text-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
           >
             Request Demo
-          </a>
+          </Link>
         </div>
       )}
     </header>
