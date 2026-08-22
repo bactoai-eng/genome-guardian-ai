@@ -389,6 +389,87 @@ export function ProductDemo() {
                 </div>
               </div>
             </div>
+
+            {/* Step 3 — Request a demo on your own isolates */}
+            <div id="request-demo">
+              <div className="flex items-center gap-3">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+                  3
+                </span>
+                <h3 className="text-xl font-bold text-foreground">Request a demo on your own isolates</h3>
+              </div>
+              <p className="mt-2 ml-10 text-sm text-muted-foreground">
+                Send us a request and our team will run BactoAI against your genomes with you.
+              </p>
+
+              <form
+                onSubmit={submitRequest}
+                className="mt-5 rounded-2xl border border-border bg-card p-6 space-y-4"
+              >
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-xs font-semibold text-muted-foreground">Full name</label>
+                    <input
+                      required
+                      maxLength={100}
+                      value={req.name}
+                      onChange={(e) => setReq({ ...req, name: e.target.value })}
+                      disabled={reqStatus === "success"}
+                      className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-semibold text-muted-foreground">Work email</label>
+                    <input
+                      type="email"
+                      required
+                      maxLength={255}
+                      value={req.email}
+                      onChange={(e) => setReq({ ...req, email: e.target.value })}
+                      disabled={reqStatus === "success"}
+                      className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-muted-foreground">Institution / lab</label>
+                  <input
+                    maxLength={150}
+                    value={req.organization}
+                    onChange={(e) => setReq({ ...req, organization: e.target.value })}
+                    disabled={reqStatus === "success"}
+                    className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-muted-foreground">
+                    What would you like to test?
+                  </label>
+                  <textarea
+                    rows={3}
+                    maxLength={900}
+                    value={req.message}
+                    onChange={(e) => setReq({ ...req, message: e.target.value })}
+                    disabled={reqStatus === "success"}
+                    className="mt-1 w-full rounded-lg border border-border bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={reqStatus === "loading" || reqStatus === "success"}
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary py-3 text-sm font-semibold text-primary-foreground shadow-elegant hover:opacity-95 transition disabled:opacity-70"
+                >
+                  {reqStatus === "loading" && (<><Loader2 size={16} className="animate-spin" /> Sending…</>)}
+                  {reqStatus === "success" && (<><CheckCircle2 size={16} /> Request received</>)}
+                  {(reqStatus === "idle" || reqStatus === "error") && (<>Request the demo <ArrowRight size={16} /></>)}
+                </button>
+                {reqStatus === "error" && (
+                  <p className="text-[11px] text-destructive text-center">
+                    Something went wrong. Please try again or email bactoai01@gmail.com.
+                  </p>
+                )}
+              </form>
+            </div>
           </div>
         </div>
       </div>
