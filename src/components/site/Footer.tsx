@@ -1,28 +1,29 @@
 import { Link } from "@tanstack/react-router";
 import logo from "@/assets/bactoai-logo.svg";
+import { Newsletter } from "./Newsletter";
 import { Linkedin, Mail, MapPin, Github, ArrowUpRight } from "lucide-react";
 
 const productLinks = [
-  { label: "Technology", href: "/#technology" },
-  { label: "Platform demo", href: "/#product" },
+  { label: "Technology", href: "/technology#technology" },
+  { label: "Platform capabilities", href: "/technology#product" },
   { label: "Validation", href: "/#validation" },
-  { label: "Roadmap", href: "/#roadmap" },
-  { label: "FAQ", href: "/#faq" },
+  { label: "Roadmap", href: "/about#roadmap" },
+  { label: "FAQ", href: "/technology#faq" },
 ];
 
 const companyLinks: { label: string; href: string; route?: boolean }[] = [
   { label: "The problem", href: "/#problem" },
-  { label: "Our team", href: "/#team" },
-  { label: "Research & awards", href: "/#research" },
-  { label: "Partners", href: "/#partners" },
+  { label: "Our team", href: "/about#team" },
+  { label: "Research & awards", href: "/research#research" },
+  { label: "Partners", href: "/about#partners" },
   { label: "Careers", href: "/careers", route: true },
   { label: "Resources", href: "/resources", route: true },
   { label: "MCP for assistants", href: "/docs/mcp", route: true },
 ];
 
 const actionLinks: { label: string; href: string; external?: boolean }[] = [
-  { label: "Request a demo", href: "/#contact" },
-  { label: "Partner with us", href: "/#partner-inquiry" },
+  { label: "Request a demo", href: "/contact" },
+  { label: "Partner with us", href: "/about#partner-inquiry" },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/bactoai-model-32303335a",
@@ -40,6 +41,9 @@ const legalLinks: { label: string; href: string; route?: boolean }[] = [
 export function Footer() {
   return (
     <footer className="bg-dark text-white/80">
+      <div className="mx-auto max-w-7xl px-6 pt-4">
+        <Newsletter />
+      </div>
       <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-4">
         <div className="md:col-span-1">
           <img src={logo} alt="BactoAI" className="h-12 w-auto brightness-0 invert" />
