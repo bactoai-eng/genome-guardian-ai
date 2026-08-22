@@ -13,6 +13,7 @@ const team: Member[] = [
   {
     name: "Sheila Okwisa",
     role: "Chief Technology Officer",
+    photo: sheilaPhoto.url,
     bio: "Software engineer leading BactoAI's platform, cloud infrastructure, and deployment tooling. Focused on making genome-in / report-out AMR pipelines reliable enough for low-resource clinical labs.",
   },
   {
