@@ -103,6 +103,32 @@ export function ProductDemo() {
   const sample = samples.find((s) => s.id === selectedId) ?? samples[0];
   const results = sample.results;
 
+  const [reqStatus, setReqStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [req, setReq] = useState({ name: "", email: "", organization: "", message: "" });
+
+  async function submitRequest(e: React.FormEvent) {
+    e.preventDefault();
+    if (reqStatus === "loading" || reqStatus === "success") return;
+    setReqStatus("loading");
+    const { error } = await supabase.from("contact_submissions").insert({
+      form_type: "demo",
+      full_name: req.name.trim(),
+      email: req.email.trim(),
+      organization: req.organization.trim() || null,
+      message:
+        (req.message.trim() ? `${req.message.trim()}\n\n` : "") +
+        `[Requested from live demo — sample of interest: ${sample.isolate} (${sample.organism})]`,
+    });
+    if (error) {
+      console.error("Demo request failed", error);
+      setReqStatus("error");
+      toast.error("We couldn't send your request. Please email bactoai01@gmail.com.");
+      return;
+    }
+    setReqStatus("success");
+    toast.success("Demo request received — we'll be in touch within 2 business days.");
+  }
+
   useEffect(() => () => { if (timerRef.current) window.clearInterval(timerRef.current); }, []);
 
   const start = () => {
