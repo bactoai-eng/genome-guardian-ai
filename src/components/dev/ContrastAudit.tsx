@@ -21,7 +21,14 @@ export function auditTheme(themeClass: "dark" | "light"): AuditResult[] {
     const bgValue = styles.getPropertyValue(pair.bg).trim();
     const ratio = contrastRatio(fgValue, bgValue);
     const required = requiredRatio(pair.kind);
-    return { ...pair, fgValue, bgValue, ratio, required, passes: ratio !== null && ratio >= required };
+    return {
+      ...pair,
+      fgValue,
+      bgValue,
+      ratio,
+      required,
+      passes: ratio !== null && ratio >= required,
+    };
   });
   probe.remove();
   return results;

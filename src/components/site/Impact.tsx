@@ -21,7 +21,10 @@ export function Impact() {
         </div>
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {impact.map((i) => (
-            <div key={i.t} className="rounded-2xl border border-border bg-background p-6 flex items-start gap-4 hover:border-primary/40 transition">
+            <div
+              key={i.t}
+              className="rounded-2xl border border-border bg-background p-6 flex items-start gap-4 hover:border-primary/40 transition"
+            >
               <div className="w-11 h-11 rounded-xl bg-gradient-hero text-white flex items-center justify-center shrink-0">
                 <i.icon size={20} />
               </div>

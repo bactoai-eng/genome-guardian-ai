@@ -14,7 +14,6 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ContrastAudit } from "../components/dev/ContrastAudit";
 
-
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -95,10 +94,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "BactoAI — AI-Powered Antimicrobial Resistance Prediction" },
-      { name: "twitter:description", content: "BactoAI predicts antibiotic resistance from bacterial whole-genome sequences in minutes, enabling faster precision antimicrobial treatment decisions." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0ec29e42-8b6b-4496-bcd8-86b6c88705d8/id-preview-221b93cb--74e700f5-75b9-48e6-b006-b63e30b968ea.lovable.app-1784264982860.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0ec29e42-8b6b-4496-bcd8-86b6c88705d8/id-preview-221b93cb--74e700f5-75b9-48e6-b006-b63e30b968ea.lovable.app-1784264982860.png" },
+      {
+        name: "twitter:title",
+        content: "BactoAI — AI-Powered Antimicrobial Resistance Prediction",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "BactoAI predicts antibiotic resistance from bacterial whole-genome sequences in minutes, enabling faster precision antimicrobial treatment decisions.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0ec29e42-8b6b-4496-bcd8-86b6c88705d8/id-preview-221b93cb--74e700f5-75b9-48e6-b006-b63e30b968ea.lovable.app-1784264982860.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0ec29e42-8b6b-4496-bcd8-86b6c88705d8/id-preview-221b93cb--74e700f5-75b9-48e6-b006-b63e30b968ea.lovable.app-1784264982860.png",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -141,7 +155,5 @@ function RootComponent() {
       <Toaster position="top-right" richColors closeButton />
       <ContrastAudit />
     </QueryClientProvider>
-
-
   );
 }

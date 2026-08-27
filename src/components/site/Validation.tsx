@@ -9,7 +9,9 @@ export function Validation() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="text-sm font-semibold text-primary uppercase tracking-widest">Validation</div>
+            <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+              Validation
+            </div>
             <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
               Evidence-based development.
             </h2>
@@ -30,14 +32,16 @@ export function Validation() {
                 className="rounded-2xl border border-border bg-card p-8 shadow-soft flex items-center justify-between"
               >
                 <div>
-                  <div className="text-4xl md:text-5xl font-bold text-gradient tracking-tight">{s.k}</div>
+                  <div className="text-4xl md:text-5xl font-bold text-gradient tracking-tight">
+                    {s.k}
+                  </div>
                   <div className="mt-1 text-sm text-muted-foreground">{s.v}</div>
                 </div>
               </div>
             ))}
             <p className="text-xs text-muted-foreground/70">
-              Reported figures reflect internal model development. Performance on
-              prospective clinical isolates will be reported upon completion of ongoing validation.
+              Reported figures reflect internal model development. Performance on prospective
+              clinical isolates will be reported upon completion of ongoing validation.
             </p>
           </div>
         </div>

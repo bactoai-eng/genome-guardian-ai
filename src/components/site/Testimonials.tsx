@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
-type T = { quote: string; name: string; title: string; org: string; initials: string; metric?: string };
+type T = {
+  quote: string;
+  name: string;
+  title: string;
+  org: string;
+  initials: string;
+  metric?: string;
+};
 
 const testimonials: T[] = [
   {
@@ -66,12 +73,15 @@ export function Testimonials() {
     <section id="testimonials" className="py-24 md:py-32 bg-background">
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center max-w-2xl mx-auto">
-          <div className="text-sm font-semibold text-primary uppercase tracking-widest">Testimonials</div>
+          <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+            Testimonials
+          </div>
           <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
             Trusted by clinicians and researchers on the front lines of AMR.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Feedback from pilot partners across East African hospitals, research consortia, and public-health teams.
+            Feedback from pilot partners across East African hospitals, research consortia, and
+            public-health teams.
           </p>
         </div>
 
@@ -88,11 +98,15 @@ export function Testimonials() {
                 </div>
                 <div>
                   <div className="font-semibold text-foreground">{t.name}</div>
-                  <div className="text-xs text-muted-foreground">{t.title} · {t.org}</div>
+                  <div className="text-xs text-muted-foreground">
+                    {t.title} · {t.org}
+                  </div>
                 </div>
               </div>
               <div className="flex items-center gap-1 text-[color:var(--color-primary-glow)]">
-                {Array.from({ length: 5 }).map((_, k) => <Star key={k} size={16} fill="currentColor" />)}
+                {Array.from({ length: 5 }).map((_, k) => (
+                  <Star key={k} size={16} fill="currentColor" />
+                ))}
               </div>
             </div>
             {t.metric && (
@@ -134,7 +148,8 @@ export function Testimonials() {
           </div>
 
           <p className="mt-6 text-[11px] text-muted-foreground text-center">
-            Pilot-participant feedback. Names and affiliations disclosed with permission at contract signing.
+            Pilot-participant feedback. Names and affiliations disclosed with permission at contract
+            signing.
           </p>
         </div>
       </div>

@@ -1,5 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { Upload, FileDown, CheckCircle2, AlertOctagon, RotateCcw, Sparkles, FlaskConical, ArrowRight, Loader2 } from "lucide-react";
+import {
+  Upload,
+  FileDown,
+  CheckCircle2,
+  AlertOctagon,
+  RotateCcw,
+  Sparkles,
+  FlaskConical,
+  ArrowRight,
+  Loader2,
+} from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -129,7 +139,12 @@ export function ProductDemo() {
     toast.success("Demo request received — we'll be in touch within 2 business days.");
   }
 
-  useEffect(() => () => { if (timerRef.current) window.clearInterval(timerRef.current); }, []);
+  useEffect(
+    () => () => {
+      if (timerRef.current) window.clearInterval(timerRef.current);
+    },
+    [],
+  );
 
   const start = () => {
     setPhase("uploading");
@@ -166,7 +181,9 @@ export function ProductDemo() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid gap-12 lg:grid-cols-[.9fr_1.1fr] items-start">
           <div className="lg:sticky lg:top-28">
-            <div className="text-sm font-semibold text-primary uppercase tracking-widest">Live Product Demo</div>
+            <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+              Live Product Demo
+            </div>
             <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
               Try it yourself. Watch a genome become a treatment recommendation.
             </h2>
@@ -216,7 +233,10 @@ export function ProductDemo() {
                     >
                       <div className="flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
-                          <FlaskConical size={15} className={active ? "text-primary" : "text-muted-foreground"} />
+                          <FlaskConical
+                            size={15}
+                            className={active ? "text-primary" : "text-muted-foreground"}
+                          />
                           <span className="text-sm font-semibold text-foreground">{s.isolate}</span>
                         </div>
                         {active && (
@@ -262,10 +282,16 @@ export function ProductDemo() {
                     <span className="w-2.5 h-2.5 rounded-full bg-destructive/60" />
                     <span className="w-2.5 h-2.5 rounded-full bg-muted-foreground/40" />
                     <span className="w-2.5 h-2.5 rounded-full bg-susceptible/60" />
-                    <div className="ml-4 text-xs text-muted-foreground font-mono">app.bactoai.com/predict</div>
+                    <div className="ml-4 text-xs text-muted-foreground font-mono">
+                      app.bactoai.com/predict
+                    </div>
                     <div className="ml-auto flex items-center gap-2">
                       {phase !== "idle" && (
-                        <button onClick={reset} title="Reset" className="text-muted-foreground hover:text-foreground transition">
+                        <button
+                          onClick={reset}
+                          title="Reset"
+                          className="text-muted-foreground hover:text-foreground transition"
+                        >
                           <RotateCcw size={14} />
                         </button>
                       )}
@@ -278,13 +304,15 @@ export function ProductDemo() {
                         <div className="text-xs text-muted-foreground">Patient ID</div>
                         <div className="font-mono text-sm font-semibold">{sample.patientId}</div>
                       </div>
-                      <div className={`text-xs px-3 py-1 rounded-full font-semibold ${
-                        phase === "done"
-                          ? "bg-susceptible/10 text-susceptible"
-                          : phase === "idle"
-                          ? "bg-muted text-muted-foreground"
-                          : "bg-primary/10 text-primary"
-                      }`}>
+                      <div
+                        className={`text-xs px-3 py-1 rounded-full font-semibold ${
+                          phase === "done"
+                            ? "bg-susceptible/10 text-susceptible"
+                            : phase === "idle"
+                              ? "bg-muted text-muted-foreground"
+                              : "bg-primary/10 text-primary"
+                        }`}
+                      >
                         {phase === "idle" && "Ready"}
                         {phase === "uploading" && "Uploading…"}
                         {phase === "analyzing" && "Analyzing genome…"}
@@ -298,7 +326,12 @@ export function ProductDemo() {
                         <div className="text-sm flex-1">
                           <div className="font-semibold text-foreground">{sample.file}</div>
                           <div className="text-xs text-muted-foreground">
-                            {sample.size} · WGS · {sample.organism} · {phase === "idle" ? "Ready to analyze" : phase === "done" ? "Analyzed" : "In progress"}
+                            {sample.size} · WGS · {sample.organism} ·{" "}
+                            {phase === "idle"
+                              ? "Ready to analyze"
+                              : phase === "done"
+                                ? "Analyzed"
+                                : "In progress"}
                           </div>
                         </div>
                         {phase === "idle" ? (
@@ -309,7 +342,9 @@ export function ProductDemo() {
                             <Sparkles size={12} /> Analyze sample
                           </button>
                         ) : (
-                          <div className="text-xs font-mono text-muted-foreground">{Math.round(progress)}%</div>
+                          <div className="text-xs font-mono text-muted-foreground">
+                            {Math.round(progress)}%
+                          </div>
                         )}
                       </div>
                       {phase !== "idle" && (
@@ -345,7 +380,9 @@ export function ProductDemo() {
                                     )}
                                     <div className="text-sm font-semibold">{r.drug}</div>
                                   </div>
-                                  <div className={`text-[11px] font-semibold ${isR ? "text-resistant" : "text-susceptible"}`}>
+                                  <div
+                                    className={`text-[11px] font-semibold ${isR ? "text-resistant" : "text-susceptible"}`}
+                                  >
                                     {r.status}
                                   </div>
                                 </div>
@@ -359,7 +396,9 @@ export function ProductDemo() {
                                       }}
                                     />
                                   </div>
-                                  <div className="text-xs font-mono text-muted-foreground">{r.confidence}%</div>
+                                  <div className="text-xs font-mono text-muted-foreground">
+                                    {r.confidence}%
+                                  </div>
                                 </div>
                               </div>
                             );
@@ -371,7 +410,10 @@ export function ProductDemo() {
                         </button>
                         <p className="mt-3 text-center text-xs text-muted-foreground">
                           Need a confirmatory culture workup?{" "}
-                          <a href="/research#labs" className="text-primary font-semibold hover:underline">
+                          <a
+                            href="/research#labs"
+                            className="text-primary font-semibold hover:underline"
+                          >
                             Find a partner lab near you
                           </a>
                           .
@@ -381,8 +423,8 @@ export function ProductDemo() {
 
                     {phase === "idle" && (
                       <div className="rounded-xl border border-dashed border-border/70 p-5 text-center text-sm text-muted-foreground">
-                        Results will appear here after analysis. Change the selected sample above to see
-                        different genomic resistance profiles.
+                        Results will appear here after analysis. Change the selected sample above to
+                        see different genomic resistance profiles.
                       </div>
                     )}
                   </div>
@@ -396,7 +438,9 @@ export function ProductDemo() {
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
                   3
                 </span>
-                <h3 className="text-xl font-bold text-foreground">Request a demo on your own isolates</h3>
+                <h3 className="text-xl font-bold text-foreground">
+                  Request a demo on your own isolates
+                </h3>
               </div>
               <p className="mt-2 ml-10 text-sm text-muted-foreground">
                 Send us a request and our team will run BactoAI against your genomes with you.
@@ -419,7 +463,9 @@ export function ProductDemo() {
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-semibold text-muted-foreground">Work email</label>
+                    <label className="text-xs font-semibold text-muted-foreground">
+                      Work email
+                    </label>
                     <input
                       type="email"
                       required
@@ -432,7 +478,9 @@ export function ProductDemo() {
                   </div>
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-muted-foreground">Institution / lab</label>
+                  <label className="text-xs font-semibold text-muted-foreground">
+                    Institution / lab
+                  </label>
                   <input
                     maxLength={150}
                     value={req.organization}
@@ -459,9 +507,21 @@ export function ProductDemo() {
                   disabled={reqStatus === "loading" || reqStatus === "success"}
                   className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary py-3 text-sm font-semibold text-primary-foreground shadow-elegant hover:opacity-95 transition disabled:opacity-70"
                 >
-                  {reqStatus === "loading" && (<><Loader2 size={16} className="animate-spin" /> Sending…</>)}
-                  {reqStatus === "success" && (<><CheckCircle2 size={16} /> Request received</>)}
-                  {(reqStatus === "idle" || reqStatus === "error") && (<>Request the demo <ArrowRight size={16} /></>)}
+                  {reqStatus === "loading" && (
+                    <>
+                      <Loader2 size={16} className="animate-spin" /> Sending…
+                    </>
+                  )}
+                  {reqStatus === "success" && (
+                    <>
+                      <CheckCircle2 size={16} /> Request received
+                    </>
+                  )}
+                  {(reqStatus === "idle" || reqStatus === "error") && (
+                    <>
+                      Request the demo <ArrowRight size={16} />
+                    </>
+                  )}
                 </button>
                 {reqStatus === "error" && (
                   <p className="text-[11px] text-destructive text-center">

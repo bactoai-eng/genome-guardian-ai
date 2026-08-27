@@ -10,8 +10,7 @@ export const Route = createFileRoute("/resources")({
       { title: "Resources — BactoAI" },
       {
         name: "description",
-        content:
-          "AMR education, press mentions, and downloadable materials from the BactoAI team.",
+        content: "AMR education, press mentions, and downloadable materials from the BactoAI team.",
       },
     ],
   }),
@@ -58,7 +57,9 @@ function ResourcesPage() {
       <Nav />
       <main className="pt-32 pb-24">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="text-sm font-semibold text-primary uppercase tracking-widest">Resources</div>
+          <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+            Resources
+          </div>
           <h1 className="mt-3 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
             Education, press, and materials on the AMR problem we work on.
           </h1>
@@ -96,7 +97,9 @@ function ResourcesPage() {
                   </div>
                   <h2 className="mt-5 text-lg font-bold text-foreground">{r.title}</h2>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{r.body}</p>
-                  <div className={`mt-4 text-sm font-semibold ${isLink ? "text-primary group-hover:opacity-80" : "text-muted-foreground"}`}>
+                  <div
+                    className={`mt-4 text-sm font-semibold ${isLink ? "text-primary group-hover:opacity-80" : "text-muted-foreground"}`}
+                  >
                     {r.cta} {isLink && "→"}
                   </div>
                 </Wrapper>

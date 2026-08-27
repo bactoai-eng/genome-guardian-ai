@@ -208,7 +208,9 @@ function McpDocsPage() {
               <li>
                 On approval you are redirected back to the client, which exchanges the code for an
                 access token and calls the MCP endpoint with{" "}
-                <code className="font-mono text-foreground">Authorization: Bearer &lt;token&gt;</code>
+                <code className="font-mono text-foreground">
+                  Authorization: Bearer &lt;token&gt;
+                </code>
                 . Already-approved clients skip the consent screen on reconnect.
               </li>
             </ol>
@@ -222,8 +224,8 @@ function McpDocsPage() {
               and database access runs as your account.{" "}
               <code className="font-mono text-foreground">list_articles</code> works for any
               signed-in user. The submission tools return rows only if your account holds the{" "}
-              <code className="font-mono text-foreground">admin</code> role; otherwise they return an
-              empty result rather than an error.
+              <code className="font-mono text-foreground">admin</code> role; otherwise they return
+              an empty result rather than an error.
             </p>
           </Section>
 
@@ -274,8 +276,8 @@ Authorization: Bearer <access_token>`}</Code>
   }
 }`}</Code>
             <p>
-              In Claude or ChatGPT, add BactoAI as a custom connector using the same URL and complete
-              the browser sign-in when prompted.
+              In Claude or ChatGPT, add BactoAI as a custom connector using the same URL and
+              complete the browser sign-in when prompted.
             </p>
           </Section>
 

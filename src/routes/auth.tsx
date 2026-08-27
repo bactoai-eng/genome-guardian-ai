@@ -41,7 +41,6 @@ function AuthPage() {
     });
   }, [navigate, target]);
 
-
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
@@ -63,7 +62,6 @@ function AuthPage() {
         if (target) window.location.href = target;
         else navigate({ to: "/admin/submissions", replace: true });
       }
-
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Authentication failed.");
     } finally {

@@ -12,7 +12,10 @@ export function parseColor(input: string): Rgb | null {
 
   const rgbMatch = value.match(/^rgba?\(([^)]+)\)$/i);
   if (rgbMatch) {
-    const parts = rgbMatch[1].split(/[\s,/]+/).filter(Boolean).map(Number);
+    const parts = rgbMatch[1]
+      .split(/[\s,/]+/)
+      .filter(Boolean)
+      .map(Number);
     if (parts.length >= 3 && parts.slice(0, 3).every((n) => Number.isFinite(n))) {
       return { r: parts[0], g: parts[1], b: parts[2] };
     }
@@ -67,19 +70,54 @@ export type TokenPair = {
 
 export const TOKEN_PAIRS: TokenPair[] = [
   { label: "foreground on background", fg: "--foreground", bg: "--background", kind: "text" },
-  { label: "muted-foreground on background", fg: "--muted-foreground", bg: "--background", kind: "text" },
+  {
+    label: "muted-foreground on background",
+    fg: "--muted-foreground",
+    bg: "--background",
+    kind: "text",
+  },
   { label: "card-foreground on card", fg: "--card-foreground", bg: "--card", kind: "text" },
-  { label: "popover-foreground on popover", fg: "--popover-foreground", bg: "--popover", kind: "text" },
-  { label: "primary-foreground on primary", fg: "--primary-foreground", bg: "--primary", kind: "text" },
-  { label: "secondary-foreground on secondary", fg: "--secondary-foreground", bg: "--secondary", kind: "text" },
+  {
+    label: "popover-foreground on popover",
+    fg: "--popover-foreground",
+    bg: "--popover",
+    kind: "text",
+  },
+  {
+    label: "primary-foreground on primary",
+    fg: "--primary-foreground",
+    bg: "--primary",
+    kind: "text",
+  },
+  {
+    label: "secondary-foreground on secondary",
+    fg: "--secondary-foreground",
+    bg: "--secondary",
+    kind: "text",
+  },
   { label: "accent-foreground on accent", fg: "--accent-foreground", bg: "--accent", kind: "text" },
-  { label: "destructive-foreground on destructive", fg: "--destructive-foreground", bg: "--destructive", kind: "text" },
+  {
+    label: "destructive-foreground on destructive",
+    fg: "--destructive-foreground",
+    bg: "--destructive",
+    kind: "text",
+  },
   { label: "resistant on background", fg: "--resistant", bg: "--background", kind: "text" },
   { label: "susceptible on background", fg: "--susceptible", bg: "--background", kind: "text" },
   { label: "resistant on card", fg: "--resistant", bg: "--card", kind: "text" },
   { label: "susceptible on card", fg: "--susceptible", bg: "--card", kind: "text" },
-  { label: "primary-glow on background (large text)", fg: "--primary-glow", bg: "--background", kind: "large" },
-  { label: "border on background (decorative)", fg: "--border", bg: "--background", kind: "decorative" },
+  {
+    label: "primary-glow on background (large text)",
+    fg: "--primary-glow",
+    bg: "--background",
+    kind: "large",
+  },
+  {
+    label: "border on background (decorative)",
+    fg: "--border",
+    bg: "--background",
+    kind: "decorative",
+  },
   { label: "ring on background (UI)", fg: "--ring", bg: "--background", kind: "ui" },
 ];
 

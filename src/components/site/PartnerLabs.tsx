@@ -69,7 +69,9 @@ export function PartnerLabs() {
     <section id="labs" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl">
-          <div className="text-sm font-semibold text-primary uppercase tracking-widest">Labs Near You</div>
+          <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+            Labs Near You
+          </div>
           <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
             Find a partner lab near you
           </h2>
@@ -82,7 +84,10 @@ export function PartnerLabs() {
 
         <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 max-w-xl">
           <div className="relative flex-1">
-            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <Search
+              size={16}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground"
+            />
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -140,8 +145,8 @@ export function PartnerLabs() {
         <div className="mt-10 rounded-3xl border border-border bg-card/60 p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-6">
           <p className="text-sm text-muted-foreground leading-relaxed flex-1">
             <span className="font-semibold text-foreground">Complementary, not a replacement.</span>{" "}
-            A BactoAI genomic prediction is available in under 5 minutes; a confirmatory culture is a
-            downstream step for full phenotypic workup. Are you a laboratory that would like to be
+            A BactoAI genomic prediction is available in under 5 minutes; a confirmatory culture is
+            a downstream step for full phenotypic workup. Are you a laboratory that would like to be
             listed? Join the partner network.
           </p>
           <a

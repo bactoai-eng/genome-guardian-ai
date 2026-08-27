@@ -10,7 +10,6 @@ import thriveLogo from "@/assets/thrive-logo.png";
 import nanoporeLogo from "@/assets/oxford-nanopore-logo.jpg";
 import { Reveal } from "./Reveal";
 
-
 const logoPartners = [
   { name: "Kenyatta University", src: kenyattaLogo },
   { name: "KEMRI", src: kemriLogo },
@@ -65,19 +64,26 @@ export function Partners() {
     toast.success("Thanks — we'll be in touch within 2 business days.");
   }
 
-
   return (
-    <section id="partners" className="relative py-24 bg-card/40 border-y border-border overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-mesh opacity-40 pointer-events-none" aria-hidden />
+    <section
+      id="partners"
+      className="relative py-24 bg-card/40 border-y border-border overflow-hidden"
+    >
+      <div
+        className="absolute inset-0 bg-gradient-mesh opacity-40 pointer-events-none"
+        aria-hidden
+      />
       <div className="relative mx-auto max-w-7xl px-6">
         <Reveal className="text-center">
-          <div className="text-sm font-semibold text-primary uppercase tracking-widest">Partners</div>
+          <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+            Partners
+          </div>
           <h2 className="mt-4 text-3xl md:text-4xl font-bold tracking-tight text-foreground">
             Backed by research and innovation networks.
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-            Built alongside leading universities, medical research institutes and technology partners
-            across East Africa and the UK.
+            Built alongside leading universities, medical research institutes and technology
+            partners across East Africa and the UK.
           </p>
         </Reveal>
 
@@ -95,7 +101,9 @@ export function Partners() {
                   className="h-12 w-auto object-contain"
                   loading="lazy"
                 />
-                <div className="text-xs font-semibold text-muted-foreground text-center">{p.name}</div>
+                <div className="text-xs font-semibold text-muted-foreground text-center">
+                  {p.name}
+                </div>
               </div>
             ))}
           </div>
@@ -138,7 +146,6 @@ export function Partners() {
               onSubmit={handleSubmit}
               className="rounded-2xl border border-border bg-background p-6 md:p-8 shadow-soft space-y-4"
             >
-
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="text-xs font-semibold text-muted-foreground">Full name</label>
@@ -162,7 +169,9 @@ export function Partners() {
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-semibold text-muted-foreground">Organization</label>
+                  <label className="text-xs font-semibold text-muted-foreground">
+                    Organization
+                  </label>
                   <input
                     maxLength={150}
                     value={form.organization}
@@ -181,19 +190,25 @@ export function Partners() {
                 </div>
               </div>
               <div>
-                <label className="text-xs font-semibold text-muted-foreground">Type of partnership</label>
+                <label className="text-xs font-semibold text-muted-foreground">
+                  Type of partnership
+                </label>
                 <select
                   value={form.type}
                   onChange={(e) => setForm({ ...form, type: e.target.value })}
                   className="mt-1 w-full rounded-lg border border-border bg-card px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                 >
                   {partnershipTypes.map((t) => (
-                    <option key={t} value={t}>{t}</option>
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
                   ))}
                 </select>
               </div>
               <div>
-                <label className="text-xs font-semibold text-muted-foreground">Tell us about your project</label>
+                <label className="text-xs font-semibold text-muted-foreground">
+                  Tell us about your project
+                </label>
                 <textarea
                   rows={4}
                   maxLength={1000}
@@ -207,9 +222,21 @@ export function Partners() {
                 disabled={status === "loading" || status === "success"}
                 className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary py-3 text-sm font-semibold text-primary-foreground shadow-elegant hover:opacity-95 transition disabled:opacity-70"
               >
-                {status === "loading" && (<><Loader2 size={16} className="animate-spin" /> Sending…</>)}
-                {status === "success" && (<><CheckCircle2 size={16} /> Inquiry received</>)}
-                {(status === "idle" || status === "error") && (<>Submit partnership inquiry <ArrowRight size={16} /></>)}
+                {status === "loading" && (
+                  <>
+                    <Loader2 size={16} className="animate-spin" /> Sending…
+                  </>
+                )}
+                {status === "success" && (
+                  <>
+                    <CheckCircle2 size={16} /> Inquiry received
+                  </>
+                )}
+                {(status === "idle" || status === "error") && (
+                  <>
+                    Submit partnership inquiry <ArrowRight size={16} />
+                  </>
+                )}
               </button>
 
               <p className="text-[11px] text-muted-foreground text-center">

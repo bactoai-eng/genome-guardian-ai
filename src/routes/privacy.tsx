@@ -21,16 +21,17 @@ function PrivacyPage() {
       <p>
         BactoAI ("we", "us", "our") is an early-stage research and technology group building
         AI-driven diagnostics for antimicrobial resistance (AMR). This policy explains what
-        information we collect through <a href="https://genome-guardian-ai.lovable.app">our website</a>{" "}
-        and, when applicable, our platform — and how we handle it.
+        information we collect through{" "}
+        <a href="https://genome-guardian-ai.lovable.app">our website</a> and, when applicable, our
+        platform — and how we handle it.
       </p>
 
       <h2>1. Information we collect</h2>
       <h3>Contact and inquiry data</h3>
       <p>
         When you submit our demo, partner, or contact forms we collect the fields you provide —
-        typically your name, work email, organization, role, and the content of your message. We
-        use this only to respond to your inquiry and, with your consent, to keep you informed about
+        typically your name, work email, organization, role, and the content of your message. We use
+        this only to respond to your inquiry and, with your consent, to keep you informed about
         BactoAI updates.
       </p>
       <h3>Genomic and clinical data (platform users)</h3>
@@ -50,8 +51,8 @@ function PrivacyPage() {
       <ul>
         <li>Form submissions are stored in an access-controlled managed database.</li>
         <li>
-          Transport between your browser and our servers uses TLS/HTTPS. Data at rest in the
-          managed cloud is encrypted by the underlying infrastructure provider.
+          Transport between your browser and our servers uses TLS/HTTPS. Data at rest in the managed
+          cloud is encrypted by the underlying infrastructure provider.
         </li>
         <li>
           For genomic and clinical data we support <strong>on-premises deployment</strong> so
@@ -69,10 +70,14 @@ function PrivacyPage() {
 
       <h2>3. Data retention</h2>
       <ul>
-        <li>Inquiry submissions are retained for as long as needed to respond and keep a record
-          of our correspondence, and are removed on request.</li>
-        <li>Platform data retention for pilots and deployments is defined per data-sharing
-          agreement with the partner institution.</li>
+        <li>
+          Inquiry submissions are retained for as long as needed to respond and keep a record of our
+          correspondence, and are removed on request.
+        </li>
+        <li>
+          Platform data retention for pilots and deployments is defined per data-sharing agreement
+          with the partner institution.
+        </li>
       </ul>
 
       <h2>4. Sharing</h2>
@@ -84,15 +89,15 @@ function PrivacyPage() {
 
       <h2>5. Your choices</h2>
       <p>
-        You may request access to, correction of, or deletion of information you have provided to
-        us by emailing <a href="mailto:bactoai01@gmail.com">bactoai01@gmail.com</a>.
+        You may request access to, correction of, or deletion of information you have provided to us
+        by emailing <a href="mailto:bactoai01@gmail.com">bactoai01@gmail.com</a>.
       </p>
 
       <h2>6. Contact</h2>
       <p>
         Questions about this policy or our data practices:{" "}
-        <a href="mailto:bactoai01@gmail.com">bactoai01@gmail.com</a> — BactoAI, Kenyatta
-        University, Nairobi, Kenya.
+        <a href="mailto:bactoai01@gmail.com">bactoai01@gmail.com</a> — BactoAI, Kenyatta University,
+        Nairobi, Kenya.
       </p>
     </LegalLayout>
   );

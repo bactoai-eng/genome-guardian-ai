@@ -7,21 +7,24 @@ function useCountUp(target: number, duration = 1800, decimals = 0) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          const start = performance.now();
-          const step = (t: number) => {
-            const p = Math.min(1, (t - start) / duration);
-            const eased = 1 - Math.pow(1 - p, 3);
-            setVal(target * eased);
-            if (p < 1) requestAnimationFrame(step);
-          };
-          requestAnimationFrame(step);
-          io.disconnect();
-        }
-      });
-    }, { threshold: 0.5 });
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            const start = performance.now();
+            const step = (t: number) => {
+              const p = Math.min(1, (t - start) / duration);
+              const eased = 1 - Math.pow(1 - p, 3);
+              setVal(target * eased);
+              if (p < 1) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
     io.observe(el);
     return () => io.disconnect();
   }, [target, duration]);
@@ -47,8 +50,18 @@ function BigCount() {
 
 const cards = [
   { icon: Clock, k: "48–72h", label: "Traditional lab turnaround", tone: "text-resistant" },
-  { icon: Skull, k: "10M", label: "Projected annual AMR deaths by 2050", tone: "text-resistant/80" },
-  { icon: Globe2, k: "$100T", label: "Cumulative global economic cost by 2050", tone: "text-accent" },
+  {
+    icon: Skull,
+    k: "10M",
+    label: "Projected annual AMR deaths by 2050",
+    tone: "text-resistant/80",
+  },
+  {
+    icon: Globe2,
+    k: "$100T",
+    label: "Cumulative global economic cost by 2050",
+    tone: "text-accent",
+  },
 ];
 
 export function Stakes() {
@@ -101,8 +114,8 @@ export function Stakes() {
         <figure className="mt-20 max-w-3xl mx-auto text-center">
           <Quote className="mx-auto text-[color:var(--color-teal-glow)]/60" size={28} />
           <blockquote className="mt-4 text-xl md:text-2xl font-display italic text-white/85 leading-snug">
-            "Antimicrobial resistance is one of the top ten global public health threats
-            facing humanity."
+            "Antimicrobial resistance is one of the top ten global public health threats facing
+            humanity."
           </blockquote>
           <figcaption className="mt-4 text-xs uppercase tracking-widest text-white/50">
             — World Health Organization

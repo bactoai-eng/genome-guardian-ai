@@ -13,7 +13,10 @@ export const Route = createFileRoute("/blog")({
           "Research notes, clinical perspectives, and public-health analysis on antimicrobial resistance from the BactoAI team and partners.",
       },
       { property: "og:title", content: "Blog — BactoAI" },
-      { property: "og:description", content: "AMR research, clinical, and product notes from BactoAI." },
+      {
+        property: "og:description",
+        content: "AMR research, clinical, and product notes from BactoAI.",
+      },
     ],
   }),
   component: BlogPage,
@@ -32,7 +35,8 @@ function BlogPage() {
             Ideas from the AMR frontier.
           </h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
-            Field notes, model deep-dives, and clinical perspectives from the BactoAI team and pilot partners.
+            Field notes, model deep-dives, and clinical perspectives from the BactoAI team and pilot
+            partners.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-2">
@@ -63,7 +67,9 @@ function BlogPage() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <div className="text-xs text-muted-foreground">{p.date} · {p.readTime}</div>
+                  <div className="text-xs text-muted-foreground">
+                    {p.date} · {p.readTime}
+                  </div>
                   <h2 className="mt-3 text-lg font-bold text-foreground group-hover:text-primary transition">
                     {p.title}
                   </h2>

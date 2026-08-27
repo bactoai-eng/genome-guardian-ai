@@ -34,13 +34,29 @@ const team: Member[] = [
 ];
 
 const advisors = [
-  { name: "Dr. Orinda", role: "Scientific Advisor", tags: ["Microbiology", "AMR", "Clinical validation"] },
-  { name: "Dr. Thomas Musyoka, PhD", role: "Bioinformatics Advisor", tags: ["Computational biology", "ML", "Genomics"] },
-  { name: "Kenyatta Innovation Centre", role: "Innovation Partner", tags: ["Commercialization", "Incubation", "Mentorship"] },
+  {
+    name: "Dr. Orinda",
+    role: "Scientific Advisor",
+    tags: ["Microbiology", "AMR", "Clinical validation"],
+  },
+  {
+    name: "Dr. Thomas Musyoka, PhD",
+    role: "Bioinformatics Advisor",
+    tags: ["Computational biology", "ML", "Genomics"],
+  },
+  {
+    name: "Kenyatta Innovation Centre",
+    role: "Innovation Partner",
+    tags: ["Commercialization", "Incubation", "Mentorship"],
+  },
 ];
 
 function initials(n: string) {
-  return n.split(" ").map((s) => s[0]).slice(0, 2).join("");
+  return n
+    .split(" ")
+    .map((s) => s[0])
+    .slice(0, 2)
+    .join("");
 }
 
 export function Team() {
@@ -65,7 +81,10 @@ export function Team() {
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((m) => (
-            <div key={m.name} className="rounded-2xl border border-border bg-background p-6 shadow-soft hover:shadow-elegant transition">
+            <div
+              key={m.name}
+              className="rounded-2xl border border-border bg-background p-6 shadow-soft hover:shadow-elegant transition"
+            >
               <div className="flex items-center gap-4">
                 {m.photo ? (
                   <img
@@ -98,7 +117,10 @@ export function Team() {
                 <div className="text-xs text-primary font-medium">{a.role}</div>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {a.tags.map((t) => (
-                    <span key={t} className="text-[11px] rounded-full bg-muted px-2.5 py-1 text-muted-foreground">
+                    <span
+                      key={t}
+                      className="text-[11px] rounded-full bg-muted px-2.5 py-1 text-muted-foreground"
+                    >
                       {t}
                     </span>
                   ))}
