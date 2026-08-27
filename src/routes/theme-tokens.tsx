@@ -28,7 +28,16 @@ export const Route = createFileRoute("/theme-tokens")({
 const GROUPS: Array<{ title: string; tokens: string[] }> = [
   {
     title: "Base surfaces",
-    tokens: ["--background", "--card", "--popover", "--secondary", "--muted", "--dark", "--border", "--input"],
+    tokens: [
+      "--background",
+      "--card",
+      "--popover",
+      "--secondary",
+      "--muted",
+      "--dark",
+      "--border",
+      "--input",
+    ],
   },
   {
     title: "Text",
@@ -109,7 +118,9 @@ function ContrastTable({ theme }: { theme: "dark" | "light" }) {
     <div className="rounded-2xl border border-border bg-card p-5">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold text-card-foreground capitalize">{theme} contrast</h3>
-        <span className={`text-xs font-semibold ${failures ? "text-resistant" : "text-susceptible"}`}>
+        <span
+          className={`text-xs font-semibold ${failures ? "text-resistant" : "text-susceptible"}`}
+        >
           {failures ? `${failures} failing` : "all pass"}
         </span>
       </div>
@@ -133,8 +144,8 @@ function ThemeTokensPage() {
       <div className="mx-auto max-w-6xl">
         <h1 className="text-3xl font-bold text-foreground">Theme tokens</h1>
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-          Live preview of every design token in both themes, with WCAG AA contrast validation. Failing
-          pairs are also logged to the console in development.
+          Live preview of every design token in both themes, with WCAG AA contrast validation.
+          Failing pairs are also logged to the console in development.
         </p>
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           <ThemePanel theme="dark" />

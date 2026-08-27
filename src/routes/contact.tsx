@@ -17,7 +17,8 @@ export const Route = createFileRoute("/contact")({
       { property: "og:title", content: "Contact BactoAI" },
       {
         property: "og:description",
-        content: "Request a demo, start a pilot, or partner with BactoAI on genomic AMR prediction.",
+        content:
+          "Request a demo, start a pilot, or partner with BactoAI on genomic AMR prediction.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -36,7 +37,9 @@ function ContactPage() {
       <Nav />
       <main className="pt-32">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-sm font-semibold text-primary uppercase tracking-widest">Contact</div>
+          <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+            Contact
+          </div>
           <h1 className="mt-3 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
             Let's talk about your isolates.
           </h1>

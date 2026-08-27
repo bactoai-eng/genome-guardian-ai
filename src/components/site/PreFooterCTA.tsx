@@ -15,14 +15,16 @@ export function PreFooterCTA() {
           Bring genome-driven decisions into your hospital or lab.
         </h2>
         <p className="mt-5 text-white/70 text-lg max-w-2xl mx-auto">
-          See a live demo of BactoAI on your own isolates, or talk to us about launching a pilot in your region.
+          See a live demo of BactoAI on your own isolates, or talk to us about launching a pilot in
+          your region.
         </p>
         <div className="mt-10 flex flex-wrap gap-3 justify-center">
           <a
             href="/contact"
             className="group inline-flex items-center gap-2 rounded-full bg-[color:var(--color-teal-glow)] px-7 py-3.5 text-sm font-semibold text-[color:var(--color-ink)] shadow-glow-teal hover:brightness-110 transition"
           >
-            Request a Demo <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            Request a Demo{" "}
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </a>
           <a
             href="mailto:bactoai01@gmail.com"

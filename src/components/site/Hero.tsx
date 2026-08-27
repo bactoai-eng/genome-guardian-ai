@@ -10,7 +10,8 @@ function HelixCanvas() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     let raf = 0;
-    let w = 0, h = 0;
+    let w = 0,
+      h = 0;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     const resize = () => {
@@ -89,7 +90,9 @@ function HelixCanvas() {
       window.removeEventListener("resize", resize);
     };
   }, []);
-  return <canvas ref={ref} className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden />;
+  return (
+    <canvas ref={ref} className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden />
+  );
 }
 
 const words = ["Antibiotic", "resistance", "decisions", "in", "minutes,", "not", "days."];
@@ -123,7 +126,9 @@ export function Hero() {
                 className="inline-block mr-[0.25em] text-hero-gradient"
                 style={{
                   opacity: mounted ? undefined : 0,
-                  animation: mounted ? `word-reveal 0.7s cubic-bezier(.2,.9,.3,1.2) ${i * 90}ms both` : undefined,
+                  animation: mounted
+                    ? `word-reveal 0.7s cubic-bezier(.2,.9,.3,1.2) ${i * 90}ms both`
+                    : undefined,
                 }}
               >
                 {w}
@@ -132,8 +137,8 @@ export function Hero() {
           </h1>
 
           <p className="mt-8 text-lg md:text-xl text-white/70 leading-relaxed max-w-xl">
-            BactoAI uses machine learning to predict antimicrobial resistance from bacterial
-            genomes — before lab results come back.
+            BactoAI uses machine learning to predict antimicrobial resistance from bacterial genomes
+            — before lab results come back.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
@@ -171,7 +176,9 @@ export function Hero() {
             >
               <div className="font-stat text-4xl font-bold text-white leading-none">{s.k}</div>
               <div className="mt-2 text-xs font-semibold text-white/90">{s.label}</div>
-              <div className="mt-1 text-[10px] uppercase tracking-widest text-white/40">{s.sub}</div>
+              <div className="mt-1 text-[10px] uppercase tracking-widest text-white/40">
+                {s.sub}
+              </div>
               <div className="mt-3 h-0.5 rounded-full bg-gradient-to-r from-[color:var(--color-teal-glow)] to-transparent" />
             </div>
           ))}

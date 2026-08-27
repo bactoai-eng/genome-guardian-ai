@@ -90,7 +90,9 @@ export function Footer() {
           <ul className="space-y-2 text-sm text-white/60">
             {productLinks.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="hover:text-white transition">{l.label}</a>
+                <a href={l.href} className="hover:text-white transition">
+                  {l.label}
+                </a>
               </li>
             ))}
           </ul>
@@ -101,9 +103,13 @@ export function Footer() {
             {companyLinks.map((l) => (
               <li key={l.href}>
                 {l.route ? (
-                  <Link to={l.href} className="hover:text-white transition">{l.label}</Link>
+                  <Link to={l.href} className="hover:text-white transition">
+                    {l.label}
+                  </Link>
                 ) : (
-                  <a href={l.href} className="hover:text-white transition">{l.label}</a>
+                  <a href={l.href} className="hover:text-white transition">
+                    {l.label}
+                  </a>
                 )}
               </li>
             ))}

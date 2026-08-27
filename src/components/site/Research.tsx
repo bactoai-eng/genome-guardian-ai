@@ -3,7 +3,10 @@ import award from "@/assets/award-ceremony.jpg";
 
 export function Research() {
   const awards = [
-    { t: "Second Place — KU × Lancaster Workshop", d: "Science, Engineering & Technology Innovation Workshop." },
+    {
+      t: "Second Place — KU × Lancaster Workshop",
+      d: "Science, Engineering & Technology Innovation Workshop.",
+    },
     { t: "THRIVE Program", d: "Selected participant advancing biomedical innovation." },
     { t: "CDIE Catalyst Grant", d: "Awarded for translational health-tech impact." },
     { t: "East Africa Biodesign", d: "Cohort recognized for clinical design innovation." },
@@ -14,7 +17,9 @@ export function Research() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           <div>
-            <div className="text-sm font-semibold text-primary uppercase tracking-widest">Research & Recognition</div>
+            <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+              Research & Recognition
+            </div>
             <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
               Recognized by leading innovation programs.
             </h2>
@@ -28,7 +33,10 @@ export function Research() {
           </div>
           <div className="space-y-4">
             {awards.map((a) => (
-              <div key={a.t} className="rounded-2xl border border-border bg-card p-6 flex gap-4 shadow-soft">
+              <div
+                key={a.t}
+                className="rounded-2xl border border-border bg-card p-6 flex gap-4 shadow-soft"
+              >
                 <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
                   <Award size={18} />
                 </div>

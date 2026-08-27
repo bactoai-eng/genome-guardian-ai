@@ -2,20 +2,55 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const faqs = [
-  { q: "What is BactoAI?", a: "BactoAI is an AI-powered platform that predicts antimicrobial resistance from bacterial whole-genome sequences to support faster, precision antibiotic decisions." },
-  { q: "Does BactoAI replace laboratory testing?", a: "No. BactoAI is a decision-support tool that complements laboratory workflows by providing rapid predictive insights while conventional testing is completed." },
-  { q: "What sequencing files are supported?", a: "BactoAI accepts standard bacterial whole-genome sequencing inputs including FASTA and FASTQ files from short- and long-read platforms (Illumina and Oxford Nanopore)." },
-  { q: "How accurate are predictions?", a: "Performance varies by antibiotic and organism. Our Meropenem model reports 0.952 ROC-AUC on internal validation. Prospective clinical validation is ongoing and results are published transparently." },
-  { q: "How is patient data protected?", a: "BactoAI is built with strict access control, encryption in transit and at rest, and supports on-premises deployment for restricted environments. We follow HIPAA and GDPR principles by design." },
-  { q: "Can BactoAI integrate with our LIMS?", a: "Yes. The Clinical and Enterprise tiers include a REST API and pre-built connectors for common LIMS platforms. Custom integrations are available at the Enterprise tier." },
-  { q: "Is BactoAI regulatory-approved?", a: "BactoAI is currently offered as decision-support software. We are actively engaging with regulators (FDA, CE-IVD, PPB) as prospective clinical validation matures." },
-  { q: "How do pilot programs work?", a: "Pilots are 8–12 weeks, include onboarding for your lab, model validation against your isolates, and a joint outcomes review. Pilot pricing is available for LMIC academic and public-health partners." },
-  { q: "Which antibiotics do you support today?", a: "The current panel covers Meropenem, Ciprofloxacin, Cefotaxime, Gentamicin, Tetracycline, and Ampicillin. The roadmap expands to the WHO priority pathogens list." },
-  { q: "How is BactoAI different from lab-booking apps or prescribing-guideline chatbots?", a: "Lab-booking and sample-logistics apps get a specimen to a laboratory faster, but the answer still waits on a completed culture — typically 48–72 hours. Prescribing-guideline chatbots apply WHO or national decision trees to reported symptoms, but they have no organism-specific resistance evidence to work from. BactoAI predicts per-antibiotic resistance directly from the bacterial genome in under 5 minutes, producing a data point that simply doesn't exist in those systems. We see them as complementary infrastructure rather than rivals: a lab-booking platform could route a case to a BactoAI prediction, and a prescribing assistant could take that prediction as an input." },
-  { q: "Is BactoAI a competitor to existing AMR digital-health platforms?", a: "No. BactoAI is the diagnostic layer underneath them. We do not book samples, route couriers, or enforce prescribing protocols; we generate the genomic resistance prediction that logistics platforms, stewardship dashboards, and clinical decision-support tools can consume through our API." },
-  { q: "Who founded BactoAI?", a: "BactoAI was founded at Kenyatta University by Samwel Elegwa, alongside a team of clinical microbiologists, AI researchers, and public-health advisors from Kenya and the UK." },
+  {
+    q: "What is BactoAI?",
+    a: "BactoAI is an AI-powered platform that predicts antimicrobial resistance from bacterial whole-genome sequences to support faster, precision antibiotic decisions.",
+  },
+  {
+    q: "Does BactoAI replace laboratory testing?",
+    a: "No. BactoAI is a decision-support tool that complements laboratory workflows by providing rapid predictive insights while conventional testing is completed.",
+  },
+  {
+    q: "What sequencing files are supported?",
+    a: "BactoAI accepts standard bacterial whole-genome sequencing inputs including FASTA and FASTQ files from short- and long-read platforms (Illumina and Oxford Nanopore).",
+  },
+  {
+    q: "How accurate are predictions?",
+    a: "Performance varies by antibiotic and organism. Our Meropenem model reports 0.952 ROC-AUC on internal validation. Prospective clinical validation is ongoing and results are published transparently.",
+  },
+  {
+    q: "How is patient data protected?",
+    a: "BactoAI is built with strict access control, encryption in transit and at rest, and supports on-premises deployment for restricted environments. We follow HIPAA and GDPR principles by design.",
+  },
+  {
+    q: "Can BactoAI integrate with our LIMS?",
+    a: "Yes. The Clinical and Enterprise tiers include a REST API and pre-built connectors for common LIMS platforms. Custom integrations are available at the Enterprise tier.",
+  },
+  {
+    q: "Is BactoAI regulatory-approved?",
+    a: "BactoAI is currently offered as decision-support software. We are actively engaging with regulators (FDA, CE-IVD, PPB) as prospective clinical validation matures.",
+  },
+  {
+    q: "How do pilot programs work?",
+    a: "Pilots are 8–12 weeks, include onboarding for your lab, model validation against your isolates, and a joint outcomes review. Pilot pricing is available for LMIC academic and public-health partners.",
+  },
+  {
+    q: "Which antibiotics do you support today?",
+    a: "The current panel covers Meropenem, Ciprofloxacin, Cefotaxime, Gentamicin, Tetracycline, and Ampicillin. The roadmap expands to the WHO priority pathogens list.",
+  },
+  {
+    q: "How is BactoAI different from lab-booking apps or prescribing-guideline chatbots?",
+    a: "Lab-booking and sample-logistics apps get a specimen to a laboratory faster, but the answer still waits on a completed culture — typically 48–72 hours. Prescribing-guideline chatbots apply WHO or national decision trees to reported symptoms, but they have no organism-specific resistance evidence to work from. BactoAI predicts per-antibiotic resistance directly from the bacterial genome in under 5 minutes, producing a data point that simply doesn't exist in those systems. We see them as complementary infrastructure rather than rivals: a lab-booking platform could route a case to a BactoAI prediction, and a prescribing assistant could take that prediction as an input.",
+  },
+  {
+    q: "Is BactoAI a competitor to existing AMR digital-health platforms?",
+    a: "No. BactoAI is the diagnostic layer underneath them. We do not book samples, route couriers, or enforce prescribing protocols; we generate the genomic resistance prediction that logistics platforms, stewardship dashboards, and clinical decision-support tools can consume through our API.",
+  },
+  {
+    q: "Who founded BactoAI?",
+    a: "BactoAI was founded at Kenyatta University by Samwel Elegwa, alongside a team of clinical microbiologists, AI researchers, and public-health advisors from Kenya and the UK.",
+  },
 ];
-
 
 export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);

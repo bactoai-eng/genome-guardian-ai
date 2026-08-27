@@ -4,7 +4,11 @@ const cols = [
   {
     icon: Hospital,
     title: "For Hospitals",
-    items: ["Earlier antibiotic decisions", "Improved antimicrobial stewardship", "Reduced treatment failure"],
+    items: [
+      "Earlier antibiotic decisions",
+      "Improved antimicrobial stewardship",
+      "Reduced treatment failure",
+    ],
   },
   {
     icon: Microscope,
@@ -23,7 +27,9 @@ export function WhyBactoAI() {
     <section className="py-24 md:py-32 bg-card/40">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl">
-          <div className="text-sm font-semibold text-primary uppercase tracking-widest">Why BactoAI</div>
+          <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+            Why BactoAI
+          </div>
           <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
             A genomic prediction engine — the diagnostic layer other AMR tools build on.
           </h2>
@@ -57,7 +63,9 @@ export function WhyBactoAI() {
                 c.highlight ? "border-primary bg-primary/5" : "border-border bg-background"
               }`}
             >
-              <div className={`text-sm font-semibold ${c.highlight ? "text-primary" : "text-foreground"}`}>
+              <div
+                className={`text-sm font-semibold ${c.highlight ? "text-primary" : "text-foreground"}`}
+              >
                 {c.label}
               </div>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{c.body}</p>
@@ -66,7 +74,6 @@ export function WhyBactoAI() {
         </div>
 
         <div className="mt-16 grid gap-6 md:grid-cols-3">
-
           {cols.map((c) => (
             <div
               key={c.title}

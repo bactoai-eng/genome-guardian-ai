@@ -39,7 +39,9 @@ function AboutPage() {
       <Nav />
       <main className="pt-32">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-sm font-semibold text-primary uppercase tracking-widest">About us</div>
+          <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+            About us
+          </div>
           <h1 className="mt-3 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
             The people building genome-driven AMR care.
           </h1>

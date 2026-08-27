@@ -14,7 +14,11 @@ export const Route = createFileRoute("/pricing")({
           "Start free for research. Scale to full clinical deployment with clinician-ready reports, LIMS API integration, and dedicated support.",
       },
       { property: "og:title", content: "Pricing — BactoAI" },
-      { property: "og:description", content: "Free for research. Clinical and enterprise tiers for hospitals and health systems." },
+      {
+        property: "og:description",
+        content:
+          "Free for research. Clinical and enterprise tiers for hospitals and health systems.",
+      },
     ],
   }),
   component: PricingPage,

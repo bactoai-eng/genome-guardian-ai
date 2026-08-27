@@ -22,7 +22,9 @@ export function Problem() {
     <section id="problem" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl">
-          <div className="text-sm font-semibold text-primary uppercase tracking-widest">The Problem</div>
+          <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+            The Problem
+          </div>
           <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight leading-tight text-foreground">
             Antimicrobial resistance is one of the greatest global health threats.
           </h2>

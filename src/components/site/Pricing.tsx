@@ -69,7 +69,9 @@ export function Pricing({ compact = false }: { compact?: boolean }) {
     <section id="pricing" className={`${compact ? "py-16" : "py-24 md:py-32"} bg-card/30`}>
       <div className="mx-auto max-w-6xl px-6">
         <div className="text-center max-w-2xl mx-auto">
-          <div className="text-sm font-semibold text-primary uppercase tracking-widest">Pricing</div>
+          <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+            Pricing
+          </div>
           <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
             Simple, transparent pricing.
           </h2>
@@ -86,7 +88,9 @@ export function Pricing({ compact = false }: { compact?: boolean }) {
                   key={label}
                   onClick={() => setAnnual(isAnnual)}
                   className={`px-4 py-1.5 text-xs font-semibold rounded-full transition ${
-                    active ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+                    active
+                      ? "bg-primary text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {label} {isAnnual && <span className="text-[10px] opacity-80">−20%</span>}
@@ -111,7 +115,9 @@ export function Pricing({ compact = false }: { compact?: boolean }) {
                   <Sparkles size={11} /> Most popular
                 </div>
               )}
-              <div className="text-sm font-semibold text-primary uppercase tracking-widest">{t.name}</div>
+              <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+                {t.name}
+              </div>
               <div className="mt-2 text-sm text-muted-foreground">{t.tagline}</div>
               <div className="mt-6 font-stat text-4xl font-bold text-foreground">
                 {annual ? t.annual : t.monthly}

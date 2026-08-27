@@ -12,7 +12,9 @@ export function Roadmap() {
     <section id="roadmap" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl">
-          <div className="text-sm font-semibold text-primary uppercase tracking-widest">Roadmap · 2026 →</div>
+          <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+            Roadmap · 2026 →
+          </div>
           <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
             From prototype to regional platform.
           </h2>
@@ -22,8 +24,13 @@ export function Roadmap() {
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-accent to-transparent" />
           <div className="space-y-10">
             {items.map((it, i) => (
-              <div key={it.t} className={`relative md:grid md:grid-cols-2 md:gap-12 ${i % 2 ? "" : ""}`}>
-                <div className={`pl-12 md:pl-0 ${i % 2 ? "md:col-start-2 md:text-left md:pl-12" : "md:text-right md:pr-12"}`}>
+              <div
+                key={it.t}
+                className={`relative md:grid md:grid-cols-2 md:gap-12 ${i % 2 ? "" : ""}`}
+              >
+                <div
+                  className={`pl-12 md:pl-0 ${i % 2 ? "md:col-start-2 md:text-left md:pl-12" : "md:text-right md:pr-12"}`}
+                >
                   <div className="inline-block rounded-2xl border border-border bg-card p-5 shadow-soft max-w-md">
                     <div className="text-lg font-semibold text-foreground">{it.t}</div>
                     <p className="mt-1 text-sm text-muted-foreground">{it.d}</p>

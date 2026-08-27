@@ -36,18 +36,22 @@ export function Contact() {
         <div className="rounded-3xl bg-gradient-hero p-1 shadow-elegant">
           <div className="rounded-[calc(theme(borderRadius.3xl)-4px)] bg-background p-8 md:p-14 grid lg:grid-cols-2 gap-12">
             <div>
-              <div className="text-sm font-semibold text-primary uppercase tracking-widest">Get in touch</div>
+              <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+                Get in touch
+              </div>
               <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
                 Help shape the future of precision antibiotic decision-making.
               </h2>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Partner with BactoAI to accelerate AMR diagnostics through AI and genomics. Join
-                our pilot program or request a live demonstration.
+                Partner with BactoAI to accelerate AMR diagnostics through AI and genomics. Join our
+                pilot program or request a live demonstration.
               </p>
               <ul className="mt-8 space-y-3 text-sm">
                 <li className="flex items-center gap-3">
                   <Mail size={16} className="text-primary" />
-                  <a href="mailto:bactoai01@gmail.com" className="hover:text-primary transition">bactoai01@gmail.com</a>
+                  <a href="mailto:bactoai01@gmail.com" className="hover:text-primary transition">
+                    bactoai01@gmail.com
+                  </a>
                 </li>
                 <li className="flex items-center gap-3">
                   <Linkedin size={16} className="text-primary" />
@@ -60,7 +64,9 @@ export function Contact() {
                     linkedin.com/in/bactoai-model
                   </a>
                 </li>
-                <li className="flex items-center gap-3"><MapPin size={16} className="text-primary" /> Kenyatta University, Nairobi, Kenya</li>
+                <li className="flex items-center gap-3">
+                  <MapPin size={16} className="text-primary" /> Kenyatta University, Nairobi, Kenya
+                </li>
               </ul>
             </div>
             <form
@@ -101,7 +107,9 @@ export function Contact() {
                 />
               </div>
               <div>
-                <label className="text-xs font-semibold text-muted-foreground">How can we help?</label>
+                <label className="text-xs font-semibold text-muted-foreground">
+                  How can we help?
+                </label>
                 <textarea
                   rows={4}
                   maxLength={1000}
@@ -116,9 +124,21 @@ export function Contact() {
                 disabled={status === "loading" || status === "success"}
                 className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary py-3 text-sm font-semibold text-primary-foreground shadow-elegant hover:opacity-95 transition disabled:opacity-70"
               >
-                {status === "loading" && (<><Loader2 size={16} className="animate-spin" /> Sending…</>)}
-                {status === "success" && (<><CheckCircle2 size={16} /> Message received</>)}
-                {(status === "idle" || status === "error") && (<>Request a Demo <ArrowRight size={16} /></>)}
+                {status === "loading" && (
+                  <>
+                    <Loader2 size={16} className="animate-spin" /> Sending…
+                  </>
+                )}
+                {status === "success" && (
+                  <>
+                    <CheckCircle2 size={16} /> Message received
+                  </>
+                )}
+                {(status === "idle" || status === "error") && (
+                  <>
+                    Request a Demo <ArrowRight size={16} />
+                  </>
+                )}
               </button>
               {status === "error" && (
                 <p className="text-[11px] text-destructive text-center">

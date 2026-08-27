@@ -10,7 +10,10 @@ export const Route = createFileRoute("/_authenticated/admin/submissions")({
   head: () => ({
     meta: [
       { title: "Contact submissions — BactoAI Admin" },
-      { name: "description", content: "Review demo and partnership inquiries submitted through the BactoAI website." },
+      {
+        name: "description",
+        content: "Review demo and partnership inquiries submitted through the BactoAI website.",
+      },
       { name: "robots", content: "noindex,nofollow" },
     ],
   }),
@@ -74,7 +77,6 @@ function AdminSubmissions() {
           </div>
         </div>
       </header>
-
 
       <main className="mx-auto max-w-7xl px-6 py-10">
         {isLoading && (

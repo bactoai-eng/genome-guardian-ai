@@ -23,7 +23,9 @@ function CareersPage() {
       <Nav />
       <main className="pt-32 pb-24">
         <div className="mx-auto max-w-3xl px-6">
-          <div className="text-sm font-semibold text-primary uppercase tracking-widest">Careers</div>
+          <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+            Careers
+          </div>
           <h1 className="mt-3 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
             Help us push antimicrobial resistance out of the dark.
           </h1>

@@ -14,7 +14,9 @@ export function Solution() {
     <section id="solution" className="py-24 md:py-32 bg-card/40">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="text-sm font-semibold text-primary uppercase tracking-widest">Our Solution</div>
+          <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+            Our Solution
+          </div>
           <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
             Meet <span className="text-gradient">BactoAI</span>
           </h2>

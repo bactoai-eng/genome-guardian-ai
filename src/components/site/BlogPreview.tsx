@@ -9,12 +9,15 @@ export function BlogPreview() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex items-end justify-between flex-wrap gap-4">
           <div className="max-w-2xl">
-            <div className="text-sm font-semibold text-primary uppercase tracking-widest">Resources</div>
+            <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+              Resources
+            </div>
             <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
               Ideas from the AMR frontier.
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Research notes, clinical perspectives, and public-health analysis from the BactoAI team and partners.
+              Research notes, clinical perspectives, and public-health analysis from the BactoAI
+              team and partners.
             </p>
           </div>
           <Link
@@ -39,11 +42,15 @@ export function BlogPreview() {
                 </div>
               </div>
               <div className="p-6">
-                <div className="text-xs text-muted-foreground">{p.date} · {p.readTime}</div>
+                <div className="text-xs text-muted-foreground">
+                  {p.date} · {p.readTime}
+                </div>
                 <h3 className="mt-3 text-lg font-bold text-foreground group-hover:text-primary transition">
                   {p.title}
                 </h3>
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-3">{p.excerpt}</p>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                  {p.excerpt}
+                </p>
               </div>
             </Link>
           ))}
