@@ -10,7 +10,11 @@ export const Route = createFileRoute("/terms")({
         content:
           "Terms governing use of the BactoAI website and platform, including acceptable use and decision-support limitations.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: "https://bactoai.lovable.app/terms" },
     ],
+    links: [{ rel: "canonical", href: "https://bactoai.lovable.app/terms" }],
   }),
   component: TermsPage,
 });

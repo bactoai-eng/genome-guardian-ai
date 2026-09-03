@@ -10,7 +10,11 @@ export const Route = createFileRoute("/privacy")({
         content:
           "How BactoAI collects, stores, and protects information provided through our website and platform.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: "https://bactoai.lovable.app/privacy" },
     ],
+    links: [{ rel: "canonical", href: "https://bactoai.lovable.app/privacy" }],
   }),
   component: PrivacyPage,
 });
