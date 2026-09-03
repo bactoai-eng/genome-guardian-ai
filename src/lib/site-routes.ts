@@ -42,8 +42,13 @@ export function routeFileToPath(relative: string): string | null {
   // Skip the root layout, generated/served-only files and non-page routes.
   if (segments.some((s) => s === "" || s === "__root")) return null;
   // Pathless layouts (_authenticated), dynamic params ($slug), escaped
-  // segments ([.well-known]) and splats are never static public pages.
-  if (segments.some((s) => s.startsWith("_") || s.startsWith("$") || s.startsWith("["))) {
+  // segments ([.well-known], sitemap[.]xml) and splats are never static
+  // public HTML pages.
+  if (
+    segments.some(
+      (s) => s.startsWith("_") || s.startsWith("$") || s.includes("[") || s.includes("]"),
+    )
+  ) {
     return null;
   }
   if (relative.startsWith("api/")) return null;
