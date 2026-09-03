@@ -20,6 +20,10 @@ export default defineConfig({
     viewport: { width: 1280, height: 1800 },
     colorScheme: "dark",
     trace: "retain-on-failure",
+    // Escape hatch for environments that ship their own Chromium build.
+    launchOptions: process.env["PW_CHROMIUM_PATH"]
+      ? { executablePath: process.env["PW_CHROMIUM_PATH"] }
+      : {},
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {
