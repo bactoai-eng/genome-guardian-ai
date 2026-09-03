@@ -24,8 +24,6 @@ export const Route = createFileRoute("/docs/mcp")({
         name: "twitter:description",
         content: "Connect any MCP client to BactoAI: OAuth flow, tool schemas, example requests.",
       },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "https://bactoai.lovable.app/docs/mcp" },
     ],
     links: [{ rel: "canonical", href: "https://bactoai.lovable.app/docs/mcp" }],
