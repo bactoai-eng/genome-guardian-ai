@@ -13,6 +13,26 @@ import { ScrollProgressBar } from "@/components/site/ScrollProgressBar";
 import { useAutoReveal } from "@/hooks/use-auto-reveal";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "BactoAI — Predict antibiotic resistance from bacterial genomes" },
+      {
+        name: "description",
+        content:
+          "BactoAI is a genomic AI prediction engine that turns bacterial whole-genome sequences into clinician-ready antimicrobial resistance predictions in minutes.",
+      },
+      { property: "og:title", content: "BactoAI — Genomic AI for antimicrobial resistance" },
+      {
+        property: "og:description",
+        content:
+          "Predict antibiotic resistance from a bacterial genome in minutes, and act on precision treatment decisions sooner.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: "https://bactoai.lovable.app/" },
+    ],
+    links: [{ rel: "canonical", href: "https://bactoai.lovable.app/" }],
+  }),
   component: Index,
 });
 
