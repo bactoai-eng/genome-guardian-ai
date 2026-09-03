@@ -29,7 +29,7 @@ export const Route = createFileRoute("/docs/mcp")({
   component: McpDocsPage,
 });
 
-const MCP_URL = "https://genome-guardian-ai.lovable.app/mcp";
+const MCP_URL = "https://bactoai.lovable.app/mcp";
 
 function Code({ children, label }: { children: string; label?: string }) {
   return (

@@ -22,7 +22,7 @@ function PrivacyPage() {
         BactoAI ("we", "us", "our") is an early-stage research and technology group building
         AI-driven diagnostics for antimicrobial resistance (AMR). This policy explains what
         information we collect through{" "}
-        <a href="https://genome-guardian-ai.lovable.app">our website</a> and, when applicable, our
+        <a href="https://bactoai.lovable.app">our website</a> and, when applicable, our
         platform — and how we handle it.
       </p>
 
