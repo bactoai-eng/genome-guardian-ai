@@ -1,5 +1,6 @@
 import samwelPhoto from "@/assets/samwel-elegwa.png.asset.json";
 import sheilaPhoto from "@/assets/sheila-okwisa.png.asset.json";
+import carolynePhoto from "@/assets/carolyne-mboya.jpg.asset.json";
 
 type Member = { name: string; role: string; bio: string; photo?: string };
 
