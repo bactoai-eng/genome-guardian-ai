@@ -12,7 +12,11 @@ export const Route = createFileRoute("/resources")({
         name: "description",
         content: "AMR education, press mentions, and downloadable materials from the BactoAI team.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: "https://bactoai.lovable.app/resources" },
     ],
+    links: [{ rel: "canonical", href: "https://bactoai.lovable.app/resources" }],
   }),
   component: ResourcesPage,
 });

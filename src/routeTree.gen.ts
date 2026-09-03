@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ThemeTokensRouteImport } from './routes/theme-tokens'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TechnologyRouteImport } from './routes/technology'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -45,6 +46,11 @@ const TermsRoute = TermsRouteImport.update({
 const TechnologyRoute = TechnologyRouteImport.update({
   id: '/technology',
   path: '/technology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResourcesRoute = ResourcesRouteImport.update({
@@ -158,6 +164,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/research': typeof ResearchRoute
   '/resources': typeof ResourcesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/technology': typeof TechnologyRoute
   '/terms': typeof TermsRoute
   '/theme-tokens': typeof ThemeTokensRoute
@@ -181,6 +188,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/research': typeof ResearchRoute
   '/resources': typeof ResourcesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/technology': typeof TechnologyRoute
   '/terms': typeof TermsRoute
   '/theme-tokens': typeof ThemeTokensRoute
@@ -206,6 +214,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/research': typeof ResearchRoute
   '/resources': typeof ResourcesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/technology': typeof TechnologyRoute
   '/terms': typeof TermsRoute
   '/theme-tokens': typeof ThemeTokensRoute
@@ -231,6 +240,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/research'
     | '/resources'
+    | '/sitemap.xml'
     | '/technology'
     | '/terms'
     | '/theme-tokens'
@@ -254,6 +264,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/research'
     | '/resources'
+    | '/sitemap.xml'
     | '/technology'
     | '/terms'
     | '/theme-tokens'
@@ -278,6 +289,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/research'
     | '/resources'
+    | '/sitemap.xml'
     | '/technology'
     | '/terms'
     | '/theme-tokens'
@@ -303,6 +315,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ResearchRoute: typeof ResearchRoute
   ResourcesRoute: typeof ResourcesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TechnologyRoute: typeof TechnologyRoute
   TermsRoute: typeof TermsRoute
   ThemeTokensRoute: typeof ThemeTokensRoute
@@ -334,6 +347,13 @@ declare module '@tanstack/react-router' {
       path: '/technology'
       fullPath: '/technology'
       preLoaderRoute: typeof TechnologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resources': {
@@ -498,6 +518,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ResearchRoute: ResearchRoute,
   ResourcesRoute: ResourcesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TechnologyRoute: TechnologyRoute,
   TermsRoute: TermsRoute,
   ThemeTokensRoute: ThemeTokensRoute,

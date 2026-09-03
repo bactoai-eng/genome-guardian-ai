@@ -25,9 +25,9 @@ export const Route = createFileRoute("/technology")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://genome-guardian-ai.lovable.app/technology" },
+      { property: "og:url", content: "https://bactoai.lovable.app/technology" },
     ],
-    links: [{ rel: "canonical", href: "https://genome-guardian-ai.lovable.app/technology" }],
+    links: [{ rel: "canonical", href: "https://bactoai.lovable.app/technology" }],
   }),
   component: TechnologyPage,
 });

@@ -24,12 +24,14 @@ export const Route = createFileRoute("/docs/mcp")({
         name: "twitter:description",
         content: "Connect any MCP client to BactoAI: OAuth flow, tool schemas, example requests.",
       },
+      { property: "og:url", content: "https://bactoai.lovable.app/docs/mcp" },
     ],
+    links: [{ rel: "canonical", href: "https://bactoai.lovable.app/docs/mcp" }],
   }),
   component: McpDocsPage,
 });
 
-const MCP_URL = "https://genome-guardian-ai.lovable.app/mcp";
+const MCP_URL = "https://bactoai.lovable.app/mcp";
 
 function Code({ children, label }: { children: string; label?: string }) {
   return (

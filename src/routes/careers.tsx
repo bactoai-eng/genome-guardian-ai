@@ -12,7 +12,11 @@ export const Route = createFileRoute("/careers")({
         content:
           "BactoAI isn't actively hiring, but we're always interested in scientists, engineers, and clinicians who want to work on AMR.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: "https://bactoai.lovable.app/careers" },
     ],
+    links: [{ rel: "canonical", href: "https://bactoai.lovable.app/careers" }],
   }),
   component: CareersPage,
 });

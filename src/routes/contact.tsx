@@ -22,9 +22,9 @@ export const Route = createFileRoute("/contact")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://genome-guardian-ai.lovable.app/contact" },
+      { property: "og:url", content: "https://bactoai.lovable.app/contact" },
     ],
-    links: [{ rel: "canonical", href: "https://genome-guardian-ai.lovable.app/contact" }],
+    links: [{ rel: "canonical", href: "https://bactoai.lovable.app/contact" }],
   }),
   component: ContactPage,
 });

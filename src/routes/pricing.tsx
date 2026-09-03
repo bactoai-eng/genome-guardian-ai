@@ -19,7 +19,11 @@ export const Route = createFileRoute("/pricing")({
         content:
           "Free for research. Clinical and enterprise tiers for hospitals and health systems.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: "https://bactoai.lovable.app/pricing" },
     ],
+    links: [{ rel: "canonical", href: "https://bactoai.lovable.app/pricing" }],
   }),
   component: PricingPage,
 });
