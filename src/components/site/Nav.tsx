@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
-import logo from "@/assets/bactoai-logo.svg";
+import logoAsset from "@/assets/bactoai-logo-wordmark.png.asset.json";
 import { ThemeToggle } from "./ThemeToggle";
 
 type NavLink = { href: string; label: string; route?: boolean };
