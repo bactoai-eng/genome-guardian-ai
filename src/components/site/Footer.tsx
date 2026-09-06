@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import logo from "@/assets/bactoai-logo.svg";
+import logoAsset from "@/assets/bactoai-logo-wordmark.png.asset.json";
 import { Newsletter } from "./Newsletter";
 import { Linkedin, Mail, MapPin, Github, ArrowUpRight } from "lucide-react";
 
@@ -46,7 +46,11 @@ export function Footer() {
       </div>
       <div className="mx-auto max-w-7xl px-6 py-16 grid gap-12 md:grid-cols-4">
         <div className="md:col-span-1">
-          <img src={logo} alt="BactoAI" className="h-12 w-auto brightness-0 invert" />
+          <img
+            src={logoAsset.url}
+            alt="BactoAI — Resistance. Predicted."
+            className="h-20 md:h-24 w-auto rounded-xl"
+          />
           <p className="mt-4 text-sm leading-relaxed text-white/60">
             AI-powered antimicrobial resistance prediction from bacterial genomes.
           </p>
