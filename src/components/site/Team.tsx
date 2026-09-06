@@ -1,6 +1,7 @@
 import samwelPhoto from "@/assets/samwel-elegwa.png.asset.json";
 import sheilaPhoto from "@/assets/sheila-okwisa.png.asset.json";
 import carolynePhoto from "@/assets/carolyne-mboya.jpg.asset.json";
+import sylviaPhoto from "@/assets/sylvia-jane-nyambura.jpg.asset.json";
 
 type Member = { name: string; role: string; bio: string; photo?: string };
 
@@ -25,6 +26,7 @@ const team: Member[] = [
   {
     name: "Sylvia Jane Nyambura",
     role: "Chief Operating Officer",
+    photo: sylviaPhoto.url,
     bio: "Runs day-to-day operations, pilot logistics, and organizational strategy — the connective tissue between our scientific, engineering, and partnership tracks.",
   },
   {
