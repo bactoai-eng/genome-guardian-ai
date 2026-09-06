@@ -26,6 +26,7 @@ const team: Member[] = [
   {
     name: "Sylvia Jane Nyambura",
     role: "Chief Operating Officer",
+    photo: sylviaPhoto.url,
     bio: "Runs day-to-day operations, pilot logistics, and organizational strategy — the connective tissue between our scientific, engineering, and partnership tracks.",
   },
   {
