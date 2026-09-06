@@ -30,6 +30,7 @@ const team: Member[] = [
   {
     name: "Carolyne Mboya",
     role: "Business Partnerships Lead",
+    photo: carolynePhoto.url,
     bio: "Leads partnerships with hospitals, research institutes, and funders — translating BactoAI's clinical value into deployment-ready collaborations across East Africa.",
   },
 ];
