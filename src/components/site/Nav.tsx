@@ -50,7 +50,11 @@ export function Nav() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="BactoAI" className="h-10 w-auto" />
+          <img
+            src={logoAsset.url}
+            alt="BactoAI — Resistance. Predicted."
+            className="h-14 md:h-16 w-auto rounded-xl"
+          />
         </Link>
         <nav className="hidden lg:flex items-center gap-7">
           {primaryLinks.map((l) => (
