@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import logo from "@/assets/bactoai-logo.svg";
+import logoAsset from "@/assets/bactoai-logo-wordmark.png.asset.json";
 import { Newsletter } from "./Newsletter";
 import { Linkedin, Mail, MapPin, Github, ArrowUpRight } from "lucide-react";
 
