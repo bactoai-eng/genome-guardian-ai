@@ -51,6 +51,7 @@ function AboutPage() {
           </p>
         </div>
         <Team />
+        <Media />
         <Partners />
         <Testimonials />
         <Roadmap />
