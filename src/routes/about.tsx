@@ -12,16 +12,16 @@ import { useAutoReveal } from "@/hooks/use-auto-reveal";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About BactoAI — Team, partners, and roadmap" },
+      { title: "About BactoAI — Team, media, partners, and roadmap" },
       {
         name: "description",
         content:
-          "Meet the BactoAI team, the institutions we work with, what customers say, and where the platform is heading next.",
+          "Meet the BactoAI team, our media appearances, the institutions we work with, what customers say, and where the platform is heading next.",
       },
       { property: "og:title", content: "About BactoAI" },
       {
         property: "og:description",
-        content: "The team, partners, and roadmap behind BactoAI's genomic AMR prediction engine.",
+        content: "The team, media, partners, and roadmap behind BactoAI's genomic AMR prediction engine.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
