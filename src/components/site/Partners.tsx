@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ArrowRight, Handshake, Loader2, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import kenyattaLogo from "@/assets/kenyatta-university-logo.png";
+import kenyattaLogo from "@/assets/kenyatta-university-logo.png.asset.json";
 import kemriLogo from "@/assets/kemri-logo.png";
 import lancasterLogo from "@/assets/lancaster-logo.svg";
 import cdieLogo from "@/assets/cdie-logo.png";
@@ -11,7 +11,7 @@ import nanoporeLogo from "@/assets/oxford-nanopore-logo.jpg";
 import { Reveal } from "./Reveal";
 
 const logoPartners = [
-  { name: "Kenyatta University", src: kenyattaLogo },
+  { name: "Kenyatta University", src: kenyattaLogo.url },
   { name: "KEMRI", src: kemriLogo },
   { name: "Lancaster University", src: lancasterLogo },
   { name: "Oxford Nanopore", src: nanoporeLogo },
