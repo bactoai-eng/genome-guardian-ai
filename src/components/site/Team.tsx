@@ -97,6 +97,11 @@ export function Team() {
           <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
             Scientists, engineers, and clinicians — building precision AMR diagnostics.
           </h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            Different expertise. One system. One company. BactoAI is a multidisciplinary team
+            building one AMR intelligence platform — the product, models, and technology belong
+            to the company, and each of us leads a defined part of it.
+          </p>
         </div>
 
         <div
@@ -120,10 +125,10 @@ export function Team() {
                     src={m.photo}
                     alt={`${m.name}, ${m.role} at BactoAI`}
                     loading="lazy"
-                    className="w-14 h-14 rounded-full object-cover border border-border"
+                    className="w-20 h-20 rounded-full object-cover object-top border border-border"
                   />
                 ) : (
-                  <div className="w-14 h-14 rounded-full bg-gradient-hero text-white flex items-center justify-center font-bold">
+                  <div className="w-20 h-20 rounded-full bg-gradient-hero text-white flex items-center justify-center font-bold text-xl">
                     {initials(m.name)}
                   </div>
                 )}
@@ -133,6 +138,17 @@ export function Team() {
                 </div>
               </div>
               <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{m.bio}</p>
+              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{m.extended}</p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {m.focus.map((f) => (
+                  <span
+                    key={f}
+                    className="text-[11px] rounded-full bg-muted px-2.5 py-1 text-muted-foreground"
+                  >
+                    {f}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
