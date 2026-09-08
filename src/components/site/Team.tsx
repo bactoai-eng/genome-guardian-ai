@@ -1,5 +1,6 @@
 import samwelPhoto from "@/assets/samwel-elegwa.png.asset.json";
 import sheilaPhoto from "@/assets/sheila-okwisa.png.asset.json";
+import williamPhoto from "@/assets/william-otieno.jpg.asset.json";
 import carolynePhoto from "@/assets/carolyne-mboya.jpg.asset.json";
 import sylviaPhoto from "@/assets/sylvia-jane-nyambura.jpg.asset.json";
 
@@ -17,45 +18,46 @@ const team: Member[] = [
     name: "Samwel Elegwa",
     role: "Founder & CEO",
     photo: samwelPhoto.url,
-    bio: "Biotechnology researcher at Kenyatta University with hands-on analytical experience from a Kenya Bureau of Standards attachment (gravimetry, titrimetry, spectroscopy). Alumnus of the NextGen Antimicrobial Stewards Initiative and 2nd-place finisher at Kenyatta's Entrepreneur in Science bootcamp, where BactoAI was first pitched.",
+    bio: "Biotechnology researcher at Kenyatta University with hands-on analytical experience from a Kenya Bureau of Standards attachment in gravimetry, titrimetry, spectroscopy, and related laboratory methods. An alumnus of the NextGen Antimicrobial Stewards Initiative and 2nd-place finisher at Kenyatta University's Research in Science bootcamp, where BactoAI was first pitched.",
     extended:
-      "Samwel set out to build BactoAI after watching clinicians wait days for culture-based susceptibility results while patients stayed on broad-spectrum therapy. He leads the scientific direction of the prediction engine — which resistance determinants matter clinically, how confidence is communicated to a prescriber, and what evidence a hospital needs before trusting a genomic call. He represents BactoAI with hospitals, universities, funders, and antimicrobial stewardship networks across East Africa.",
-    focus: ["Scientific direction", "AMR stewardship", "Fundraising & partnerships"],
+      "Leads BactoAI's vision, scientific direction, partnerships, and strategic growth — representing the company with hospitals, universities, funders, and antimicrobial stewardship networks across East Africa.",
+    focus: ["Vision & strategy", "Scientific direction", "Partnerships & growth"],
   },
   {
     name: "Sheila Okwisa",
     role: "Chief Technology Officer",
     photo: sheilaPhoto.url,
-    bio: "Software engineer leading BactoAI's platform, cloud infrastructure, and deployment tooling. Focused on making genome-in / report-out AMR pipelines reliable enough for low-resource clinical labs.",
+    bio: "Software engineer responsible for BactoAI's technology infrastructure and product development.",
     extended:
-      "Sheila owns the end-to-end engineering of the platform: sequence intake, the analysis pipeline, the clinician-facing report, and the security model that keeps patient-linked data protected. Her design constraint is the reality of the labs BactoAI serves — intermittent connectivity, mixed hardware, and small teams — so the system has to be simple to operate and predictable under load.",
-    focus: ["Platform architecture", "Cloud & deployment", "Data security"],
+      "Leads the engineering architecture, cloud systems, and development workflows that transform BactoAI's scientific models and data pipelines into reliable, scalable software products.",
+    focus: ["Technology & engineering", "Cloud infrastructure", "Product development"],
   },
   {
     name: "William Otieno",
     role: "Machine Learning Engineer",
-    bio: "Electrical engineer specializing in applied machine learning and predictive analytics. Owns the AMR prediction models — training, evaluation, and interpretability for clinician-facing outputs.",
+    photo: williamPhoto.url,
+    bio: "Electrical engineer specialising in applied machine learning and predictive analytics.",
     extended:
-      "William builds and validates the models that turn a bacterial genome into a per-antibiotic resistance prediction. His work covers feature engineering from genomic data, honest evaluation against held-out isolates, calibration so confidence scores mean what they say, and interpretability so a clinician can see which genetic determinants drove a call rather than receiving an unexplained verdict.",
-    focus: ["Model training", "Validation & calibration", "Interpretability"],
+      "Leads the development, training, evaluation, and optimisation of BactoAI's machine-learning systems, working closely with the wider team to translate scientific and clinical requirements into reliable predictive tools.",
+    focus: ["Machine learning", "Model evaluation", "Predictive analytics"],
   },
   {
     name: "Sylvia Jane Nyambura",
     role: "Chief Operating Officer",
     photo: sylviaPhoto.url,
-    bio: "Runs day-to-day operations, pilot logistics, and organizational strategy — the connective tissue between our scientific, engineering, and partnership tracks.",
+    bio: "Leads BactoAI's day-to-day operations, pilot coordination, project execution, and organisational systems.",
     extended:
-      "Sylvia keeps BactoAI's pilots running: onboarding lab sites, coordinating sample and sequencing logistics, tracking milestones against funder commitments, and making sure the science, engineering, and partnership tracks stay in step. She also leads internal process, hiring coordination, and reporting.",
-    focus: ["Pilot operations", "Logistics & planning", "Reporting & process"],
+      "Connects the scientific, engineering, and partnership functions to ensure that projects move efficiently from development to real-world implementation.",
+    focus: ["Operations", "Pilot coordination", "Project execution"],
   },
   {
     name: "Carolyne Mboya",
     role: "Business Partnerships Lead",
     photo: carolynePhoto.url,
-    bio: "Leads partnerships with hospitals, research institutes, and funders — translating BactoAI's clinical value into deployment-ready collaborations across East Africa.",
+    bio: "Leads BactoAI's business development and strategic partnerships, building relationships with hospitals, research institutions, universities, funders, and other stakeholders.",
     extended:
-      "Carolyne develops the relationships that put BactoAI in front of patients: hospital laboratories, national research institutes, universities, and grant programmes. She shapes each collaboration from first conversation to signed pilot — scoping what a site needs, aligning it with BactoAI's roadmap, and keeping partners informed as the platform matures.",
-    focus: ["Hospital partnerships", "Grants & funders", "Market development"],
+      "Focused on translating BactoAI's technical capabilities into deployment opportunities and sustainable collaborations across East Africa.",
+    focus: ["Business development", "Strategic partnerships", "East Africa deployment"],
   },
 ];
 
