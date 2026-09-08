@@ -11,7 +11,7 @@ import nanoporeLogo from "@/assets/oxford-nanopore-logo.jpg";
 import { Reveal } from "./Reveal";
 
 const logoPartners = [
-  { name: "Kenyatta University", src: kenyattaLogo },
+  { name: "Kenyatta University", src: kenyattaLogo.url },
   { name: "KEMRI", src: kemriLogo },
   { name: "Lancaster University", src: lancasterLogo },
   { name: "Oxford Nanopore", src: nanoporeLogo },
