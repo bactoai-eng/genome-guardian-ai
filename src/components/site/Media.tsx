@@ -1,7 +1,9 @@
-import { Play, ExternalLink, Quote } from "lucide-react";
+import { Play, ExternalLink, Quote, Newspaper } from "lucide-react";
 import { Reveal } from "./Reveal";
 import kutvPoster from "@/assets/kutv-poster.jpg.asset.json";
 import kutvStudio from "@/assets/kutv-studio.jpg.asset.json";
+import bikMagazine from "@/assets/bik-magazine.jpg.asset.json";
+import bikFeedback from "@/assets/bik-feedback.mp4.asset.json";
 
 export function Media() {
   return (

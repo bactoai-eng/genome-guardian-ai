@@ -1,5 +1,6 @@
 export function Roadmap() {
   const items = [
+    { t: "BIK Ventures pitch event · May 2026", d: "Represented BactoAI at Kenyatta University's startup pitch showcase, with coverage in print and on BIK's channels." },
     { t: "Prototype completed", d: "Working AI pipeline with initial antibiotic models." },
     { t: "Cloud deployment", d: "Secure, scalable, browser-based platform." },
     { t: "Hospital pilots", d: "Deployments with clinical partners in East Africa." },
