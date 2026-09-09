@@ -1,7 +1,9 @@
-import { Play, ExternalLink, Quote } from "lucide-react";
+import { Play, ExternalLink, Quote, Newspaper } from "lucide-react";
 import { Reveal } from "./Reveal";
 import kutvPoster from "@/assets/kutv-poster.jpg.asset.json";
 import kutvStudio from "@/assets/kutv-studio.jpg.asset.json";
+import bikMagazine from "@/assets/bik-magazine.jpg.asset.json";
+import bikFeedback from "@/assets/bik-feedback.mp4.asset.json";
 
 export function Media() {
   return (
@@ -107,6 +109,82 @@ export function Media() {
                 Watch on YouTube <ExternalLink size={14} />
               </a>
             </Reveal>
+          </div>
+        </div>
+
+        <div className="mt-20 md:mt-24 border-t border-border pt-16">
+          <Reveal className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 text-sm font-semibold text-primary uppercase tracking-widest">
+              <Newspaper size={16} /> On the ecosystem stage
+            </div>
+            <h3 className="mt-4 text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+              Representing BactoAI at the BIK Ventures Hub pitch event.
+            </h3>
+            <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
+              In May 2026, Samwel Elegwa and William Otieno represented BactoAI at the BIK
+              Ventures Hub startup pitch event at Kenyatta University — a landmark competition
+              bringing together founders, investors, and industry leaders. The event was covered
+              in print and on BIK’s YouTube channel.
+            </p>
+          </Reveal>
+
+          <div className="mt-12 grid lg:grid-cols-[1.1fr_0.9fr] gap-6 items-start">
+            <Reveal variant="left">
+              <div className="rounded-3xl border border-border bg-card overflow-hidden shadow-soft">
+                <img
+                  src={bikMagazine.url}
+                  alt="Newspaper coverage of the BIK Ventures Hub startup pitch event at Kenyatta University"
+                  className="w-full h-auto"
+                  loading="lazy"
+                />
+                <div className="p-5">
+                  <div className="text-xs font-semibold text-primary uppercase tracking-widest">
+                    In print · 16 May 2026
+                  </div>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                    Press coverage of the BIK Ventures Hub pitch event at Kenyatta University,
+                    where BactoAI took the stage among East Africa’s emerging startups.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+
+            <div className="space-y-6">
+              <Reveal variant="right" delay={120}>
+                <div className="rounded-3xl border border-border bg-card overflow-hidden shadow-soft">
+                  <video
+                    src={bikFeedback.url}
+                    controls
+                    preload="metadata"
+                    playsInline
+                    className="w-full aspect-[9/16] max-h-[520px] object-cover bg-black mx-auto"
+                  />
+                  <div className="p-5">
+                    <div className="text-xs font-semibold text-primary uppercase tracking-widest">
+                      Founder reflections
+                    </div>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                      Samwel shares his feedback on the BIK Ventures experience and what it means
+                      for startups building in East Africa.
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+
+              <Reveal variant="right" delay={200}>
+                <a
+                  href="https://youtu.be/SOSCWDj7mYk?si=u_VqEoI7-uq0WgCv"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold text-foreground shadow-soft hover:shadow-elegant transition"
+                >
+                  Watch BIK’s event coverage <ExternalLink size={14} />
+                </a>
+                <p className="mt-3 text-xs text-muted-foreground">
+                  BIK’s recap video features the event’s innovations, including BactoAI.
+                </p>
+              </Reveal>
+            </div>
           </div>
         </div>
       </div>
