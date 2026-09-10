@@ -17,6 +17,7 @@ import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as PressRouteImport } from './routes/press'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
@@ -72,6 +73,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PressRoute = PressRouteImport.update({
+  id: '/press',
+  path: '/press',
   getParentRoute: () => rootRouteImport,
 } as any)
 const McpRoute = McpRouteImport.update({
@@ -167,6 +173,7 @@ export interface FileRoutesByFullPath {
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/mcp': typeof McpRoute
+  '/press': typeof PressRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/research': typeof ResearchRoute
@@ -192,6 +199,7 @@ export interface FileRoutesByTo {
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/mcp': typeof McpRoute
+  '/press': typeof PressRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/research': typeof ResearchRoute
@@ -219,6 +227,7 @@ export interface FileRoutesById {
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/mcp': typeof McpRoute
+  '/press': typeof PressRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/research': typeof ResearchRoute
@@ -246,6 +255,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contact'
     | '/mcp'
+    | '/press'
     | '/pricing'
     | '/privacy'
     | '/research'
@@ -271,6 +281,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contact'
     | '/mcp'
+    | '/press'
     | '/pricing'
     | '/privacy'
     | '/research'
@@ -297,6 +308,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contact'
     | '/mcp'
+    | '/press'
     | '/pricing'
     | '/privacy'
     | '/research'
@@ -324,6 +336,7 @@ export interface RootRouteChildren {
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
   McpRoute: typeof McpRoute
+  PressRoute: typeof PressRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   ResearchRoute: typeof ResearchRoute
@@ -395,6 +408,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/press': {
+      id: '/press'
+      path: '/press'
+      fullPath: '/press'
+      preLoaderRoute: typeof PressRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mcp': {
@@ -536,6 +556,7 @@ const rootRouteChildren: RootRouteChildren = {
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
   McpRoute: McpRoute,
+  PressRoute: PressRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   ResearchRoute: ResearchRoute,
