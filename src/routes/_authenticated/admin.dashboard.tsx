@@ -34,7 +34,7 @@ export const Route = createFileRoute("/_authenticated/admin/dashboard")({
 const CATEGORIES = [
   { key: "demo", label: "Demo requests" },
   { key: "partner", label: "Partner leads" },
-  { key: "contact", label: "Team enquiries" },
+  { key: "general", label: "Team enquiries" },
   { key: "newsletter", label: "Newsletter" },
 ] as const;
 
@@ -71,7 +71,7 @@ function buildWeeks(rows: ContactSubmissionRow[], weeks = 8): WeekBucket[] {
     const bucket = buckets.find((b) => b.weekStart.getTime() === start);
     if (!bucket) continue;
     bucket.total += 1;
-    const key = CATEGORIES.some((c) => c.key === row.form_type) ? row.form_type : "contact";
+    const key = CATEGORIES.some((c) => c.key === row.form_type) ? row.form_type : "general";
     bucket.counts[key] = (bucket.counts[key] ?? 0) + 1;
   }
   return buckets;
@@ -210,7 +210,7 @@ function AdminDashboard() {
                     {current?.counts[c.key] ?? 0}
                   </div>
                   <div className="mt-1 text-xs text-muted-foreground">
-                    this week · {data.filter((r) => (CATEGORIES.some((x) => x.key === r.form_type) ? r.form_type : "contact") === c.key).length} all time
+                    this week · {data.filter((r) => (CATEGORIES.some((x) => x.key === r.form_type) ? r.form_type : "general") === c.key).length} all time
                   </div>
                 </div>
               ))}
