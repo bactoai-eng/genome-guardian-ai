@@ -43,8 +43,9 @@ const resources = [
     icon: Newspaper,
     title: "Press & mentions",
     tag: "Updated periodically",
-    body: "Coverage from Kenyatta University's Entrepreneur in Science bootcamp, the NextGen Antimicrobial Stewards Initiative, and other AMR-focused events will be linked here.",
-    cta: "Coming soon",
+    body: "KUTV Kenya's AMR interview, BIK Ventures Hub coverage, our press kit, brand assets, and a direct media contact — all on the press page.",
+    href: "/press",
+    cta: "Visit the press page",
   },
   {
     icon: BookOpen,

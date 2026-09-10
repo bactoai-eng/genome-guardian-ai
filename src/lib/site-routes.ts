@@ -28,6 +28,7 @@ const HINTS: Record<string, { changefreq?: string; priority?: string }> = {
   "/contact": { changefreq: "yearly", priority: "0.7" },
   "/blog": { changefreq: "weekly", priority: "0.7" },
   "/resources": { changefreq: "monthly", priority: "0.6" },
+  "/press": { changefreq: "monthly", priority: "0.6" },
   "/careers": { changefreq: "yearly", priority: "0.4" },
   "/docs/mcp": { changefreq: "monthly", priority: "0.4" },
   "/privacy": { changefreq: "yearly", priority: "0.3" },
