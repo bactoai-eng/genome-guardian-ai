@@ -14,7 +14,7 @@ export function Contact() {
     if (status === "loading" || status === "success") return;
     setStatus("loading");
     const { error } = await supabase.from("contact_submissions").insert({
-      form_type: "demo",
+      form_type: "general",
       full_name: form.name.trim(),
       email: form.email.trim(),
       organization: form.organization.trim() || null,
