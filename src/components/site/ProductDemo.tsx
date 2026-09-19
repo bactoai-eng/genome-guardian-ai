@@ -9,9 +9,14 @@ import {
   FlaskConical,
   ArrowRight,
   Loader2,
+  Lock,
+  FileUp,
 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { useServerFn } from "@tanstack/react-start";
+import { Link } from "@tanstack/react-router";
+import { analyzeGenome, type AnalysisSuccess } from "@/lib/analyze.functions";
 
 type Result = { drug: string; status: "Resistant" | "Susceptible"; confidence: number };
 
