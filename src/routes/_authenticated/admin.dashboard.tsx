@@ -210,7 +210,16 @@ function AdminDashboard() {
                     {current?.counts[c.key] ?? 0}
                   </div>
                   <div className="mt-1 text-xs text-muted-foreground">
-                    this week · {data.filter((r) => (CATEGORIES.some((x) => x.key === r.form_type) ? r.form_type : "general") === c.key).length} all time
+                    this week ·{" "}
+                    {
+                      data.filter(
+                        (r) =>
+                          (CATEGORIES.some((x) => x.key === r.form_type)
+                            ? r.form_type
+                            : "general") === c.key,
+                      ).length
+                    }{" "}
+                    all time
                   </div>
                 </div>
               ))}
@@ -236,14 +245,22 @@ function AdminDashboard() {
 
               <div className="mt-6 flex items-end gap-3 h-40">
                 {weeks.map((w) => (
-                  <div key={w.weekStart.toISOString()} className="flex-1 flex flex-col items-center gap-2">
+                  <div
+                    key={w.weekStart.toISOString()}
+                    className="flex-1 flex flex-col items-center gap-2"
+                  >
                     <div className="text-xs font-semibold text-foreground">{w.total || ""}</div>
                     <div
                       className="w-full rounded-t-md bg-primary/70 transition-all"
-                      style={{ height: `${Math.round((w.total / peak) * 100)}%`, minHeight: w.total ? "6px" : "2px" }}
+                      style={{
+                        height: `${Math.round((w.total / peak) * 100)}%`,
+                        minHeight: w.total ? "6px" : "2px",
+                      }}
                       title={`Week of ${w.label}: ${w.total}`}
                     />
-                    <div className="text-[10px] text-muted-foreground whitespace-nowrap">{w.label}</div>
+                    <div className="text-[10px] text-muted-foreground whitespace-nowrap">
+                      {w.label}
+                    </div>
                   </div>
                 ))}
               </div>

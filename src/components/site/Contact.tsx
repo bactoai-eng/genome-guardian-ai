@@ -74,7 +74,12 @@ export function Contact() {
               className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-4"
             >
               <div>
-                <label htmlFor="contact-name" className="text-xs font-semibold text-muted-foreground">Full name</label>
+                <label
+                  htmlFor="contact-name"
+                  className="text-xs font-semibold text-muted-foreground"
+                >
+                  Full name
+                </label>
                 <input
                   id="contact-name"
                   required
@@ -86,7 +91,12 @@ export function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="contact-email" className="text-xs font-semibold text-muted-foreground">Work email</label>
+                <label
+                  htmlFor="contact-email"
+                  className="text-xs font-semibold text-muted-foreground"
+                >
+                  Work email
+                </label>
                 <input
                   id="contact-email"
                   type="email"
@@ -99,7 +109,12 @@ export function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="contact-org" className="text-xs font-semibold text-muted-foreground">Organization</label>
+                <label
+                  htmlFor="contact-org"
+                  className="text-xs font-semibold text-muted-foreground"
+                >
+                  Organization
+                </label>
                 <input
                   id="contact-org"
                   maxLength={150}
@@ -110,7 +125,10 @@ export function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="contact-message" className="text-xs font-semibold text-muted-foreground">
+                <label
+                  htmlFor="contact-message"
+                  className="text-xs font-semibold text-muted-foreground"
+                >
                   How can we help?
                 </label>
                 <textarea

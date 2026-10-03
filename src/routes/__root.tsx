@@ -130,7 +130,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@graph": [
-            { "@type": "Organization", name: "BactoAI", url: "https://bactoai.lovable.app", logo: "https://bactoai.lovable.app/favicon.png", email: "bactoai01@gmail.com" },
+            {
+              "@type": "Organization",
+              name: "BactoAI",
+              url: "https://bactoai.lovable.app",
+              logo: "https://bactoai.lovable.app/favicon.png",
+              email: "bactoai01@gmail.com",
+            },
             { "@type": "WebSite", name: "BactoAI", url: "https://bactoai.lovable.app" },
           ],
         }),

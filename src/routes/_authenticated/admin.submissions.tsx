@@ -24,7 +24,8 @@ export const Route = createFileRoute("/_authenticated/admin/submissions")({
         <ShieldAlert className="mx-auto text-destructive" size={32} />
         <h2 className="mt-3 text-lg font-semibold">Access denied</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          {(error as Error).message.includes("Forbidden") || (error as Error).message.includes("permission")
+          {(error as Error).message.includes("Forbidden") ||
+          (error as Error).message.includes("permission")
             ? "Your account is signed in, but does not have the admin role required to view contact submissions."
             : (error as Error).message}
         </p>

@@ -21,7 +21,8 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: "About BactoAI" },
       {
         property: "og:description",
-        content: "The team, media, partners, and roadmap behind BactoAI's genomic AMR prediction engine.",
+        content:
+          "The team, media, partners, and roadmap behind BactoAI's genomic AMR prediction engine.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

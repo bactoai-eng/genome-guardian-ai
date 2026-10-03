@@ -48,15 +48,15 @@ for (const path of publicPaths) {
 
     const expected = `${SITE_URL}${path}`;
 
-    const canonicals = await page.locator('link[rel="canonical"]').evaluateAll((els) =>
-      els.map((el) => el.getAttribute("href")),
-    );
+    const canonicals = await page
+      .locator('link[rel="canonical"]')
+      .evaluateAll((els) => els.map((el) => el.getAttribute("href")));
     expect(canonicals, `${path} must declare exactly one canonical`).toHaveLength(1);
     expect(canonicals[0]).toBe(expected);
 
-    const ogUrls = await page.locator('meta[property="og:url"]').evaluateAll((els) =>
-      els.map((el) => el.getAttribute("content")),
-    );
+    const ogUrls = await page
+      .locator('meta[property="og:url"]')
+      .evaluateAll((els) => els.map((el) => el.getAttribute("content")));
     expect(ogUrls, `${path} must declare exactly one og:url`).toHaveLength(1);
     expect(ogUrls[0]).toBe(expected);
 

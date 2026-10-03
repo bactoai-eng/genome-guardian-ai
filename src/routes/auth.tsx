@@ -14,7 +14,8 @@ export const Route = createFileRoute("/auth")({
       { title: "Sign in — BactoAI" },
       {
         name: "description",
-        content: "Sign in or create a BactoAI account to analyze bacterial genomes and review your results.",
+        content:
+          "Sign in or create a BactoAI account to analyze bacterial genomes and review your results.",
       },
       { name: "robots", content: "noindex,nofollow" },
     ],
@@ -103,7 +104,9 @@ function AuthPage() {
         </div>
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <div>
-            <label htmlFor="auth-email" className="text-xs font-semibold text-muted-foreground">Email</label>
+            <label htmlFor="auth-email" className="text-xs font-semibold text-muted-foreground">
+              Email
+            </label>
             <input
               id="auth-email"
               type="email"
@@ -114,7 +117,9 @@ function AuthPage() {
             />
           </div>
           <div>
-            <label htmlFor="auth-password" className="text-xs font-semibold text-muted-foreground">Password</label>
+            <label htmlFor="auth-password" className="text-xs font-semibold text-muted-foreground">
+              Password
+            </label>
             <input
               id="auth-password"
               type="password"
@@ -138,7 +143,9 @@ function AuthPage() {
           onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
           className="mt-4 w-full text-xs text-muted-foreground hover:text-primary transition"
         >
-          {mode === "signin" ? "New to BactoAI? Create an account" : "Already have an account? Sign in"}
+          {mode === "signin"
+            ? "New to BactoAI? Create an account"
+            : "Already have an account? Sign in"}
         </button>
       </div>
     </div>
