@@ -15,6 +15,8 @@ jobs:
         with:
           bun-version: latest
       - run: bun install
+      - name: Lockfile registry audit (no private sandbox URLs)
+        run: bun run audit:lockfile
       - name: Lint
         run: bun run lint
       - name: Anchor audit (internal href="#..." deep links)
