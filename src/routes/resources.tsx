@@ -77,7 +77,7 @@ function ResourcesPage() {
             {resources.map((r) => {
               const Icon = r.icon;
               const isLink = Boolean(r.href);
-              const Wrapper: any = isLink ? "a" : "div";
+              const Wrapper = (isLink ? "a" : "div") as "a" | "div";
               return (
                 <Wrapper
                   key={r.title}

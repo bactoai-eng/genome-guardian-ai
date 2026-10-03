@@ -10,7 +10,9 @@ export function Media() {
     <section id="media" className="py-24 md:py-32 bg-background">
       <div className="mx-auto max-w-7xl px-6">
         <Reveal className="max-w-3xl">
-          <div className="text-sm font-semibold text-primary uppercase tracking-widest">In the media</div>
+          <div className="text-sm font-semibold text-primary uppercase tracking-widest">
+            In the media
+          </div>
           <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
             Bringing the AMR conversation to national television.
           </h2>
@@ -121,10 +123,10 @@ export function Media() {
               Representing BactoAI at the BIK Ventures Hub pitch event.
             </h3>
             <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-              In May 2026, Samwel Elegwa and William Otieno represented BactoAI at the BIK
-              Ventures Hub startup pitch event at Kenyatta University — a landmark competition
-              bringing together founders, investors, and industry leaders. The event was covered
-              in print and on BIK’s YouTube channel.
+              In May 2026, Samwel Elegwa and William Otieno represented BactoAI at the BIK Ventures
+              Hub startup pitch event at Kenyatta University — a landmark competition bringing
+              together founders, investors, and industry leaders. The event was covered in print and
+              on BIK’s YouTube channel.
             </p>
           </Reveal>
 
@@ -142,8 +144,8 @@ export function Media() {
                     In print · 16 May 2026
                   </div>
                   <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                    Press coverage of the BIK Ventures Hub pitch event at Kenyatta University,
-                    where BactoAI took the stage among East Africa’s emerging startups.
+                    Press coverage of the BIK Ventures Hub pitch event at Kenyatta University, where
+                    BactoAI took the stage among East Africa’s emerging startups.
                   </p>
                 </div>
               </div>

@@ -134,21 +134,21 @@ function HelixCanvas() {
           });
         }
       }
-      strandSections.sort((a, b) => (a.a.z + a.b.z) - (b.a.z + b.b.z));
+      strandSections.sort((a, b) => a.a.z + a.b.z - (b.a.z + b.b.z));
 
       for (const section of strandSections) {
         const depth = (section.a.z + section.b.z) * 0.25 + 0.5;
         const alpha = 0.16 + depth * 0.7;
         ctx.save();
-        ctx.strokeStyle = section.strand === 0
-          ? `rgba(23, 185, 143, ${alpha})`
-          : `rgba(105, 210, 236, ${alpha * 0.86})`;
+        ctx.strokeStyle =
+          section.strand === 0
+            ? `rgba(23, 185, 143, ${alpha})`
+            : `rgba(105, 210, 236, ${alpha * 0.86})`;
         ctx.lineWidth = 1.2 + depth * 3.4;
         ctx.lineCap = "round";
         ctx.shadowBlur = depth > 0.68 ? (isMobile ? 7 : 13) * depth : 0;
-        ctx.shadowColor = section.strand === 0
-          ? "rgba(23, 185, 143, 0.72)"
-          : "rgba(56, 189, 248, 0.58)";
+        ctx.shadowColor =
+          section.strand === 0 ? "rgba(23, 185, 143, 0.72)" : "rgba(56, 189, 248, 0.58)";
         ctx.beginPath();
         ctx.moveTo(section.a.x, section.a.y);
         ctx.lineTo(section.b.x, section.b.y);
@@ -158,7 +158,10 @@ function HelixCanvas() {
 
       // Molecular nodes catch light as they rotate toward the viewer.
       for (const { a, b } of rungs) {
-        for (const [node, color] of [[a, "23, 185, 143"], [b, "56, 189, 248"]] as const) {
+        for (const [node, color] of [
+          [a, "23, 185, 143"],
+          [b, "56, 189, 248"],
+        ] as const) {
           const depth = (node.z + 1) / 2;
           const nodeRadius = 1.5 + depth * 3.4;
           ctx.save();
@@ -189,9 +192,12 @@ function HelixCanvas() {
 
       if (!reduced) raf = requestAnimationFrame(draw);
     };
-    const visibilityObserver = new IntersectionObserver(([entry]) => {
-      isVisible = entry?.isIntersecting ?? true;
-    }, { rootMargin: "100px" });
+    const visibilityObserver = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry?.isIntersecting ?? true;
+      },
+      { rootMargin: "100px" },
+    );
     visibilityObserver.observe(canvas);
     if (reduced) draw(0);
     else raf = requestAnimationFrame(draw);

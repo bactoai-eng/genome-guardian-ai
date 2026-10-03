@@ -25,22 +25,41 @@ export function AmrSummaryView({ summary }: { summary: AmrSummary }) {
         </div>
         <div className="grid sm:grid-cols-2 gap-3">
           {summary.drug_risks.map((d) => {
-            const Icon = d.risk === "high" ? AlertOctagon : d.risk === "moderate" ? AlertTriangle : CheckCircle2;
-            const color = d.risk === "high" ? "text-resistant" : d.risk === "moderate" ? "text-primary" : "text-susceptible";
-            const bar = d.risk === "high" ? "bg-resistant" : d.risk === "moderate" ? "bg-primary" : "bg-susceptible";
+            const Icon =
+              d.risk === "high"
+                ? AlertOctagon
+                : d.risk === "moderate"
+                  ? AlertTriangle
+                  : CheckCircle2;
+            const color =
+              d.risk === "high"
+                ? "text-resistant"
+                : d.risk === "moderate"
+                  ? "text-primary"
+                  : "text-susceptible";
+            const bar =
+              d.risk === "high"
+                ? "bg-resistant"
+                : d.risk === "moderate"
+                  ? "bg-primary"
+                  : "bg-susceptible";
             return (
               <div key={d.drug} className="rounded-xl border border-border p-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2 text-sm font-semibold">
                     <Icon size={14} className={color} /> {d.drug}
                   </div>
-                  <span className={`text-[11px] font-semibold capitalize ${color}`}>{d.risk} risk</span>
+                  <span className={`text-[11px] font-semibold capitalize ${color}`}>
+                    {d.risk} risk
+                  </span>
                 </div>
                 <div className="mt-2 flex items-center gap-2">
                   <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                     <div className={`h-full ${bar}`} style={{ width: `${d.confidence}%` }} />
                   </div>
-                  <span className="text-[11px] font-mono text-muted-foreground">{d.confidence}%</span>
+                  <span className="text-[11px] font-mono text-muted-foreground">
+                    {d.confidence}%
+                  </span>
                 </div>
                 <p className="mt-2 text-[11px] text-muted-foreground leading-snug">{d.rationale}</p>
               </div>
@@ -84,7 +103,9 @@ export function AmrSummaryView({ summary }: { summary: AmrSummary }) {
             <li key={i}>{l}</li>
           ))}
         </ul>
-        <p className="mt-2">AI-generated, research use only. Confirm with phenotypic susceptibility testing.</p>
+        <p className="mt-2">
+          AI-generated, research use only. Confirm with phenotypic susceptibility testing.
+        </p>
       </div>
     </div>
   );

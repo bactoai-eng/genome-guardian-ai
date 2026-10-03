@@ -37,7 +37,8 @@ export const Route = createFileRoute("/press")({
           "@type": "CollectionPage",
           name: "BactoAI press & media",
           url: "https://bactoai.lovable.app/press",
-          about: "Media coverage of BactoAI, a genomic antimicrobial resistance prediction platform.",
+          about:
+            "Media coverage of BactoAI, a genomic antimicrobial resistance prediction platform.",
         }),
       },
     ],
@@ -64,8 +65,7 @@ const coverage: Coverage[] = [
     date: "31 August 2026",
     kind: "Television interview",
     title: "Bringing the AMR conversation to national television",
-    body:
-      "Founder Samwel Elegwa joined KUTV Kenya's Art & Culture Monday to explain antimicrobial resistance and why faster, genome-driven diagnostics matter for patients, clinicians, and public health systems.",
+    body: "Founder Samwel Elegwa joined KUTV Kenya's Art & Culture Monday to explain antimicrobial resistance and why faster, genome-driven diagnostics matter for patients, clinicians, and public health systems.",
     image: kutvPoster.url,
     imageAlt: "Samwel Elegwa, Founder of BactoAI, featured on KUTV Kenya Art & Culture Monday",
     href: "https://youtu.be/ENvEk0a0CHs?si=NITn5aXnJfv1HucC",
@@ -77,8 +77,7 @@ const coverage: Coverage[] = [
     date: "16 May 2026",
     kind: "Print & video coverage",
     title: "Representing BactoAI at the Kenyatta University startup pitch event",
-    body:
-      "Samwel Elegwa and William Otieno represented BactoAI at the BIK Ventures Hub startup pitch event at Kenyatta University. The event was covered in print and in BIK's recap video, which features several of the innovations showcased, including BactoAI.",
+    body: "Samwel Elegwa and William Otieno represented BactoAI at the BIK Ventures Hub startup pitch event at Kenyatta University. The event was covered in print and in BIK's recap video, which features several of the innovations showcased, including BactoAI.",
     image: bikMagazine.url,
     imageAlt:
       "Newspaper coverage of the BIK Ventures Hub startup pitch event at Kenyatta University",

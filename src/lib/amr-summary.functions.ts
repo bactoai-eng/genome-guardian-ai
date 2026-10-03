@@ -8,11 +8,18 @@ const Input = z.object({
   isolateLabel: z.string().trim().min(1).max(80),
   organism: z.string().trim().min(2).max(120),
   specimenSource: z.string().trim().min(2).max(80),
-  collectionDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).nullable(),
+  collectionDate: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/)
+    .nullable(),
   location: z.string().trim().max(120).nullable(),
   clinicalNotes: z.string().trim().max(1000).nullable(),
   fileName: z.string().max(255),
-  fileSizeBytes: z.number().int().min(1).max(25 * 1024 * 1024),
+  fileSizeBytes: z
+    .number()
+    .int()
+    .min(1)
+    .max(25 * 1024 * 1024),
   stats: z.object({
     format: z.enum(["FASTA", "FASTQ"]),
     records: z.number().int().min(1),
@@ -22,7 +29,10 @@ const Input = z.object({
     longestRecord: z.number().int(),
     n50: z.number().int(),
     headers: z.array(z.string().max(120)).max(8),
-    excerpt: z.string().max(4000).regex(/^[ACGTNRYKMSWBDHV]*$/),
+    excerpt: z
+      .string()
+      .max(4000)
+      .regex(/^[ACGTNRYKMSWBDHV]*$/),
   }),
 });
 
@@ -103,11 +113,22 @@ Sequence excerpt (first ${excerpt.length} bases): ${excerpt.slice(0, 1500)}`;
     } catch (err) {
       console.error("[amr-summary] generation failed", err);
       const status = (err as { statusCode?: number }).statusCode;
-      if (status === 402) return { ok: false, message: "AI credits are exhausted. Add credits in workspace settings and try again." };
-      if (status === 429) return { ok: false, message: "The AI service is busy. Please wait a minute and try again." };
+      if (status === 402)
+        return {
+          ok: false,
+          message: "AI credits are exhausted. Add credits in workspace settings and try again.",
+        };
+      if (status === 429)
+        return {
+          ok: false,
+          message: "The AI service is busy. Please wait a minute and try again.",
+        };
       if (NoObjectGeneratedError.isInstance(err))
         return { ok: false, message: "The AI returned an incomplete summary. Please try again." };
-      return { ok: false, message: "The AI summary couldn't be generated. Please try again shortly." };
+      return {
+        ok: false,
+        message: "The AI summary couldn't be generated. Please try again shortly.",
+      };
     }
 
     summary.drug_risks = summary.drug_risks.slice(0, 10).map((d) => ({

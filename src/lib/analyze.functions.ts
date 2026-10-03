@@ -161,12 +161,16 @@ export const analyzeGenome = createServerFn({ method: "POST" })
     }
 
     if (predictions.length === 0) {
-      return fail("upstream", "The prediction engine returned predictions in an unexpected format.");
+      return fail(
+        "upstream",
+        "The prediction engine returned predictions in an unexpected format.",
+      );
     }
 
     return {
       ok: true,
-      organism: typeof raw.organism === "string" && raw.organism.trim() ? raw.organism.trim() : null,
+      organism:
+        typeof raw.organism === "string" && raw.organism.trim() ? raw.organism.trim() : null,
       predictions,
       fileName: file.name,
       fileSizeKb: Math.max(1, Math.round(file.size / 1024)),
