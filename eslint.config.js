@@ -14,6 +14,9 @@ export default tseslint.config(
       "src/integrations/**",
       "src/routeTree.gen.ts",
       "src/routes/*lovable.oauth*",
+      "src/routes/\\[.mcp\\]/**",
+      "src/routes/\\[.well-known\\]/**",
+      "src/routes/mcp.ts",
     ],
   },
   {
