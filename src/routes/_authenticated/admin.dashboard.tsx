@@ -25,7 +25,7 @@ export const Route = createFileRoute("/_authenticated/admin/dashboard")({
       <div className="max-w-md text-center">
         <ShieldAlert className="mx-auto text-destructive" size={32} />
         <h2 className="mt-3 text-lg font-semibold">Access denied</h2>
-        <p className="mt-2 text-sm text-muted-foreground">{error.message}</p>
+        <p className="mt-2 text-sm text-muted-foreground">{(error as Error).message}</p>
       </div>
     </div>
   ),

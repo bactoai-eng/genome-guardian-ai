@@ -24,9 +24,9 @@ export const Route = createFileRoute("/_authenticated/admin/submissions")({
         <ShieldAlert className="mx-auto text-destructive" size={32} />
         <h2 className="mt-3 text-lg font-semibold">Access denied</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          {error.message.includes("Forbidden") || error.message.includes("permission")
+          {(error as Error).message.includes("Forbidden") || (error as Error).message.includes("permission")
             ? "Your account is signed in, but does not have the admin role required to view contact submissions."
-            : error.message}
+            : (error as Error).message}
         </p>
       </div>
     </div>
@@ -94,7 +94,7 @@ function AdminSubmissions() {
                   Unable to load submissions
                 </div>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  {error instanceof Error ? error.message : "Unknown error"}
+                  {error instanceof Error ? (error as Error).message : "Unknown error"}
                 </p>
                 <p className="mt-2 text-xs text-muted-foreground">
                   You must have the <code className="font-mono">admin</code> role assigned in the
