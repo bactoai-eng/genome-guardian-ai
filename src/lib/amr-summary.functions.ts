@@ -55,8 +55,7 @@ const SummarySchema = z.object({
 
 export type AmrSummary = z.infer<typeof SummarySchema>;
 export type AmrSummaryResult =
-  | { ok: true; id: string; summary: AmrSummary }
-  | { ok: false; message: string };
+  { ok: true; id: string; summary: AmrSummary } | { ok: false; message: string };
 
 const SYSTEM = `You are BactoAI's antimicrobial-resistance (AMR) interpretation assistant for laboratory scientists.
 You receive organism metadata plus summary statistics and a short excerpt of a bacterial genome sequence.
