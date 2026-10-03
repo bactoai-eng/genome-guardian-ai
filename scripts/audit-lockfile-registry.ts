@@ -6,11 +6,7 @@
 import { readFileSync } from "node:fs";
 
 const LOCKFILE = "bun.lock";
-const BANNED_PATTERNS = [
-  "europe-west4-npm.pkg.dev",
-  "sandbox-npm-cache",
-  "pkg.dev/lovable",
-];
+const BANNED_PATTERNS = ["europe-west4-npm.pkg.dev", "sandbox-npm-cache", "pkg.dev/lovable"];
 
 const content = readFileSync(LOCKFILE, "utf8");
 const hits = BANNED_PATTERNS.filter((p) => content.includes(p));
