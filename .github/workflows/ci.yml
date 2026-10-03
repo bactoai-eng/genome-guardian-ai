@@ -14,7 +14,10 @@ jobs:
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
+      - name: Fix Lovable sandbox registry URLs
+        run: sed -i 's#https://europe-west[0-9]*-npm\.pkg\.dev/lovable-core-prod/sandbox-npm-cache/#https://registry.npmjs.org/#g' bun.lock
       - run: bun install
+
       - name: Lockfile registry audit (no private sandbox URLs)
         run: bun run audit:lockfile
       - name: Lint
@@ -32,7 +35,10 @@ jobs:
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
+      - name: Fix Lovable sandbox registry URLs
+        run: sed -i 's#https://europe-west[0-9]*-npm\.pkg\.dev/lovable-core-prod/sandbox-npm-cache/#https://registry.npmjs.org/#g' bun.lock
       - run: bun install
+
       - name: Install Playwright browser
         run: bunx playwright install --with-deps chromium
       - name: Run Playwright tests
