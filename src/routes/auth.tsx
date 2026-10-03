@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
@@ -12,20 +12,38 @@ export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
       { title: "Sign in — BactoAI" },
-      { name: "description", content: "Sign in to the BactoAI internal console." },
+      {
+        name: "description",
+        content: "Sign in or create a BactoAI account to analyze bacterial genomes and review your results.",
+      },
       { name: "robots", content: "noindex,nofollow" },
     ],
   }),
   component: AuthPage,
 });
 
+const CUSTOMER_HOME = "/history";
+const ADMIN_HOME = "/admin/submissions";
+
 // Only same-origin relative paths are safe redirect targets.
 function safeNext(next?: string) {
   return next && next.startsWith("/") && !next.startsWith("//") ? next : null;
 }
 
+// UX routing only — admin pages still enforce the role server-side.
+async function destinationFor(userId: string, next: string | null) {
+  const { data } = await supabase
+    .from("user_roles")
+    .select("role")
+    .eq("user_id", userId)
+    .eq("role", "admin")
+    .maybeSingle();
+  const isAdmin = !!data;
+  if (next && (isAdmin || !next.startsWith("/admin"))) return next;
+  return isAdmin ? ADMIN_HOME : CUSTOMER_HOME;
+}
+
 function AuthPage() {
-  const navigate = useNavigate();
   const { next } = Route.useSearch();
   const target = safeNext(next);
   const [mode, setMode] = useState<"signin" | "signup">("signin");
@@ -34,33 +52,31 @@ function AuthPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
+    // Covers returning from the email verification link too.
+    supabase.auth.getUser().then(async ({ data }) => {
       if (!data.user) return;
-      if (target) window.location.href = target;
-      else navigate({ to: "/admin/submissions", replace: true });
+      window.location.replace(await destinationFor(data.user.id, target));
     });
-  }, [navigate, target]);
+  }, [target]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     try {
       if (mode === "signup") {
+        const redirect = `${window.location.origin}/auth${target ? `?next=${encodeURIComponent(target)}` : ""}`;
         const { error } = await supabase.auth.signUp({
           email,
           password,
-          options: {
-            emailRedirectTo: window.location.origin + (target ?? "/admin/submissions"),
-          },
+          options: { emailRedirectTo: redirect },
         });
         if (error) throw error;
-        toast.success("Account created. Check your email if confirmation is required.");
+        toast.success("Account created. Check your email to verify, then you can start analyzing.");
       } else {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
         toast.success("Signed in.");
-        if (target) window.location.href = target;
-        else navigate({ to: "/admin/submissions", replace: true });
+        window.location.replace(await destinationFor(data.user.id, target));
       }
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Authentication failed.");
@@ -77,16 +93,19 @@ function AuthPage() {
             BactoAI
           </Link>
           <h1 className="mt-3 text-2xl font-bold text-foreground">
-            {mode === "signin" ? "Sign in" : "Create account"}
+            {mode === "signin" ? "Sign in to BactoAI" : "Create your BactoAI account"}
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Internal console. Admin access required to view submissions.
+            {mode === "signin"
+              ? "Upload genome samples, get AMR risk summaries and review your analysis history."
+              : "Free account for labs and researchers to analyze bacterial genomes for antimicrobial resistance."}
           </p>
         </div>
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <div>
-            <label className="text-xs font-semibold text-muted-foreground">Email</label>
+            <label htmlFor="auth-email" className="text-xs font-semibold text-muted-foreground">Email</label>
             <input
+              id="auth-email"
               type="email"
               required
               value={email}
@@ -95,8 +114,9 @@ function AuthPage() {
             />
           </div>
           <div>
-            <label className="text-xs font-semibold text-muted-foreground">Password</label>
+            <label htmlFor="auth-password" className="text-xs font-semibold text-muted-foreground">Password</label>
             <input
+              id="auth-password"
               type="password"
               required
               minLength={8}
@@ -118,7 +138,7 @@ function AuthPage() {
           onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
           className="mt-4 w-full text-xs text-muted-foreground hover:text-primary transition"
         >
-          {mode === "signin" ? "Need an account? Sign up" : "Already have an account? Sign in"}
+          {mode === "signin" ? "New to BactoAI? Create an account" : "Already have an account? Sign in"}
         </button>
       </div>
     </div>
