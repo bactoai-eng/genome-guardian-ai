@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Update clinical wording, three-antibiotic scope, pilot cards and Nairobi location
+- [x] Update clinical wording, three-antibiotic scope, pilot cards and Nairobi location
 - [ ] Check 360–430px phone layouts and 1280–1440px laptop alignment
 
 - [ ] Remove THRIVE and university builder credits; retain GEES first-pitch context

@@ -150,11 +150,11 @@ export function LiveAnalyzer() {
     <div className="relative">
       <div className="absolute -inset-4 bg-primary opacity-10 blur-3xl rounded-3xl" />
       <div className="relative rounded-3xl border border-border bg-card shadow-elegant overflow-hidden">
-        <div className="flex items-center gap-2 px-5 py-3 border-b border-border bg-muted/40">
+        <div className="flex flex-wrap items-center gap-2 px-4 sm:px-5 py-3 border-b border-border bg-muted/40">
           <span className="w-2.5 h-2.5 rounded-full bg-destructive/60" />
           <span className="w-2.5 h-2.5 rounded-full bg-muted-foreground/40" />
           <span className="w-2.5 h-2.5 rounded-full bg-susceptible/60" />
-          <div className="ml-4 text-xs text-muted-foreground font-mono">
+          <div className="min-w-0 text-xs text-muted-foreground font-mono">
             app.bactoai.com/analyze
           </div>
           {authed && (
@@ -167,9 +167,9 @@ export function LiveAnalyzer() {
           )}
         </div>
 
-        <div className="p-6 space-y-5 min-h-[520px]">
+        <div className="p-4 sm:p-6 space-y-5 min-h-[400px] md:min-h-[520px]">
           {authed === false ? (
-            <div className="rounded-2xl border border-dashed border-primary/30 bg-primary/5 p-8 text-center">
+            <div className="rounded-2xl border border-dashed border-primary/30 bg-primary/5 p-4 sm:p-8 text-center">
               <Lock size={22} className="mx-auto text-primary" />
               <div className="mt-3 text-sm font-semibold text-foreground">
                 Sign in to analyze your own genomes
@@ -188,7 +188,7 @@ export function LiveAnalyzer() {
           ) : phase === "done" && summary ? (
             <>
               <AmrSummaryView summary={summary} />
-              <div className="flex gap-2 justify-center">
+              <div className="grid sm:flex gap-2 justify-center">
                 <button
                   type="button"
                   onClick={() => {
@@ -223,13 +223,13 @@ export function LiveAnalyzer() {
                   className="sr-only"
                   onChange={(e) => pickFile(e.target.files?.[0] ?? null)}
                 />
-                <div className="flex items-center gap-4">
+                <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-4">
                   {parsing ? (
                     <Loader2 className="animate-spin text-primary" size={22} />
                   ) : (
                     <FileUp className="text-primary" size={22} />
                   )}
-                  <div className="text-sm">
+                  <div className="min-w-0 break-words text-sm">
                     <div className="font-semibold text-foreground">
                       {file ? file.name : "Browse or drop a genome file *"}
                     </div>
