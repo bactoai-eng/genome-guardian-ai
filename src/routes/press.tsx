@@ -26,9 +26,9 @@ export const Route = createFileRoute("/press")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://bactoai.lovable.app/press" },
+      { property: "og:url", content: "https://bactoai.co.ke/press" },
     ],
-    links: [{ rel: "canonical", href: "https://bactoai.lovable.app/press" }],
+    links: [{ rel: "canonical", href: "https://bactoai.co.ke/press" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -36,7 +36,7 @@ export const Route = createFileRoute("/press")({
           "@context": "https://schema.org",
           "@type": "CollectionPage",
           name: "BactoAI press & media",
-          url: "https://bactoai.lovable.app/press",
+          url: "https://bactoai.co.ke/press",
           about:
             "Media coverage of BactoAI, a genomic antimicrobial resistance prediction platform.",
         }),
