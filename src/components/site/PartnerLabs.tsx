@@ -70,15 +70,13 @@ export function PartnerLabs() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-3xl">
           <div className="text-sm font-semibold text-primary uppercase tracking-widest">
-            Labs Near You
+            Clinical validation
           </div>
           <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-            Find a partner lab near you
+            Target clinical sites for validation
           </h2>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            BactoAI predicts resistance from the genome — confirm with a local lab when you need a
-            full culture workup. Partner and affiliated laboratories below can run confirmatory
-            culture and sensitivity testing downstream of a BactoAI prediction.
+            Sites listed are intended validation settings, not confirmed partners.
           </p>
         </div>
 
@@ -91,7 +89,7 @@ export function PartnerLabs() {
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              aria-label="Search partner labs by city or service"
+              aria-label="Search target clinical sites by city or service"
               placeholder="Search by city, hospital or service (e.g. Nairobi)"
               className="w-full rounded-full border border-border bg-card pl-11 pr-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
             />
@@ -117,7 +115,7 @@ export function PartnerLabs() {
               </div>
               <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
                 <Clock size={15} className="text-primary shrink-0" />
-                Culture turnaround: {lab.turnaround}
+                Typical turnaround today: {lab.turnaround}
               </div>
               <div className="mt-4 flex flex-wrap gap-2">
                 {lab.services.map((s) => (
@@ -133,7 +131,7 @@ export function PartnerLabs() {
           ))}
           {filtered.length === 0 && (
             <div className="md:col-span-2 lg:col-span-3 rounded-3xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
-              No partner labs match that search yet. We're expanding the network —{" "}
+              No target clinical sites match that search —{" "}
               <a href="/contact" className="text-primary font-semibold hover:underline">
                 tell us where you need coverage
               </a>
@@ -145,15 +143,15 @@ export function PartnerLabs() {
         <div className="mt-10 rounded-3xl border border-border bg-card/60 p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-6">
           <p className="text-sm text-muted-foreground leading-relaxed flex-1">
             <span className="font-semibold text-foreground">Complementary, not a replacement.</span>{" "}
-            A BactoAI genomic prediction is available in under 5 minutes; a confirmatory culture is
-            a downstream step for full phenotypic workup. Are you a laboratory that would like to be
-            listed? Join the partner network.
+            BactoAI aims for under 10 minutes from genome to result. Conventional laboratory testing
+            and professional clinical judgment remain essential. Contact us to discuss a supervised
+            validation pilot.
           </p>
           <a
             href="/contact"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-soft hover:shadow-elegant transition-shadow shrink-0"
           >
-            List your lab <ArrowRight size={16} />
+            Request a Pilot <ArrowRight size={16} />
           </a>
         </div>
       </div>

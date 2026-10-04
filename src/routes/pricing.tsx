@@ -7,17 +7,16 @@ import { FAQ } from "@/components/site/FAQ";
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "Pricing — BactoAI · Free for research, priced for clinical" },
+      { title: "Pilot access — BactoAI · Research, clinical and partnership" },
       {
         name: "description",
         content:
-          "Start free for research. Scale to full clinical deployment with clinician-ready reports, LIMS API integration, and dedicated support.",
+          "Explore Research Access, supervised Clinical Pilots, and Partnerships for co-development and data collaboration.",
       },
-      { property: "og:title", content: "Pricing — BactoAI" },
+      { property: "og:title", content: "Pilot access — BactoAI" },
       {
         property: "og:description",
-        content:
-          "Free for research. Clinical and enterprise tiers for hospitals and health systems.",
+        content: "Research Access, Clinical Pilot, and Partnership options, by agreement.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

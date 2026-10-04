@@ -1,152 +1,77 @@
-import { useState } from "react";
-import { Check, Sparkles } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-type Tier = {
-  name: string;
-  tagline: string;
-  monthly: string;
-  annual: string;
-  cta: string;
-  href: string;
-  highlight?: boolean;
-  features: string[];
-};
-
-const tiers: Tier[] = [
+const tiers = [
   {
-    name: "Research",
-    tagline: "For academic labs and single researchers.",
-    monthly: "Free",
-    annual: "Free",
-    cta: "Start free",
-    href: "#contact",
+    name: "Research Access",
+    tagline: "For academic and public-health partners.",
     features: [
-      "Up to 25 genomes / month",
-      "6-antibiotic panel",
-      "Browser dashboard",
-      "CSV export",
-      "Community support",
+      "Pilot pricing for LMICs",
+      "Research and surveillance collaboration",
+      "3 antibiotics currently modeled, with more planned",
     ],
   },
   {
-    name: "Clinical",
-    tagline: "For hospitals and clinical labs.",
-    monthly: "$1,900 / mo",
-    annual: "$1,500 / mo",
-    cta: "Request pilot",
-    href: "#contact",
-    highlight: true,
+    name: "Clinical Pilot",
+    tagline: "A supervised pilot with a partner hospital or lab, by agreement.",
     features: [
-      "Unlimited genomes",
-      "Full antibiotic panel",
-      "Clinician-ready PDF reports",
-      "LIMS API integration",
-      "Audit-ready result history",
-      "Priority support, 4-hr SLA",
+      "Supervised evaluation on local isolates",
+      "Conventional laboratory confirmation",
+      "Joint review of pilot outcomes",
     ],
   },
   {
-    name: "Enterprise",
-    tagline: "For health systems and public-health agencies.",
-    monthly: "Custom",
-    annual: "Custom",
-    cta: "Contact sales",
-    href: "#contact",
+    name: "Partnership",
+    tagline: "Co-development and data collaboration.",
     features: [
-      "On-premises deployment option",
-      "SSO + role-based access",
-      "Custom-trained regional models",
-      "Dedicated success engineer",
-      "Data-processing agreement",
-      "24/7 support",
+      "Collaborative model development",
+      "Genomic data collaboration by agreement",
+      "Shared research and validation goals",
     ],
   },
 ];
 
 export function Pricing({ compact = false }: { compact?: boolean }) {
-  const [annual, setAnnual] = useState(true);
   return (
     <section id="pricing" className={`${compact ? "py-16" : "py-24 md:py-32"} bg-card/30`}>
       <div className="mx-auto max-w-6xl px-6">
-        <div className="text-center max-w-2xl mx-auto">
+        <div className="mx-auto max-w-2xl text-center">
           <div className="text-sm font-semibold text-primary uppercase tracking-widest">
-            Pricing
+            Pilot access
           </div>
-          <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-            Simple, transparent pricing.
+          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-foreground">
+            Explore a BactoAI pilot.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Start free for research. Scale to full clinical deployment when you're ready.
+            Research, supervised clinical evaluation, and collaborative development — by agreement.
           </p>
-
-          <div className="mt-8 inline-flex items-center gap-1 rounded-full border border-border bg-card p-1">
-            {(["Monthly", "Annual"] as const).map((label) => {
-              const isAnnual = label === "Annual";
-              const active = isAnnual === annual;
-              return (
-                <button
-                  key={label}
-                  onClick={() => setAnnual(isAnnual)}
-                  className={`px-4 py-1.5 text-xs font-semibold rounded-full transition ${
-                    active
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {label} {isAnnual && <span className="text-[10px] opacity-80">−20%</span>}
-                </button>
-              );
-            })}
-          </div>
         </div>
-
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {tiers.map((t) => (
+          {tiers.map((tier) => (
             <div
-              key={t.name}
-              className={`relative rounded-3xl border p-8 transition ${
-                t.highlight
-                  ? "border-primary/40 bg-card shadow-elegant lg:-translate-y-2"
-                  : "border-border bg-card hover:border-primary/30"
-              }`}
+              key={tier.name}
+              className="flex min-w-0 flex-col rounded-lg border border-border bg-card p-6 lg:p-8"
             >
-              {t.highlight && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 rounded-full bg-gradient-hero text-white text-[11px] font-bold px-3 py-1 shadow-soft">
-                  <Sparkles size={11} /> Most popular
-                </div>
-              )}
-              <div className="text-sm font-semibold text-primary uppercase tracking-widest">
-                {t.name}
-              </div>
-              <div className="mt-2 text-sm text-muted-foreground">{t.tagline}</div>
-              <div className="mt-6 font-stat text-4xl font-bold text-foreground">
-                {annual ? t.annual : t.monthly}
-              </div>
-
-              <a
-                href={t.href}
-                className={`mt-6 block text-center rounded-full py-2.5 text-sm font-semibold transition ${
-                  t.highlight
-                    ? "bg-primary text-primary-foreground shadow-soft hover:shadow-elegant"
-                    : "border border-border text-foreground hover:border-primary/40"
-                }`}
-              >
-                {t.cta}
-              </a>
-
-              <ul className="mt-8 space-y-3 text-sm text-muted-foreground">
-                {t.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2">
-                    <Check size={14} className="mt-0.5 text-primary" /> {f}
+              <h3 className="text-2xl font-semibold text-foreground">{tier.name}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{tier.tagline}</p>
+              <ul className="my-8 space-y-4 text-sm text-muted-foreground">
+                {tier.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-3">
+                    <Check className="mt-0.5 shrink-0 text-primary" size={16} />
+                    <span>{feature}</span>
                   </li>
                 ))}
               </ul>
+              <Button asChild className="mt-auto min-h-12 w-full">
+                <a href="/contact">
+                  Request a Pilot <ArrowRight size={16} />
+                </a>
+              </Button>
             </div>
           ))}
         </div>
-
-        <p className="mt-10 text-center text-xs text-muted-foreground">
-          Prices in USD. Pilot pricing available for academic and public-health partners in LMICs.
+        <p className="mt-8 text-center text-sm text-muted-foreground">
+          Current modeled scope: Meropenem, Ciprofloxacin, and Cefotaxime.
         </p>
       </div>
     </section>
