@@ -70,18 +70,10 @@ export function Footer() {
                 LinkedIn
               </a>
             </li>
-            <li className="flex items-center gap-2">
-              <Github size={14} className="text-primary-glow" />
-              <a
-                href="https://github.com/bactoai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition"
-              >
-                GitHub
-              </a>
-            </li>
             <li className="flex items-start gap-2">
+              <MapPin size={14} className="text-primary-glow mt-0.5" />
+              <span>Kenyatta University, Nairobi, Kenya</span>
+            </li>
           </ul>
         </div>
         <div>
