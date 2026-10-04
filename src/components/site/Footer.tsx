@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import logoAsset from "@/assets/bactoai-logo-wordmark.png.asset.json";
 import { Newsletter } from "./Newsletter";
-import { Linkedin, Mail, MapPin, Github, ArrowUpRight } from "lucide-react";
+import { Linkedin, Mail, MapPin, ArrowUpRight } from "lucide-react";
 
 const productLinks = [
   { label: "Technology", href: "/technology#technology" },
