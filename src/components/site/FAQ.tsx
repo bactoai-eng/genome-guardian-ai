@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     q: "Can BactoAI integrate with our LIMS?",
-    a: "Yes. The Clinical and Enterprise tiers include a REST API and pre-built connectors for common LIMS platforms. Custom integrations are available at the Enterprise tier.",
+    a: "LIMS integration can be explored through a Clinical Pilot or Partnership, by agreement.",
   },
   {
     q: "Is BactoAI regulatory-approved?",
@@ -36,11 +36,11 @@ const faqs = [
   },
   {
     q: "Which antibiotics do you support today?",
-    a: "The current panel covers Meropenem, Ciprofloxacin, Cefotaxime, Gentamicin, Tetracycline, and Ampicillin. The roadmap expands to the WHO priority pathogens list.",
+    a: "The current panel covers 3 antibiotics currently modeled, with more planned: Meropenem, Ciprofloxacin, and Cefotaxime.",
   },
   {
     q: "How is BactoAI different from lab-booking apps or prescribing-guideline chatbots?",
-    a: "Lab-booking and sample-logistics apps get a specimen to a laboratory faster, but the answer still waits on a completed culture — typically 48–72 hours. Prescribing-guideline chatbots apply WHO or national decision trees to reported symptoms, but they have no organism-specific resistance evidence to work from. BactoAI predicts per-antibiotic resistance directly from the bacterial genome in under 5 minutes, producing a data point that simply doesn't exist in those systems. We see them as complementary infrastructure rather than rivals: a lab-booking platform could route a case to a BactoAI prediction, and a prescribing assistant could take that prediction as an input.",
+    a: "Lab-booking and sample-logistics apps get a specimen to a laboratory faster, but the answer still waits on a completed culture — typically 48–72 hours. Prescribing-guideline chatbots apply WHO or national decision trees to reported symptoms, but they have no organism-specific resistance evidence to work from. BactoAI predicts per-antibiotic resistance directly from the bacterial genome in under 10 minutes from genome to result, producing a data point that simply doesn't exist in those systems. We see them as complementary infrastructure rather than rivals: a lab-booking platform could route a case to a BactoAI prediction, and a prescribing assistant could take that prediction as an input.",
   },
   {
     q: "Is BactoAI a competitor to existing AMR digital-health platforms?",
@@ -48,7 +48,7 @@ const faqs = [
   },
   {
     q: "Who founded BactoAI?",
-    a: "BactoAI was founded at Kenyatta University by Samwel Elegwa, alongside a team of clinical microbiologists, AI researchers, and public-health advisors from Kenya and the UK.",
+    a: "BactoAI was developed in Nairobi, Kenya by Samwel Elegwa, alongside a team of clinical microbiologists, AI researchers, and public-health advisors from Kenya and the UK.",
   },
 ];
 

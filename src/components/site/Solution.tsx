@@ -26,10 +26,17 @@ export function Solution() {
           </p>
         </div>
 
-        <div className="mt-20 grid gap-4 md:grid-cols-3 lg:grid-cols-6">
+        <div className="journey-timeline mt-12 md:mt-20 grid gap-0 md:gap-4 md:grid-cols-3 lg:grid-cols-6">
           {steps.map((s, i) => (
-            <div key={s.title} className="relative">
-              <div className="rounded-2xl border border-border bg-background p-6 h-full shadow-soft hover:border-primary/30 transition">
+            <div
+              key={s.title}
+              className="relative border-l-2 border-primary/40 pl-6 pb-6 md:border-0 md:pl-0 md:pb-0"
+            >
+              <div className="rounded-lg border border-border bg-background p-5 h-full shadow-soft hover:border-primary/30 transition">
+                <span
+                  className="absolute -left-2 top-7 h-3.5 w-3.5 rounded-full bg-primary md:hidden"
+                  aria-hidden
+                />
                 <div className="flex items-center justify-center w-11 h-11 rounded-xl bg-primary/10 text-primary">
                   <s.icon size={20} />
                 </div>

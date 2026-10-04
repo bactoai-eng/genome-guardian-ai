@@ -54,6 +54,11 @@ function TechnologyPage() {
         <Features />
         <WhyBactoAI />
         <FAQ />
+        <p className="mx-auto max-w-5xl px-6 pb-16 text-sm leading-relaxed text-muted-foreground">
+          BactoAI provides genomic antimicrobial resistance predictions to support clinical and
+          research decision-making. Results are intended to complement, not replace, conventional
+          laboratory testing and professional clinical judgment.
+        </p>
       </main>
       <Footer />
     </div>

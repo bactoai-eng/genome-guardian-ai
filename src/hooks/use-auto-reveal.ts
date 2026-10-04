@@ -40,10 +40,18 @@ export function useAutoReveal() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" },
+      // Tall phone workflows can exceed the viewport; reveal as soon as any part enters.
+      { threshold: 0, rootMargin: "0px 0px -30px 0px" },
     );
 
     targets.forEach((t) => io.observe(t));
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      targets.forEach((target) => {
+        target.classList.remove("reveal", "in-view");
+        delete target.dataset.revealApplied;
+        target.style.transitionDelay = "";
+      });
+    };
   }, []);
 }

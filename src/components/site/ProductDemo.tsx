@@ -43,9 +43,6 @@ const samples: Sample[] = [
       { drug: "Meropenem", status: "Resistant", confidence: 95 },
       { drug: "Ciprofloxacin", status: "Resistant", confidence: 91 },
       { drug: "Cefotaxime", status: "Susceptible", confidence: 89 },
-      { drug: "Gentamicin", status: "Susceptible", confidence: 84 },
-      { drug: "Tetracycline", status: "Resistant", confidence: 78 },
-      { drug: "Ampicillin", status: "Resistant", confidence: 97 },
     ],
   },
   {
@@ -61,9 +58,6 @@ const samples: Sample[] = [
       { drug: "Meropenem", status: "Susceptible", confidence: 92 },
       { drug: "Ciprofloxacin", status: "Susceptible", confidence: 88 },
       { drug: "Cefotaxime", status: "Susceptible", confidence: 94 },
-      { drug: "Gentamicin", status: "Resistant", confidence: 81 },
-      { drug: "Tetracycline", status: "Susceptible", confidence: 90 },
-      { drug: "Ampicillin", status: "Resistant", confidence: 86 },
     ],
   },
   {
@@ -79,9 +73,6 @@ const samples: Sample[] = [
       { drug: "Meropenem", status: "Resistant", confidence: 87 },
       { drug: "Ciprofloxacin", status: "Resistant", confidence: 83 },
       { drug: "Cefotaxime", status: "Resistant", confidence: 90 },
-      { drug: "Gentamicin", status: "Susceptible", confidence: 79 },
-      { drug: "Tetracycline", status: "Susceptible", confidence: 85 },
-      { drug: "Ampicillin", status: "Resistant", confidence: 96 },
     ],
   },
   {
@@ -97,9 +88,6 @@ const samples: Sample[] = [
       { drug: "Meropenem", status: "Resistant", confidence: 93 },
       { drug: "Ciprofloxacin", status: "Susceptible", confidence: 82 },
       { drug: "Cefotaxime", status: "Resistant", confidence: 88 },
-      { drug: "Gentamicin", status: "Resistant", confidence: 76 },
-      { drug: "Tetracycline", status: "Resistant", confidence: 91 },
-      { drug: "Ampicillin", status: "Resistant", confidence: 98 },
     ],
   },
 ];
@@ -182,7 +170,7 @@ export function ProductDemo() {
   return (
     <section id="demo" className="py-24 md:py-32 bg-card/30">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="grid gap-12 lg:grid-cols-[.9fr_1.1fr] items-start">
+        <div className="grid gap-10 lg:grid-cols-[.9fr_1.1fr] items-start [&>div]:min-w-0">
           <div className="lg:sticky lg:top-28">
             <div className="text-sm font-semibold text-primary uppercase tracking-widest">
               Live Product Demo
@@ -197,7 +185,7 @@ export function ProductDemo() {
             <ul className="mt-8 space-y-3 text-sm text-muted-foreground">
               {[
                 "Drag-and-drop FASTA / FASTQ upload",
-                "Per-antibiotic resistance & confidence",
+                "3 antibiotics currently modeled, with more planned",
                 "PDF clinical reports",
                 "Audit-ready result history",
               ].map((i) => (
@@ -220,7 +208,7 @@ export function ProductDemo() {
                 role="tab"
                 aria-selected={mode === "samples"}
                 onClick={() => setMode("samples")}
-                className={`flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-full px-5 py-2 text-xs font-semibold transition ${
+                className={`min-w-0 flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-full px-3 sm:px-5 min-h-12 py-2 text-xs font-semibold transition ${
                   mode === "samples"
                     ? "bg-primary text-primary-foreground shadow-soft"
                     : "text-muted-foreground hover:text-foreground"
@@ -233,7 +221,7 @@ export function ProductDemo() {
                 role="tab"
                 aria-selected={mode === "upload"}
                 onClick={() => setMode("upload")}
-                className={`flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-full px-5 py-2 text-xs font-semibold transition ${
+                className={`min-w-0 flex-1 sm:flex-none inline-flex items-center justify-center gap-2 rounded-full px-3 sm:px-5 min-h-12 py-2 text-xs font-semibold transition ${
                   mode === "upload"
                     ? "bg-primary text-primary-foreground shadow-soft"
                     : "text-muted-foreground hover:text-foreground"
@@ -256,7 +244,8 @@ export function ProductDemo() {
                     </h3>
                   </div>
                   <p className="mt-2 ml-10 text-sm text-muted-foreground">
-                    Four de-identified bacterial whole-genome samples from our validation set.
+                    Four illustrative sample isolates. Results below are simulated, not clinical
+                    findings.
                   </p>
                   <div className="mt-5 grid sm:grid-cols-2 gap-3">
                     {samples.map((s) => {
@@ -341,7 +330,7 @@ export function ProductDemo() {
                         </div>
                       </div>
 
-                      <div className="p-6 space-y-5 min-h-[520px]">
+                      <div className="p-4 sm:p-6 space-y-5 min-h-[400px] md:min-h-[520px]">
                         <div className="flex items-center justify-between">
                           <div>
                             <div className="text-xs text-muted-foreground">Patient ID</div>
@@ -366,9 +355,9 @@ export function ProductDemo() {
                         </div>
 
                         <div className="rounded-2xl border-2 border-dashed border-primary/30 bg-primary/5 p-5">
-                          <div className="flex items-center gap-4">
+                          <div className="grid grid-cols-[auto_minmax(0,1fr)] sm:flex items-center gap-3">
                             <Upload className="text-primary" size={22} />
-                            <div className="text-sm flex-1">
+                            <div className="text-sm min-w-0 flex-1 break-words">
                               <div className="font-semibold text-foreground">{sample.file}</div>
                               <div className="text-xs text-muted-foreground">
                                 {sample.size} · WGS · {sample.organism} ·{" "}
@@ -382,7 +371,7 @@ export function ProductDemo() {
                             {phase === "idle" ? (
                               <button
                                 onClick={start}
-                                className="rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground hover:opacity-95 transition inline-flex items-center gap-1.5"
+                                className="col-span-2 w-full sm:w-auto min-h-12 rounded-full bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground hover:opacity-95 transition inline-flex items-center justify-center gap-1.5"
                               >
                                 <Sparkles size={12} /> Analyze sample
                               </button>
@@ -416,7 +405,7 @@ export function ProductDemo() {
                                     className="rounded-xl border border-border p-4 animate-fade-up"
                                     style={{ animationDelay: `${i * 60}ms` }}
                                   >
-                                    <div className="flex items-center justify-between">
+                                    <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2">
                                       <div className="flex items-center gap-2">
                                         {isR ? (
                                           <AlertOctagon size={14} className="text-resistant" />
@@ -459,7 +448,7 @@ export function ProductDemo() {
                                 href="/research#labs"
                                 className="text-primary font-semibold hover:underline"
                               >
-                                Find a partner lab near you
+                                Target clinical sites for validation
                               </a>
                               .
                             </p>
@@ -566,7 +555,7 @@ export function ProductDemo() {
                       )}
                       {(reqStatus === "idle" || reqStatus === "error") && (
                         <>
-                          Request the demo <ArrowRight size={16} />
+                          Request a Pilot <ArrowRight size={16} />
                         </>
                       )}
                     </button>
@@ -583,6 +572,11 @@ export function ProductDemo() {
             )}
           </div>
         </div>
+        <p className="mt-12 text-sm leading-relaxed text-muted-foreground">
+          BactoAI provides genomic antimicrobial resistance predictions to support clinical and
+          research decision-making. Results are intended to complement, not replace, conventional
+          laboratory testing and professional clinical judgment.
+        </p>
       </div>
     </section>
   );

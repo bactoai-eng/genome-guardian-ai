@@ -53,7 +53,7 @@ export function WhyBactoAI() {
             },
             {
               label: "BactoAI — genomic prediction",
-              body: "Predicts per-antibiotic resistance from the genome in under 5 minutes. Complementary infrastructure both categories can plug into.",
+              body: "Predicts per-antibiotic resistance from the genome in under 10 minutes from genome to result. Complementary infrastructure both categories can plug into.",
               highlight: true,
             },
           ].map((c) => (

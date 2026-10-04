@@ -34,7 +34,7 @@ export function Contact() {
     <section id="contact" className="py-24 md:py-32 bg-card/40">
       <div className="mx-auto max-w-7xl px-6">
         <div className="rounded-3xl bg-gradient-hero p-1 shadow-elegant">
-          <div className="rounded-[calc(theme(borderRadius.3xl)-4px)] bg-background p-8 md:p-14 grid lg:grid-cols-2 gap-12">
+          <div className="rounded-[calc(theme(borderRadius.3xl)-4px)] bg-background p-4 sm:p-8 md:p-14 grid lg:grid-cols-2 gap-12">
             <div>
               <div className="text-sm font-semibold text-primary uppercase tracking-widest">
                 Get in touch
@@ -65,13 +65,13 @@ export function Contact() {
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
-                  <MapPin size={16} className="text-primary" /> Kenyatta University, Nairobi, Kenya
+                  <MapPin size={16} className="text-primary" /> Nairobi, Kenya
                 </li>
               </ul>
             </div>
             <form
               onSubmit={handleSubmit}
-              className="rounded-2xl border border-border bg-card p-6 md:p-8 space-y-4"
+              className="rounded-2xl border border-border bg-card p-4 sm:p-6 md:p-8 space-y-4"
             >
               <div>
                 <label
@@ -158,7 +158,7 @@ export function Contact() {
                 )}
                 {(status === "idle" || status === "error") && (
                   <>
-                    Request a Demo <ArrowRight size={16} />
+                    Request a Pilot <ArrowRight size={16} />
                   </>
                 )}
               </button>
