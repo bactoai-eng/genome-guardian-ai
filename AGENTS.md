@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep the hero DNA on adaptive Canvas 2D with reduced mobile detail and paused off-screen rendering; this preserves its cinematic depth without a heavy 3D dependency.
+- Keep MCP server endpoints separate from public site documentation and navigation; internal integrations must remain available without a public documentation page.

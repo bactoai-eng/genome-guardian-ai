@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Remove public MCP documentation and links; verify normal 404 and unchanged MCP server
+
 - [x] CI job running the anchor audit (fails build on broken internal anchors)
 - [x] Automated test: canonical / og:url / sitemap all match https://bactoai.lovable.app
 - [x] Auto-generated sitemap.xml from registered routes + robots.txt
