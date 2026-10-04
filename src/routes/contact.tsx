@@ -44,7 +44,8 @@ function ContactPage() {
             Let's talk about your isolates.
           </h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
-            Request a pilot, discuss research access, or explore co-development and data collaboration.
+            Request a pilot, discuss research access, or explore co-development and data
+            collaboration.
           </p>
         </div>
         <Contact />
