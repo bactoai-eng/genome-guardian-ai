@@ -29,9 +29,9 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://bactoai.lovable.app/" },
+      { property: "og:url", content: "https://bactoai.lovable.co.ke/" },
     ],
-    links: [{ rel: "canonical", href: "https://bactoai.lovable.app/" }],
+    links: [{ rel: "canonical", href: "https://bactoai.lovable.co.ke/" }],
   }),
   component: Index,
 });
