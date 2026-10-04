@@ -45,6 +45,13 @@ export function useAutoReveal() {
     );
 
     targets.forEach((t) => io.observe(t));
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      targets.forEach((target) => {
+        target.classList.remove("reveal", "in-view");
+        delete target.dataset.revealApplied;
+        target.style.transitionDelay = "";
+      });
+    };
   }, []);
 }
