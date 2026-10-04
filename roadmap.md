@@ -1,5 +1,9 @@
 # Roadmap
 
+- [ ] Remove THRIVE and university builder credits; retain GEES first-pitch context
+- [ ] Repair customer verification and upload flow; distinguish real predictions from AI summaries
+- [ ] Verify smartphone/laptop layouts and portrait framing
+
 - [x] Remove public MCP documentation and links; verify normal 404 and unchanged MCP server
 
 - [x] CI job running the anchor audit (fails build on broken internal anchors)
