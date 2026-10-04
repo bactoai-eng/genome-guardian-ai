@@ -7,10 +7,9 @@ export function Research() {
       t: "Second Place — KU × Lancaster Workshop",
       d: "Science, Engineering & Technology Innovation Workshop.",
     },
-    { t: "THRIVE Program", d: "Selected participant advancing biomedical innovation." },
     { t: "CDIE Catalyst Grant", d: "Awarded for translational health-tech impact." },
     { t: "East Africa Biodesign", d: "Cohort recognized for clinical design innovation." },
-    { t: "GEES Bootcamp", d: "Global Entrepreneurship Education selectee." },
+    { t: "GEES Bootcamp", d: "Where we first pitched the BactoAI project." },
   ];
   return (
     <section id="research" className="py-24 md:py-32">
