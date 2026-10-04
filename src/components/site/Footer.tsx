@@ -82,9 +82,6 @@ export function Footer() {
               </a>
             </li>
             <li className="flex items-start gap-2">
-              <MapPin size={14} className="text-primary-glow mt-0.5" />
-              <span>Kenyatta University, Nairobi, Kenya</span>
-            </li>
           </ul>
         </div>
         <div>
