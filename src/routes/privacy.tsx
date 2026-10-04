@@ -12,9 +12,9 @@ export const Route = createFileRoute("/privacy")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://bactoai.lovable.app/privacy" },
+      { property: "og:url", content: "https://bactoai.co.ke/privacy" },
     ],
-    links: [{ rel: "canonical", href: "https://bactoai.lovable.app/privacy" }],
+    links: [{ rel: "canonical", href: "https://bactoai.co.ke/privacy" }],
   }),
   component: PrivacyPage,
 });
@@ -25,7 +25,7 @@ function PrivacyPage() {
       <p>
         BactoAI ("we", "us", "our") is an early-stage research and technology group building
         AI-driven diagnostics for antimicrobial resistance (AMR). This policy explains what
-        information we collect through <a href="https://bactoai.lovable.app">our website</a> and,
+        information we collect through <a href="https://bactoai.co.ke">our website</a> and,
         when applicable, our platform — and how we handle it.
       </p>
 
