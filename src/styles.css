@@ -399,7 +399,10 @@ main > section:not(:first-child) {
 
 /* Phone workflows retain readable text and touch-sized controls without hiding overflow. */
 @media (max-width: 767px) {
-  .reveal, .reveal-left, .reveal-right, .reveal-scale {
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
     opacity: 1;
     transform: none;
     transition: none;
