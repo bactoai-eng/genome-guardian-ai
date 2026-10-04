@@ -12,9 +12,9 @@ export const Route = createFileRoute("/terms")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://bactoai.lovable.app/terms" },
+      { property: "og:url", content: "https://bactoai.co.ke/terms" },
     ],
-    links: [{ rel: "canonical", href: "https://bactoai.lovable.app/terms" }],
+    links: [{ rel: "canonical", href: "https://bactoai.co.ke/terms" }],
   }),
   component: TermsPage,
 });
