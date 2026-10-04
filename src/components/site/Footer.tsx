@@ -18,7 +18,6 @@ const companyLinks: { label: string; href: string; route?: boolean }[] = [
   { label: "Partners", href: "/about#partners" },
   { label: "Careers", href: "/careers", route: true },
   { label: "Resources", href: "/resources", route: true },
-  { label: "MCP for assistants", href: "/docs/mcp", route: true },
 ];
 
 const actionLinks: { label: string; href: string; external?: boolean }[] = [
@@ -29,7 +28,6 @@ const actionLinks: { label: string; href: string; external?: boolean }[] = [
     href: "https://www.linkedin.com/in/bactoai-model-32303335a",
     external: true,
   },
-  { label: "GitHub", href: "https://github.com/bactoai", external: true },
   { label: "Email us", href: "mailto:bactoai01@gmail.com" },
 ];
 

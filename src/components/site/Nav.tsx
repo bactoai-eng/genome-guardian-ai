@@ -18,7 +18,6 @@ const moreLinks: NavLink[] = [
   { href: "/blog", label: "Blog", route: true },
   { href: "/press", label: "Press & media", route: true },
   { href: "/careers", label: "Careers", route: true },
-  { href: "/docs/mcp", label: "MCP for assistants", route: true },
   { href: "/contact", label: "Contact", route: true },
 ];
 
