@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import logoAsset from "@/assets/bactoai-logo-wordmark.png.asset.json";
 import { Newsletter } from "./Newsletter";
-import { Linkedin, Mail, MapPin, Github, ArrowUpRight } from "lucide-react";
+import { Linkedin, Mail, MapPin, ArrowUpRight } from "lucide-react";
 
 const productLinks = [
   { label: "Technology", href: "/technology#technology" },
@@ -68,17 +68,6 @@ export function Footer() {
                 className="hover:text-white transition"
               >
                 LinkedIn
-              </a>
-            </li>
-            <li className="flex items-center gap-2">
-              <Github size={14} className="text-primary-glow" />
-              <a
-                href="https://github.com/bactoai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition"
-              >
-                GitHub
               </a>
             </li>
             <li className="flex items-start gap-2">
