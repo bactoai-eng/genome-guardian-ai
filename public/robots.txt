@@ -4,4 +4,4 @@ Disallow: /auth
 Disallow: /admin
 Disallow: /theme-tokens
 
-Sitemap: https://bactoai.lovable.app/sitemap.xml
+Sitemap: https://bactoai.co.ke/sitemap.xml
