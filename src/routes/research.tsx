@@ -23,9 +23,9 @@ export const Route = createFileRoute("/research")({
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "https://bactoai.lovable.app/research" },
+      { property: "og:url", content: "https://bactoai.co.ke/research" },
     ],
-    links: [{ rel: "canonical", href: "https://bactoai.lovable.app/research" }],
+    links: [{ rel: "canonical", href: "https://bactoai.co.ke/research" }],
   }),
   component: ResearchPage,
 });
