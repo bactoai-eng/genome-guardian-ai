@@ -7,7 +7,7 @@
  * can't be missed by the sitemap or the SEO audit. Non-public routes are
  * filtered out by the rules below.
  */
-export const SITE_URL = "https://bactoai.lovable.app";
+export const SITE_URL = "https://bactoai.co.ke";
 
 /** Routes that exist but must never appear in the sitemap. */
 const EXCLUDED_PATHS = new Set([
