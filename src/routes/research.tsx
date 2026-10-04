@@ -14,13 +14,12 @@ export const Route = createFileRoute("/research")({
       {
         name: "description",
         content:
-          "BactoAI research output, clinical and public-health impact, and the directory of partner laboratories offering confirmatory culture workups.",
+          "BactoAI research output, clinical and public-health impact, and target clinical sites for planned validation.",
       },
       { property: "og:title", content: "Research & Impact — BactoAI" },
       {
         property: "og:description",
-        content:
-          "Research, measured impact, and the growing network of partner labs supporting genome-driven AMR decisions.",
+        content: "Research, measured impact, and target clinical settings for future validation.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -43,11 +42,11 @@ function ResearchPage() {
             Research &amp; Impact
           </div>
           <h1 className="mt-3 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-            Evidence, outcomes, and the labs behind them.
+            Evidence, outcomes, and target validation sites.
           </h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
-            Peer-reviewed work, real-world impact, and the partner laboratories that confirm our
-            predictions.
+            Research progress, measured impact, and intended clinical validation settings — not
+            confirmed partnerships.
           </p>
         </div>
         <Research />

@@ -1,5 +1,14 @@
 # Roadmap
 
+- [x] Update clinical wording, three-antibiotic scope, pilot cards and Nairobi location
+- [x] Check 360–430px phone layouts and 1280–1440px laptop alignment
+
+- [ ] Remove THRIVE and university builder credits; retain GEES first-pitch context
+- [ ] Repair customer verification and upload flow; distinguish real predictions from AI summaries
+- [ ] Verify smartphone/laptop layouts and portrait framing
+
+- [x] Remove public MCP documentation and links; verify normal 404 and unchanged MCP server
+
 - [x] CI job running the anchor audit (fails build on broken internal anchors)
 - [x] Automated test: canonical / og:url / sitemap all match https://bactoai.lovable.app
 - [x] Auto-generated sitemap.xml from registered routes + robots.txt

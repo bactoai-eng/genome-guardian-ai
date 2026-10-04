@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import logoAsset from "@/assets/bactoai-logo-wordmark.png.asset.json";
 import { Newsletter } from "./Newsletter";
-import { Linkedin, Mail, MapPin, Github, ArrowUpRight } from "lucide-react";
+import { Linkedin, Mail, MapPin, ArrowUpRight } from "lucide-react";
 
 const productLinks = [
   { label: "Technology", href: "/technology#technology" },
@@ -18,7 +18,6 @@ const companyLinks: { label: string; href: string; route?: boolean }[] = [
   { label: "Partners", href: "/about#partners" },
   { label: "Careers", href: "/careers", route: true },
   { label: "Resources", href: "/resources", route: true },
-  { label: "MCP for assistants", href: "/docs/mcp", route: true },
 ];
 
 const actionLinks: { label: string; href: string; external?: boolean }[] = [
@@ -29,7 +28,6 @@ const actionLinks: { label: string; href: string; external?: boolean }[] = [
     href: "https://www.linkedin.com/in/bactoai-model-32303335a",
     external: true,
   },
-  { label: "GitHub", href: "https://github.com/bactoai", external: true },
   { label: "Email us", href: "mailto:bactoai01@gmail.com" },
 ];
 
@@ -72,20 +70,9 @@ export function Footer() {
                 LinkedIn
               </a>
             </li>
-            <li className="flex items-center gap-2">
-              <Github size={14} className="text-primary-glow" />
-              <a
-                href="https://github.com/bactoai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition"
-              >
-                GitHub
-              </a>
-            </li>
             <li className="flex items-start gap-2">
               <MapPin size={14} className="text-primary-glow mt-0.5" />
-              <span>Kenyatta University, Nairobi, Kenya</span>
+              <span>Nairobi, Kenya</span>
             </li>
           </ul>
         </div>
@@ -141,14 +128,14 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/50">
           <div>© {new Date().getFullYear()} BactoAI. All rights reserved.</div>
-          <div className="flex items-center gap-5">
+          <div className="flex flex-wrap justify-center items-center gap-5">
             {legalLinks.map((l) => (
               <Link key={l.href} to={l.href} className="hover:text-white transition">
                 {l.label}
               </Link>
             ))}
             <span className="hidden md:inline text-white/30">·</span>
-            <span>Built at Kenyatta University · Nairobi, Kenya</span>
+            <span>Developed in Nairobi, Kenya</span>
           </div>
         </div>
       </div>

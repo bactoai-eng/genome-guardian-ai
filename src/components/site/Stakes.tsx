@@ -37,7 +37,7 @@ function BigCount() {
     <div className="text-center">
       <span
         ref={ref}
-        className="font-stat font-bold text-[clamp(4rem,14vw,9.5rem)] leading-none text-hero-gradient"
+        className="font-stat font-bold text-6xl sm:text-8xl lg:text-9xl leading-none text-hero-gradient"
       >
         {val}M+
       </span>
@@ -106,8 +106,8 @@ export function Stakes() {
           <div className="text-4xl text-white/40 text-center">→</div>
           <div className="glass-dark rounded-2xl p-6 text-center border-[color:var(--color-teal-glow)]/40 shadow-glow-teal">
             <div className="text-xs uppercase tracking-widest text-white/50">With BactoAI</div>
-            <div className="mt-2 font-stat text-5xl font-bold text-hero-gradient">&lt; 5 min</div>
-            <div className="mt-2 text-sm text-white/70">Genome-to-prediction</div>
+            <div className="mt-2 font-stat text-5xl font-bold text-hero-gradient">&lt;10</div>
+            <div className="mt-2 text-sm text-white/70">under 10 minutes from genome to result</div>
           </div>
         </div>
 
