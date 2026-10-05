@@ -99,7 +99,7 @@ function PrivacyPage() {
       <h2>6. Contact</h2>
       <p>
         Questions about this policy or our data practices:{" "}
-        <a href="mailto:bactoai01@gmail.com">bactoai01@gmail.com</a> — BactoAI,
+               <a href="mailto:bactoai01@gmail.com">bactoai01@gmail.com</a> — BactoAI, 
         Nairobi, Kenya.
       </p>
     </LegalLayout>
