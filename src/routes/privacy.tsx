@@ -24,7 +24,7 @@ function PrivacyPage() {
     <LegalLayout title="Privacy Policy" updated="July 2026">
       <p>
         BactoAI ("we", "us", "our") is an early-stage research and technology group building
-                AI-driven diagnostics for antimicrobial resistance (AMR). This policy explains what
+        AI-driven diagnostics for antimicrobial resistance (AMR). This policy explains what
         information we collect through <a href="https://bactoai.co.ke">our website</a> and, when
         applicable, our platform — and how we handle it.
       </p>
@@ -99,7 +99,7 @@ function PrivacyPage() {
       <h2>6. Contact</h2>
       <p>
         Questions about this policy or our data practices:{" "}
-        <a href="mailto:bactoai01@gmail.com">bactoai01@gmail.com</a> — BactoAI, Kenyatta University,
+        <a href="mailto:bactoai01@gmail.com">bactoai01@gmail.com</a> — BactoAI,
         Nairobi, Kenya.
       </p>
     </LegalLayout>
