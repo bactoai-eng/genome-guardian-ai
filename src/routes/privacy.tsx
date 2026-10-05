@@ -25,8 +25,8 @@ function PrivacyPage() {
       <p>
         BactoAI ("we", "us", "our") is an early-stage research and technology group building
         AI-driven diagnostics for antimicrobial resistance (AMR). This policy explains what
-        information we collect through <a href="https://bactoai.co.ke">our website</a> and,
-        when applicable, our platform — and how we handle it.
+                information we collect through <a href="https://bactoai.co.ke">our website</a> and, when
+        applicable, our platform — and how we handle it.
       </p>
 
       <h2>1. Information we collect</h2>
