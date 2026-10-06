@@ -55,7 +55,7 @@ export function Partners() {
     if (error) {
       console.error("Partner submission failed", error);
       setStatus("error");
-      toast.error("We couldn't send your inquiry. Please email bactoai01@gmail.com.");
+      toast.error("We couldn't send your inquiry. Please email info@bactoai.co.ke.");
       return;
     }
     setStatus("success");

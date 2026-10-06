@@ -63,7 +63,7 @@ const team: Member[] = [
 
 const advisors = [
   {
-    name: "Dr. Orinda",
+    name: "Dr George Orinda",
     role: "Scientific Advisor",
     tags: ["Microbiology", "AMR", "Clinical validation"],
   },

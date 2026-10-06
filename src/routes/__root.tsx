@@ -135,7 +135,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
               name: "BactoAI",
               url: "https://bactoai.co.ke",
               logo: "https://bactoai.co.ke/favicon.png",
-              email: "bactoai01@gmail.com",
+              email: "info@bactoai.co.ke",
             },
             { "@type": "WebSite", name: "BactoAI", url: "https://bactoai.co.ke" },
           ],

@@ -23,7 +23,7 @@ export function Contact() {
     if (error) {
       console.error("Contact submission failed", error);
       setStatus("error");
-      toast.error("We couldn't send your message. Please email bactoai01@gmail.com.");
+      toast.error("We couldn't send your message. Please email info@bactoai.co.ke.");
       return;
     }
     setStatus("success");
@@ -49,8 +49,8 @@ export function Contact() {
               <ul className="mt-8 space-y-3 text-sm">
                 <li className="flex items-center gap-3">
                   <Mail size={16} className="text-primary" />
-                  <a href="mailto:bactoai01@gmail.com" className="hover:text-primary transition">
-                    bactoai01@gmail.com
+                  <a href="mailto:info@bactoai.co.ke" className="hover:text-primary transition">
+                    info@bactoai.co.ke
                   </a>
                 </li>
                 <li className="flex items-center gap-3">

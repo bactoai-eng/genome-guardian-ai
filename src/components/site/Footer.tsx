@@ -28,7 +28,7 @@ const actionLinks: { label: string; href: string; external?: boolean }[] = [
     href: "https://www.linkedin.com/in/bactoai-model-32303335a",
     external: true,
   },
-  { label: "Email us", href: "mailto:bactoai01@gmail.com" },
+  { label: "Email us", href: "mailto:info@bactoai.co.ke" },
 ];
 
 const legalLinks: { label: string; href: string; route?: boolean }[] = [
@@ -55,8 +55,8 @@ export function Footer() {
           <ul className="mt-6 space-y-2 text-sm text-white/70">
             <li className="flex items-center gap-2">
               <Mail size={14} className="text-primary-glow" />
-              <a href="mailto:bactoai01@gmail.com" className="hover:text-white transition">
-                bactoai01@gmail.com
+              <a href="mailto:info@bactoai.co.ke" className="hover:text-white transition">
+                info@bactoai.co.ke
               </a>
             </li>
             <li className="flex items-center gap-2">

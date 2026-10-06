@@ -39,7 +39,7 @@ export function Newsletter() {
               <Mail size={12} /> Newsletter
             </div>
             <h2 className="mt-4 text-2xl md:text-3xl font-bold text-foreground">
-              Join 500+ clinicians and researchers.
+              Subscribe for AMR field notes and model updates
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
               Monthly AMR field notes, model updates, and pilot opportunities. No spam.

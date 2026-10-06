@@ -10,6 +10,11 @@ export const Route = createFileRoute("/terms")({
         content:
           "Terms governing use of the BactoAI website and platform, including acceptable use and decision-support limitations.",
       },
+      { property: "og:title", content: "Terms of Service — BactoAI" },
+      {
+        property: "og:description",
+        content: "Terms governing use of the BactoAI website and genomic AMR prediction platform.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "https://bactoai.co.ke/terms" },
@@ -81,7 +86,7 @@ function TermsPage() {
 
       <h2>8. Contact</h2>
       <p>
-        Questions: <a href="mailto:bactoai01@gmail.com">bactoai01@gmail.com</a>.
+        Questions: <a href="mailto:info@bactoai.co.ke">info@bactoai.co.ke</a>.
       </p>
     </LegalLayout>
   );

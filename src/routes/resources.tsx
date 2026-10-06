@@ -12,6 +12,11 @@ export const Route = createFileRoute("/resources")({
         name: "description",
         content: "AMR education, press mentions, and downloadable materials from the BactoAI team.",
       },
+      { property: "og:title", content: "Resources — BactoAI" },
+      {
+        property: "og:description",
+        content: "AMR education, press mentions, and downloadable materials from the BactoAI team.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "https://bactoai.co.ke/resources" },
@@ -36,7 +41,7 @@ const resources = [
     title: "BactoAI one-pager",
     tag: "PDF · Coming soon",
     body: "A concise overview of the platform, our validation approach, and current pilot opportunities. Email us for early access.",
-    href: "mailto:bactoai01@gmail.com?subject=BactoAI%20one-pager%20request",
+    href: "mailto:info@bactoai.co.ke?subject=BactoAI%20one-pager%20request",
     cta: "Request one-pager",
   },
   {

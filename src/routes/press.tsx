@@ -100,14 +100,14 @@ const kit = [
     icon: Download,
     title: "Company one-pager",
     body: "A concise overview of the platform, our validation approach, and current pilot opportunities. Available on request while we finalise the public version.",
-    href: "mailto:bactoai01@gmail.com?subject=BactoAI%20press%20one-pager%20request",
+    href: "mailto:info@bactoai.co.ke?subject=BactoAI%20press%20one-pager%20request",
     cta: "Request one-pager",
   },
   {
     icon: Mail,
     title: "Interviews & expert comment",
     body: "Our founder and team are available for interviews and background briefings on antimicrobial resistance, genomic diagnostics, and health innovation in East Africa.",
-    href: "mailto:bactoai01@gmail.com?subject=BactoAI%20interview%20request",
+    href: "mailto:info@bactoai.co.ke?subject=BactoAI%20interview%20request",
     cta: "Request an interview",
   },
 ];
@@ -185,7 +185,7 @@ function PressPage() {
                 More mentions will be listed here as they are published. Writing about AMR in Kenya
                 or East Africa?{" "}
                 <a
-                  href="mailto:bactoai01@gmail.com?subject=BactoAI%20media%20enquiry"
+                  href="mailto:info@bactoai.co.ke?subject=BactoAI%20media%20enquiry"
                   className="font-semibold text-primary hover:underline"
                 >
                   Get in touch
@@ -253,10 +253,10 @@ function PressPage() {
                 </p>
                 <div className="mt-7 flex flex-wrap items-center gap-3">
                   <a
-                    href="mailto:bactoai01@gmail.com?subject=BactoAI%20media%20enquiry"
+                    href="mailto:info@bactoai.co.ke?subject=BactoAI%20media%20enquiry"
                     className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-primary shadow-soft hover:opacity-95 transition"
                   >
-                    <Mail size={15} /> bactoai01@gmail.com
+                    <Mail size={15} /> info@bactoai.co.ke
                   </a>
                   <Link
                     to="/contact"
