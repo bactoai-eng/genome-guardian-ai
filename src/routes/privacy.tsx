@@ -10,6 +10,12 @@ export const Route = createFileRoute("/privacy")({
         content:
           "How BactoAI collects, stores, and protects information provided through our website and platform.",
       },
+      { property: "og:title", content: "Privacy Policy — BactoAI" },
+      {
+        property: "og:description",
+        content:
+          "How BactoAI collects, stores, and protects information provided through our website and platform.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "https://bactoai.co.ke/privacy" },
@@ -25,8 +31,15 @@ function PrivacyPage() {
       <p>
         BactoAI ("we", "us", "our") is an early-stage research and technology group building
         AI-driven diagnostics for antimicrobial resistance (AMR). This policy explains what
-        information we collect through <a href="https://bactoai.co.ke">our website</a> and,
-        when applicable, our platform — and how we handle it.
+        information we collect through <a href="https://bactoai.co.ke">our website</a> and, when
+        applicable, our platform — and how we handle it.
+      </p>
+
+      <h2>Data protection</h2>
+      <p>
+        BactoAI is designed to comply with the Kenya Data Protection Act, 2019. We do not accept
+        identifiable patient data in the demo. Pilot data handling is governed by a data-processing
+        agreement agreed with each partner.
       </p>
 
       <h2>1. Information we collect</h2>
@@ -93,13 +106,13 @@ function PrivacyPage() {
       <h2>5. Your choices</h2>
       <p>
         You may request access to, correction of, or deletion of information you have provided to us
-        by emailing <a href="mailto:bactoai01@gmail.com">bactoai01@gmail.com</a>.
+        by emailing <a href="mailto:info@bactoai.co.ke">info@bactoai.co.ke</a>.
       </p>
 
       <h2>6. Contact</h2>
       <p>
         Questions about this policy or our data practices:{" "}
-        <a href="mailto:bactoai01@gmail.com">bactoai01@gmail.com</a> — BactoAI, Kenyatta University,
+        <a href="mailto:info@bactoai.co.ke">info@bactoai.co.ke</a> — BactoAI, Kenyatta University,
         Nairobi, Kenya.
       </p>
     </LegalLayout>

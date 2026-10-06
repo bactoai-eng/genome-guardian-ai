@@ -123,7 +123,7 @@ export function ProductDemo() {
     if (error) {
       console.error("Demo request failed", error);
       setReqStatus("error");
-      toast.error("We couldn't send your request. Please email bactoai01@gmail.com.");
+      toast.error("We couldn't send your request. Please email info@bactoai.co.ke.");
       return;
     }
     setReqStatus("success");
@@ -561,7 +561,7 @@ export function ProductDemo() {
                     </button>
                     {reqStatus === "error" && (
                       <p className="text-[11px] text-destructive text-center">
-                        Something went wrong. Please try again or email bactoai01@gmail.com.
+                        Something went wrong. Please try again or email info@bactoai.co.ke.
                       </p>
                     )}
                   </form>
@@ -577,6 +577,14 @@ export function ProductDemo() {
           research decision-making. Results are intended to complement, not replace, conventional
           laboratory testing and professional clinical judgment.
         </p>
+        <div className="mt-8 border-t border-border pt-6">
+          <h3 className="text-lg font-semibold text-foreground">Data protection</h3>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            BactoAI is designed to comply with the Kenya Data Protection Act, 2019. We do not accept
+            identifiable patient data in the demo. Pilot data handling is governed by a
+            data-processing agreement agreed with each partner.
+          </p>
+        </div>
       </div>
     </section>
   );
