@@ -1,5 +1,8 @@
 # Roadmap
 
+- [ ] Update newsletter, public email, advisor name and data-protection block
+- [ ] Send all form-owner notifications to info@bactoai.co.ke (blocked: email domain setup and verification)
+
 - [x] Update clinical wording, three-antibiotic scope, pilot cards and Nairobi location
 - [x] Check 360–430px phone layouts and 1280–1440px laptop alignment
 
