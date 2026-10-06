@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Update newsletter, public email, advisor name and data-protection block
+- [x] Update newsletter, public email, advisor name and data-protection block
 - [ ] Send all form-owner notifications to info@bactoai.co.ke (blocked: email domain setup and verification)
 
 - [x] Update clinical wording, three-antibiotic scope, pilot cards and Nairobi location
