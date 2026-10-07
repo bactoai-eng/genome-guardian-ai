@@ -4,13 +4,13 @@ import { contrastRatio } from "../src/lib/contrast";
 for (const appearance of ["light", "dark"] as const) {
   test(`${appearance} device appearance survives reloads and navigation`, async ({ page }) => {
     await page.emulateMedia({ colorScheme: appearance, reducedMotion: "reduce" });
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "networkidle" });
     await expect(page.locator("html")).toHaveClass(new RegExp(appearance));
     await page.evaluate(
       (theme) => localStorage.setItem("bactoai-theme", theme),
       appearance === "light" ? "dark" : "light",
     );
-    await page.reload();
+    await page.reload({ waitUntil: "networkidle" });
     await expect(page.locator("html")).toHaveClass(new RegExp(appearance));
     await page.locator("header").getByRole("link", { name: "Technology", exact: true }).click();
     await expect(page).toHaveURL(/\/technology$/);
@@ -18,14 +18,14 @@ for (const appearance of ["light", "dark"] as const) {
     const changed = appearance === "light" ? "dark" : "light";
     await page.emulateMedia({ colorScheme: changed });
     await expect(page.locator("html")).toHaveClass(new RegExp(changed));
-    await page.reload();
+    await page.reload({ waitUntil: "networkidle" });
     await expect(page.locator("html")).toHaveClass(new RegExp(changed));
     await expect(page.getByRole("button", { name: /Switch to (light|dark) mode/ })).toHaveCount(0);
   });
 
   test(`${appearance} controls have readable text and visible keyboard focus`, async ({ page }) => {
     await page.emulateMedia({ colorScheme: appearance, reducedMotion: "reduce" });
-    await page.goto("/contact");
+    await page.goto("/contact", { waitUntil: "networkidle" });
     await expect(page.locator("html")).toHaveClass(new RegExp(appearance));
     const ratios = await page.evaluate(() => {
       const styles = getComputedStyle(document.documentElement);
