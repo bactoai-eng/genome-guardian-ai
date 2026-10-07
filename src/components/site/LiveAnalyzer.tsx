@@ -171,7 +171,7 @@ export function LiveAnalyzer() {
         </div>
 
         <div className="p-4 sm:p-6 space-y-5 min-h-[400px] md:min-h-[520px]">
-          {authed === false ? (
+          {false ? (
             <div className="rounded-2xl border border-dashed border-primary/30 bg-primary/5 p-4 sm:p-8 text-center">
               <Lock size={22} className="mx-auto text-primary" />
               <div className="mt-3 text-sm font-semibold text-foreground">
