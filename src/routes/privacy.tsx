@@ -33,6 +33,7 @@ function PrivacyPage() {
         AI-driven diagnostics for antimicrobial resistance (AMR). This policy explains what
         information we collect through <a href="https://bactoai.co.ke">our website</a> and, when
         applicable, our platform — and how we handle it.
+ 
       </p>
 
       <h2>Data protection</h2>
@@ -40,6 +41,7 @@ function PrivacyPage() {
         BactoAI is designed to comply with the Kenya Data Protection Act, 2019. We do not accept
         identifiable patient data in the demo. Pilot data handling is governed by a data-processing
         agreement agreed with each partner.
+
       </p>
 
       <h2>1. Information we collect</h2>
