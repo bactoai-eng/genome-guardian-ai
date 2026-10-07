@@ -13,6 +13,7 @@ import { Toaster } from "sonner";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ContrastAudit } from "../components/dev/ContrastAudit";
+import { useTheme } from "../hooks/use-theme";
 
 function NotFoundComponent() {
   return (
@@ -165,6 +166,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useTheme();
 
   return (
     <QueryClientProvider client={queryClient}>
