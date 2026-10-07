@@ -6,7 +6,8 @@ for (const appearance of ["light", "dark"] as const) {
     await page.emulateMedia({ colorScheme: appearance, reducedMotion: "reduce" });
     await page.goto("/");
     await expect(page.locator("html")).toHaveClass(new RegExp(appearance));
-    await page.evaluate((theme) => localStorage.setItem("bactoai-theme", theme),
+    await page.evaluate(
+      (theme) => localStorage.setItem("bactoai-theme", theme),
       appearance === "light" ? "dark" : "light",
     );
     await page.reload();
