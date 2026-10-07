@@ -1,12 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ExternalLink, Newspaper, Play, Download, Mail, Image as ImageIcon } from "lucide-react";
+import { ExternalLink, Mail, Image as ImageIcon, Download } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { ScrollProgressBar } from "@/components/site/ScrollProgressBar";
 import { useAutoReveal } from "@/hooks/use-auto-reveal";
 import { Reveal } from "@/components/site/Reveal";
-import kutvPoster from "@/assets/kutv-poster.jpg.asset.json";
-import bikMagazine from "@/assets/bik-magazine.jpg.asset.json";
+import { Media } from "@/components/site/Media";
 import logoWordmark from "@/assets/bactoai-logo-wordmark.png.asset.json";
 
 export const Route = createFileRoute("/press")({
@@ -45,47 +44,6 @@ export const Route = createFileRoute("/press")({
   }),
   component: PressPage,
 });
-
-type Coverage = {
-  outlet: string;
-  date: string;
-  kind: string;
-  title: string;
-  body: string;
-  image?: string;
-  imageAlt?: string;
-  href?: string;
-  cta?: string;
-  icon: typeof Play;
-};
-
-const coverage: Coverage[] = [
-  {
-    outlet: "KUTV Kenya",
-    date: "31 August 2026",
-    kind: "Television interview",
-    title: "Bringing the AMR conversation to national television",
-    body: "Founder Samwel Elegwa joined KUTV Kenya's Art & Culture Monday to explain antimicrobial resistance and why faster, genome-driven diagnostics matter for patients, clinicians, and public health systems.",
-    image: kutvPoster.url,
-    imageAlt: "Samwel Elegwa, Founder of BactoAI, featured on KUTV Kenya Art & Culture Monday",
-    href: "https://youtu.be/ENvEk0a0CHs?si=NITn5aXnJfv1HucC",
-    cta: "Watch the interview",
-    icon: Play,
-  },
-  {
-    outlet: "BIK Ventures Hub",
-    date: "16 May 2026",
-    kind: "Print & video coverage",
-    title: "Representing BactoAI at the Kenyatta University startup pitch event",
-    body: "Samwel Elegwa and William Otieno represented BactoAI at the BIK Ventures Hub startup pitch event at Kenyatta University. The event was covered in print and in BIK's recap video, which features several of the innovations showcased, including BactoAI.",
-    image: bikMagazine.url,
-    imageAlt:
-      "Newspaper coverage of the BIK Ventures Hub startup pitch event at Kenyatta University",
-    href: "https://youtu.be/SOSCWDj7mYk?si=u_VqEoI7-uq0WgCv",
-    cta: "Watch BIK's coverage",
-    icon: Newspaper,
-  },
-];
 
 const kit = [
   {
@@ -133,67 +91,24 @@ function PressPage() {
             Coverage of our work on antimicrobial resistance, plus a press kit and a direct media
             contact for journalists, event organisers, and partners.
           </p>
+        </div>
 
-          <section id="coverage" className="mt-16 space-y-8">
-            {coverage.map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <Reveal key={item.outlet} delay={i * 100}>
-                  <article className="grid md:grid-cols-[0.85fr_1.15fr] gap-6 rounded-3xl border border-border bg-card overflow-hidden shadow-soft">
-                    {item.image && (
-                      <div className="bg-muted">
-                        <img
-                          src={item.image}
-                          alt={item.imageAlt}
-                          className="w-full h-full max-h-80 object-cover object-top"
-                          loading="lazy"
-                        />
-                      </div>
-                    )}
-                    <div className="p-6 md:p-8">
-                      <div className="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-widest">
-                        <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 text-primary px-3 py-1">
-                          <Icon size={13} /> {item.kind}
-                        </span>
-                        <span className="text-muted-foreground">{item.date}</span>
-                      </div>
-                      <h2 className="mt-4 text-2xl md:text-3xl font-bold tracking-tight text-foreground leading-snug">
-                        {item.title}
-                      </h2>
-                      <div className="mt-2 text-sm font-semibold text-foreground/80">
-                        {item.outlet}
-                      </div>
-                      <p className="mt-3 text-muted-foreground leading-relaxed">{item.body}</p>
-                      {item.href && (
-                        <a
-                          href={item.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft hover:shadow-elegant transition"
-                        >
-                          {item.cta} <ExternalLink size={14} />
-                        </a>
-                      )}
-                    </div>
-                  </article>
-                </Reveal>
-              );
-            })}
+        <Media />
 
-            <Reveal delay={200}>
-              <div className="rounded-3xl border border-dashed border-border p-6 md:p-8 text-sm text-muted-foreground">
-                More mentions will be listed here as they are published. Writing about AMR in Kenya
-                or East Africa?{" "}
-                <a
-                  href="mailto:info@bactoai.co.ke?subject=BactoAI%20media%20enquiry"
-                  className="font-semibold text-primary hover:underline"
-                >
-                  Get in touch
-                </a>{" "}
-                — we're happy to share data, context, and expert comment.
-              </div>
-            </Reveal>
-          </section>
+        <div className="mx-auto max-w-6xl px-6">
+          <Reveal>
+            <div className="rounded-3xl border border-dashed border-border p-6 md:p-8 text-sm text-muted-foreground">
+              More mentions will be listed here as they are published. Writing about AMR in Kenya or
+              East Africa?{" "}
+              <a
+                href="mailto:info@bactoai.co.ke?subject=BactoAI%20media%20enquiry"
+                className="font-semibold text-primary hover:underline"
+              >
+                Get in touch
+              </a>{" "}
+              — we're happy to share data, context, and expert comment.
+            </div>
+          </Reveal>
 
           <section id="press-kit" className="mt-24">
             <Reveal className="max-w-2xl">

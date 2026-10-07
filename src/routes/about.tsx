@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Team } from "@/components/site/Team";
-import { Media } from "@/components/site/Media";
 import { Partners } from "@/components/site/Partners";
 import { Roadmap } from "@/components/site/Roadmap";
 import { Testimonials } from "@/components/site/Testimonials";
@@ -16,7 +15,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Meet the BactoAI team, our media appearances, the institutions we work with, what customers say, and where the platform is heading next.",
+          "Meet the BactoAI team, the institutions behind us, what customers say, and where the platform is heading next.",
       },
       { property: "og:title", content: "About BactoAI" },
       {
@@ -52,7 +51,6 @@ function AboutPage() {
           </p>
         </div>
         <Team />
-        <Media />
         <Partners />
         <Testimonials />
         <Roadmap />
