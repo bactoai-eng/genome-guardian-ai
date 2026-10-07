@@ -75,7 +75,9 @@ export function Partners() {
             Recognised through Kenya and East Africa's innovation ecosystem
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-            {"Developed through competitive innovation programmes in Kenya and East Africa, and recognised for translational health-tech impacts\n\n"}
+            {
+              "Developed through competitive innovation programmes in Kenya and East Africa, and recognised for translational health-tech impacts\n\n"
+            }
           </p>
         </Reveal>
 
