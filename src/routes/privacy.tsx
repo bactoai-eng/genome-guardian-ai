@@ -112,8 +112,7 @@ function PrivacyPage() {
       <h2>6. Contact</h2>
       <p>
         Questions about this policy or our data practices:{" "}
-        <a href="mailto:info@bactoai.co.ke">info@bactoai.co.ke</a> — BactoAI, Kenyatta University,
-        Nairobi, Kenya.
+        <a href="mailto:info@bactoai.co.ke">info@bactoai.co.ke</a> — BactoAI, Nairobi, Kenya.
       </p>
     </LegalLayout>
   );
