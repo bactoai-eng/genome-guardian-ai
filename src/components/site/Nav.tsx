@@ -46,7 +46,7 @@ export function Nav() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "glass shadow-soft" : "bg-transparent"
+          scrolled ? "glass shadow-soft" : "bg-background"
         }`}
       >
         <div className="mx-auto grid grid-cols-[minmax(0,1fr)_auto] lg:flex max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 py-3">

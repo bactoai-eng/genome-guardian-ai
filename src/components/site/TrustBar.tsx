@@ -13,7 +13,7 @@ export function TrustBar() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {items.map((it) => (
             <div key={it.name} className="text-center">
-              <div className="text-[10px] uppercase tracking-widest text-muted-foreground/70">
+              <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
                 {it.label}
               </div>
               <div className="mt-1 text-sm md:text-base font-semibold text-foreground">

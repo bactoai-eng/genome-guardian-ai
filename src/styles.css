@@ -24,6 +24,7 @@
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
+  --color-primary-text: var(--primary-text);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-glow: var(--primary-glow);
   --color-secondary: var(--secondary);
@@ -51,7 +52,8 @@
 }
 
 /* Cinematic dark is the default theme. */
-:root {
+:root,
+.dark {
   --radius: 0.875rem;
   --background: #0a0f0d;
   --foreground: #f5f7f6;
@@ -60,6 +62,7 @@
   --popover: #101815;
   --popover-foreground: #f5f7f6;
   --primary: #0e7a5f;
+  --primary-text: #6fd9be;
   --primary-foreground: #f5f7f6;
   --primary-glow: #17b98f;
   --secondary: #16201c;
@@ -75,11 +78,11 @@
   --resistant: #e8776a;
   --susceptible: #17b98f;
   --border: #22302b;
-  --input: #22302b;
+  --input: #71877c;
   --ring: #17b98f;
 }
 
-/* Optional light theme — same restrained palette, inverted surfaces. */
+/* Device light appearance — same restrained palette, inverted surfaces. */
 .light {
   --background: #f5f7f6;
   --foreground: #0a0f0d;
@@ -88,8 +91,9 @@
   --popover: #ffffff;
   --popover-foreground: #0a0f0d;
   --primary: #0e7a5f;
+  --primary-text: #0e7a5f;
   --primary-foreground: #f5f7f6;
-  --primary-glow: #0e9a76;
+  --primary-glow: #0b7454;
   --secondary: #e9eeec;
   --secondary-foreground: #0a0f0d;
   --muted: #ecefee;
@@ -103,7 +107,7 @@
   --resistant: #b03b2a;
   --susceptible: #0b7454;
   --border: #dce3e0;
-  --input: #dce3e0;
+  --input: #718077;
   --ring: #0e7a5f;
 }
 
@@ -138,6 +142,12 @@
 
 @utility text-gradient {
   color: var(--primary-glow);
+}
+
+/* Text needs a brighter emerald than filled buttons on dark surfaces. */
+.text-primary,
+.hover\:text-primary:hover {
+  color: var(--primary-text);
 }
 
 /* The single gradient on the page — hero headline only. */
@@ -382,6 +392,21 @@
     font-family: var(--font-display);
     letter-spacing: 0;
   }
+}
+
+/* A consistent, high-contrast keyboard outline also covers plain links and controls. */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--ring) !important;
+  outline-offset: 3px !important;
+}
+
+:where(input, select, textarea) {
+  border-color: var(--input);
+}
+
+:where(input, textarea)::placeholder {
+  color: var(--muted-foreground);
+  opacity: 1;
 }
 
 /* Skip off-screen layout and paint work until lower homepage sections approach the viewport. */

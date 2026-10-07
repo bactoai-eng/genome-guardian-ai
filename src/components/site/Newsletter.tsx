@@ -48,13 +48,14 @@ export function Newsletter() {
           <form onSubmit={submit} className="flex gap-2 w-full md:w-auto">
             <input
               type="email"
+              aria-label="Newsletter email address"
               required
               maxLength={255}
               placeholder="you@hospital.org"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={status !== "idle"}
-              className="min-w-0 md:w-72 rounded-full border border-border bg-background px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+              className="min-w-0 md:w-72 rounded-full border border-input bg-background px-5 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
             />
             <button
               type="submit"
