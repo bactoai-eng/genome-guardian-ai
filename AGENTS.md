@@ -13,3 +13,4 @@
 - Keep MCP server endpoints separate from public site documentation and navigation; internal integrations must remain available without a public documentation page.
 - Keep phone hero statistics in a separate band and the shared pilot CTA fixed outside page sections; this preserves readable content and stable touch access.
 - Apply device appearance centrally in the root through useTheme, with a live media-query listener and no saved override; every page must follow the same device preference.
+- Use a dedicated primary-text token for emerald labels, input-boundary tokens for fields, and a shared focus-visible outline; text and controls require separate contrast from filled buttons.
