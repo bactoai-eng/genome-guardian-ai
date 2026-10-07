@@ -2,6 +2,7 @@ import samwelPhoto from "@/assets/samwel-elegwa.png.asset.json";
 import sheilaPhoto from "@/assets/sheila-okwisa.png.asset.json";
 import williamPhoto from "@/assets/william-otieno.jpg.asset.json";
 import sylviaPhoto from "@/assets/sylvia-jane-nyambura.jpg.asset.json";
+import thomasPhoto from "@/assets/thomas-bonuke.jpg.asset.json";
 
 type Member = {
   name: string;
@@ -19,8 +20,8 @@ const team: Member[] = [
     photo: samwelPhoto.url,
     bio: "Biotechnology researcher at Kenyatta University with hands-on analytical experience from a Kenya Bureau of Standards attachment in gravimetry, titrimetry, spectroscopy, and related laboratory methods. An alumnus of the NextGen Antimicrobial Stewards Initiative and 2nd-place finisher at Kenyatta University's Research in Science bootcamp, where BactoAI was first pitched.",
     extended:
-      "Leads BactoAI's vision, scientific direction, partnerships, and strategic growth — representing the company with hospitals, universities, funders, and antimicrobial stewardship networks across East Africa.",
-    focus: ["Vision & strategy", "Scientific direction", "Partnerships & growth"],
+      "Leads BactoAI's vision, scientific direction, and strategic growth — representing the company with hospitals, universities, funders, and antimicrobial stewardship networks across East Africa.",
+    focus: ["Vision & strategy", "Scientific direction", "Strategic growth"],
   },
   {
     name: "Sheila Okwisa",
@@ -49,11 +50,20 @@ const team: Member[] = [
       "Connects the scientific, engineering, and partnership functions to ensure that projects move efficiently from development to real-world implementation.",
     focus: ["Operations", "Pilot coordination", "Project execution"],
   },
+  {
+    name: "Thomas Raphael Bonuke",
+    role: "Partnerships & Grants Lead",
+    photo: thomasPhoto.url,
+    bio: "Kenyatta University biotechnologist with laboratory training in molecular biology, virology and bacteriology at the National Veterinary Reference Laboratory. Led grants and partnerships for the Future Researchers Poster Summit.",
+    extended:
+      "Leads BactoAI's grant applications and builds partnerships with funders, hospitals and research institutions.",
+    focus: ["Grant writing", "Funder engagement", "Institutional partnerships"],
+  },
 ];
 
 const advisors = [
   {
-    name: "Dr. Orinda",
+    name: "Dr George Orinda",
     role: "Scientific Advisor",
     tags: ["Microbiology", "AMR", "Clinical validation"],
   },

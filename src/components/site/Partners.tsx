@@ -2,22 +2,17 @@ import { useState } from "react";
 import { ArrowRight, Handshake, Loader2, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import kenyattaLogo from "@/assets/kenyatta-university-logo.png.asset.json";
-import kemriLogo from "@/assets/kemri-logo.png";
-import lancasterLogo from "@/assets/lancaster-logo.svg";
-import cdieLogo from "@/assets/cdie-logo.png";
-import nanoporeLogo from "@/assets/oxford-nanopore-logo.jpg";
 import { Reveal } from "./Reveal";
 
-const logoPartners = [
-  { name: "Kenyatta University", src: kenyattaLogo.url },
-  { name: "KEMRI", src: kemriLogo },
-  { name: "Lancaster University", src: lancasterLogo },
-  { name: "Oxford Nanopore", src: nanoporeLogo },
-  { name: "CDIE", src: cdieLogo },
+const programmes = [
+  { name: "CDIE Catalyst Grant", detail: "Grant" },
+  { name: "East Africa BioDesign", detail: "Programme" },
+  {
+    name: "GEES Bootcamp",
+    detail: "KU × Lancaster SET Workshop · 2nd place · March 2025",
+  },
+  { name: "Kenyatta Innovation Centre", detail: "Incubation support" },
 ];
-
-const textPartners = ["Kenyatta Innovation Centre", "East Africa Biodesign", "GEES Bootcamp"];
 
 const partnershipTypes = [
   "Clinical validation study",
@@ -55,7 +50,7 @@ export function Partners() {
     if (error) {
       console.error("Partner submission failed", error);
       setStatus("error");
-      toast.error("We couldn't send your inquiry. Please email bactoai01@gmail.com.");
+      toast.error("We couldn't send your inquiry. Please email info@bactoai.co.ke.");
       return;
     }
     setStatus("success");
@@ -74,49 +69,27 @@ export function Partners() {
       <div className="relative mx-auto max-w-7xl px-6">
         <Reveal className="text-center">
           <div className="text-sm font-semibold text-primary uppercase tracking-widest">
-            Partners
+            Programmes &amp; recognition
           </div>
           <h2 className="mt-4 text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-            Backed by research and innovation networks.
+            {"\n"}
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
-            Built alongside leading universities, medical research institutes and technology
-            partners across East Africa and the UK.
+            {"Developed through competitive innovation programmes in Kenya and East Africa, and recognised for translational health-tech impacts\n\n"}
           </p>
         </Reveal>
 
-        {/* Logo marquee — infinite scroll */}
-        <div className="relative mt-14 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div className="flex w-max animate-marquee gap-6">
-            {[...logoPartners, ...logoPartners].map((p, i) => (
-              <div
-                key={`${p.name}-${i}`}
-                className="shrink-0 rounded-2xl border border-border bg-background px-6 py-6 w-56 h-32 flex flex-col items-center justify-center gap-3 hover:border-primary/40 transition"
-              >
-                <img
-                  src={p.src}
-                  alt={`${p.name} logo`}
-                  className="h-12 w-auto object-contain"
-                  loading="lazy"
-                />
-                <div className="text-xs font-semibold text-muted-foreground text-center">
-                  {p.name}
-                </div>
+        {/* Programmes & recognition grid */}
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {programmes.map((p) => (
+            <Reveal key={p.name} delay={80}>
+              <div className="h-full rounded-2xl border border-border bg-background px-6 py-6 flex flex-col items-center justify-center gap-3 text-center hover:border-primary/40 transition">
+                <div className="text-sm font-semibold text-foreground">{p.name}</div>
+                <div className="text-xs text-muted-foreground">{p.detail}</div>
               </div>
-            ))}
-          </div>
-        </div>
-
-        <Reveal className="mt-8 flex flex-wrap justify-center gap-3">
-          {textPartners.map((p) => (
-            <span
-              key={p}
-              className="rounded-full border border-border bg-background px-4 py-2 text-xs font-semibold text-muted-foreground"
-            >
-              {p}
-            </span>
+            </Reveal>
           ))}
-        </Reveal>
+        </div>
 
         {/* Partner inquiry form */}
         <div id="partner-inquiry" className="mt-20 grid lg:grid-cols-5 gap-8 items-start">

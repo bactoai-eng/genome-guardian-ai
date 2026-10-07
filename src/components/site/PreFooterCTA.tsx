@@ -27,7 +27,7 @@ export function PreFooterCTA() {
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </a>
           <a
-            href="mailto:bactoai01@gmail.com"
+            href="mailto:info@bactoai.co.ke"
             className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition"
           >
             Contact Sales

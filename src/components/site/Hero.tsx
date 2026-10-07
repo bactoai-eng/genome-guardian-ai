@@ -281,7 +281,7 @@ export function Hero() {
 
             <div className="hidden md:flex mt-12 items-center gap-4 text-[11px] uppercase tracking-widest text-white/40">
               <span className="h-px w-8 bg-white/20" />
-              Backed by clinicians and researchers across Africa & the UK
+              Guided by researchers and mentors across Africa and the UK
             </div>
           </div>
 

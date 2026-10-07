@@ -9,12 +9,14 @@ const PAGES = ["/technology", "/research", "/about", "/contact"] as const;
  */
 for (const path of PAGES) {
   test(`visual: ${path}`, async ({ page }) => {
-    await page.goto(path, { waitUntil: "domcontentloaded" });
+    await page.goto(path, { waitUntil: "networkidle" });
 
-    // Reveal animations are IntersectionObserver-driven — force the final
-    // state so screenshots are deterministic.
+    // Reveal animations are IntersectionObserver-driven and lower sections use
+    // content-visibility:auto (rendered lazily) — force the final state so
+    // full-page screenshots are deterministic.
     await page.addStyleTag({
       content: `*,*::before,*::after{animation:none!important;transition:none!important}
+                main>section{content-visibility:visible!important;contain-intrinsic-size:none!important}
                 [data-reveal],.reveal{opacity:1!important;transform:none!important}`,
     });
     await page.evaluate(() => {

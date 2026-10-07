@@ -12,6 +12,12 @@ export const Route = createFileRoute("/careers")({
         content:
           "BactoAI isn't actively hiring, but we're always interested in scientists, engineers, and clinicians who want to work on AMR.",
       },
+      { property: "og:title", content: "Careers — BactoAI" },
+      {
+        property: "og:description",
+        content:
+          "Explore opportunities to work with BactoAI on genomic antimicrobial resistance prediction.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "https://bactoai.co.ke/careers" },
@@ -52,7 +58,7 @@ function CareersPage() {
             </ul>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
-                href="mailto:bactoai01@gmail.com?subject=BactoAI%20-%20Expression%20of%20interest"
+                href="mailto:info@bactoai.co.ke?subject=BactoAI%20-%20Expression%20of%20interest"
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-elegant hover:opacity-95 transition"
               >
                 <Mail size={16} /> Send us an expression of interest <ArrowRight size={14} />
