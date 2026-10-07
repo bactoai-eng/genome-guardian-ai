@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Improve light/dark contrast and keyboard focus; verify device appearance through reloads and navigation
+
 - [x] Update newsletter, public email, advisor name and data-protection block
 - [ ] Send all form-owner notifications to info@bactoai.co.ke (blocked: email domain setup and verification)
 

@@ -119,6 +119,8 @@ export const TOKEN_PAIRS: TokenPair[] = [
     kind: "decorative",
   },
   { label: "ring on background (UI)", fg: "--ring", bg: "--background", kind: "ui" },
+  { label: "primary text on card", fg: "--primary-text", bg: "--card", kind: "text" },
+  { label: "input boundary on background", fg: "--input", bg: "--background", kind: "ui" },
 ];
 
 export function requiredRatio(kind: TokenPair["kind"]) {

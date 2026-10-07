@@ -39,7 +39,7 @@ export function Validation() {
                 </div>
               </div>
             ))}
-            <p className="text-xs text-muted-foreground/70">
+            <p className="text-xs text-muted-foreground">
               Reported figures reflect internal model development. Performance on prospective
               clinical isolates will be reported upon completion of ongoing validation.
             </p>
