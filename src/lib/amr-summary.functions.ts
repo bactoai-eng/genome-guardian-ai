@@ -144,7 +144,6 @@ function buildSummary(results: BackendResult[], stats: z.infer<typeof Meta>["sta
 }
 
 export const generateAmrSummary = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
   .inputValidator((data: unknown) => {
     if (!(data instanceof FormData)) throw new Error("Expected multipart form data");
     return data;
@@ -223,25 +222,29 @@ export const generateAmrSummary = createServerFn({ method: "POST" })
     if (summary.drug_risks.length === 0)
       return { ok: false, message: "The prediction engine returned an unexpected format." };
 
-    const { data: row, error } = await context.supabase
-      .from("genome_analyses")
-      .insert({
-        user_id: context.userId,
-        isolate_label: meta.isolateLabel,
-        organism: meta.organism,
-        specimen_source: meta.specimenSource,
-        collection_date: meta.collectionDate,
-        location: meta.location,
-        clinical_notes: meta.clinicalNotes,
-        file_name: file.name,
-        file_size_bytes: file.size,
-        sequence_stats: meta.stats,
-        overall_risk: summary.overall_risk,
-        summary,
-      })
-      .select("id")
-      .single();
-    if (error) console.error("[amr] save failed", error);
+    let id = "";
+    if (context && (context as any).supabase && (context as any).userId) {
+      const { data: row, error } = await (context as any).supabase
+        .from("genome_analyses")
+        .insert({
+          user_id: (context as any).userId,
+          isolate_label: meta.isolateLabel,
+          organism: meta.organism,
+          specimen_source: meta.specimenSource,
+          collection_date: meta.collectionDate,
+          location: meta.location,
+          clinical_notes: meta.clinicalNotes,
+          file_name: file.name,
+          file_size_bytes: file.size,
+          sequence_stats: meta.stats,
+          overall_risk: summary.overall_risk,
+          summary,
+        })
+        .select("id")
+        .single();
+      if (error) console.error("[amr] save failed", error);
+      if (row) id = row.id;
+    }
 
-    return { ok: true, id: row?.id ?? "", summary };
+    return { ok: true, id, summary };
   });
