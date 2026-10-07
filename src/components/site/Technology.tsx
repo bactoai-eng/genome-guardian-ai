@@ -31,9 +31,7 @@ export function Technology() {
             {flow.map((f, i) => (
               <div key={f} className="relative">
                 <div className="rounded-2xl bg-gradient-hero text-primary-foreground p-5 h-full text-center shadow-soft">
-                  <div className="text-[10px] uppercase tracking-widest">
-                    Stage {i + 1}
-                  </div>
+                  <div className="text-[10px] uppercase tracking-widest">Stage {i + 1}</div>
                   <div className="mt-2 font-semibold text-sm md:text-base">{f}</div>
                 </div>
                 {i < flow.length - 1 && (

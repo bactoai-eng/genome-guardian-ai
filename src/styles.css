@@ -145,7 +145,8 @@
 }
 
 /* Text needs a brighter emerald than filled buttons on dark surfaces. */
-@utility text-primary {
+.text-primary,
+.hover\:text-primary:hover {
   color: var(--primary-text);
 }
 
