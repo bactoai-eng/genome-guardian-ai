@@ -135,7 +135,7 @@ export function Footer() {
               </Link>
             ))}
             <span className="hidden md:inline text-white/30">·</span>
-            <span>Developed in Nairobi, Kenya</span>
+            <span>Nairobi, Kenya</span>
           </div>
         </div>
       </div>
