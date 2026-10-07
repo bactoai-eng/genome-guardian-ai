@@ -107,19 +107,22 @@ export function LiveAnalyzer() {
     setPhase("running");
     setServerError(null);
     try {
-      const res = await run({
-        data: {
+      const { excerpt: _excerpt, ...statsNoExcerpt } = stats;
+      const form = new FormData();
+      form.append("file", file, file.name);
+      form.append(
+        "meta",
+        JSON.stringify({
           isolateLabel: meta.isolate.trim(),
           organism: meta.organism === "Other" ? meta.organismOther.trim() : meta.organism,
           specimenSource: meta.specimen,
           collectionDate: meta.date || null,
           location: meta.location.trim() || null,
           clinicalNotes: meta.notes.trim() || null,
-          fileName: file.name,
-          fileSizeBytes: file.size,
-          stats,
-        },
-      });
+          stats: statsNoExcerpt,
+        }),
+      );
+      const res = await run({ data: form });
       if (!res.ok) {
         setServerError(res.message);
         setPhase("error");
@@ -155,7 +158,7 @@ export function LiveAnalyzer() {
           <span className="w-2.5 h-2.5 rounded-full bg-muted-foreground/40" />
           <span className="w-2.5 h-2.5 rounded-full bg-susceptible/60" />
           <div className="min-w-0 text-xs text-muted-foreground font-mono">
-            app.bactoai.com/analyze
+            app.bactoai.co.ke/analyze
           </div>
           {authed && (
             <Link
@@ -175,7 +178,7 @@ export function LiveAnalyzer() {
                 Sign in to analyze your own genomes
               </div>
               <p className="mt-2 text-xs text-muted-foreground max-w-sm mx-auto">
-                AI risk summaries for uploaded FASTA/FASTQ files are available to registered lab
+                Risk predictions for uploaded FASTA/FASTQ files are available to registered lab
                 users. Sample isolates remain open to everyone.
               </p>
               <Link
@@ -238,7 +241,7 @@ export function LiveAnalyzer() {
                         ? "Checking file…"
                         : stats
                           ? `${stats.format} · ${stats.records.toLocaleString()} record(s) · ${(stats.totalBases / 1e6).toFixed(2)} Mb · GC ${stats.gcPercent}% · N50 ${stats.n50.toLocaleString()}`
-                          : "FASTA / FASTQ (optionally .gz) · up to 25 MB · read in your browser"}
+                          : "FASTA / FASTQ (optionally .gz) · up to 25 MB"}
                     </div>
                   </div>
                 </div>
@@ -347,17 +350,17 @@ export function LiveAnalyzer() {
               >
                 {phase === "running" ? (
                   <>
-                    <Loader2 size={14} className="animate-spin" /> Generating AI risk summary…
+                    <Loader2 size={14} className="animate-spin" /> Running prediction…
                   </>
                 ) : (
                   <>
-                    <Sparkles size={14} /> Generate AMR risk summary
+                    <Sparkles size={14} /> Run resistance prediction
                   </>
                 )}
               </button>
               <p className="text-center text-[11px] text-muted-foreground">
-                Only sequence statistics and a short excerpt are sent — the full file never leaves
-                your browser.
+                Your genome file is sent securely to the BactoAI prediction engine and is deleted
+                after analysis.
               </p>
             </form>
           )}

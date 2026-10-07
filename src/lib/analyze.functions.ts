@@ -5,6 +5,8 @@ export type Prediction = {
   drug: string;
   status: "Resistant" | "Susceptible";
   confidence: number;
+  /** True when the backend flagged the call as low confidence (lab confirmation advised). */
+  uncertain?: boolean;
 };
 
 export type AnalysisSuccess = {
@@ -97,7 +99,7 @@ export const analyzeGenome = createServerFn({ method: "POST" })
     try {
       res = await fetch(`${apiUrl.replace(/\/+$/, "")}/predict`, {
         method: "POST",
-        headers: { "X-API-Key": apiKey },
+        headers: { Authorization: `Bearer ${apiKey}` },
         body: form,
       });
     } catch {
@@ -135,28 +137,52 @@ export const analyzeGenome = createServerFn({ method: "POST" })
       return fail("upstream", "The prediction engine returned an unreadable response.");
     }
 
+    // The Flask API (/api/v1/predict) returns { results: [{ antibiotic, probability,
+    // label, status, confidence }] } where status may be "uncertain" and confidence is
+    // a HIGH/MEDIUM/LOW level. A legacy { predictions: [{ drug, status, confidence }] }
+    // shape is still accepted.
     const raw = payload as {
       organism?: unknown;
+      results?: unknown;
       predictions?: unknown;
     };
-    if (!Array.isArray(raw.predictions) || raw.predictions.length === 0) {
+    const items = Array.isArray(raw.results) ? raw.results : raw.predictions;
+    if (!Array.isArray(items) || items.length === 0) {
       return fail("upstream", "The prediction engine returned no predictions for this genome.");
     }
 
     const predictions: Prediction[] = [];
-    for (const p of raw.predictions as Array<Record<string, unknown>>) {
-      const drug = typeof p.drug === "string" ? p.drug.trim() : "";
-      const statusRaw = typeof p.status === "string" ? p.status.toLowerCase() : "";
-      const confidence =
-        typeof p.confidence === "number" && Number.isFinite(p.confidence)
-          ? Math.max(0, Math.min(100, Math.round(p.confidence)))
-          : null;
-      if (!drug || confidence === null) continue;
-      if (statusRaw !== "resistant" && statusRaw !== "susceptible") continue;
+    for (const p of items as Array<Record<string, unknown>>) {
+      const drugRaw = typeof p.antibiotic === "string" ? p.antibiotic : p.drug;
+      const drug = typeof drugRaw === "string" ? drugRaw.trim() : "";
+      if (!drug) continue;
+
+      const labelRaw = typeof p.label === "string" ? p.label : p.status;
+      const label = typeof labelRaw === "string" ? labelRaw.toLowerCase() : "";
+      if (label !== "resistant" && label !== "susceptible") {
+        // status "uncertain" carries no label; fall back to the probability if present.
+        if (typeof p.probability !== "number" || !Number.isFinite(p.probability)) continue;
+      }
+      const resistant =
+        label === "resistant" ||
+        (label !== "susceptible" && (p.probability as number) >= 0.5);
+
+      let confidence: number | null = null;
+      if (typeof p.probability === "number" && Number.isFinite(p.probability)) {
+        const pr = Math.max(0, Math.min(1, p.probability));
+        confidence = Math.round((resistant ? pr : 1 - pr) * 100);
+      } else if (typeof p.confidence === "number" && Number.isFinite(p.confidence)) {
+        confidence = Math.max(0, Math.min(100, Math.round(p.confidence)));
+      }
+      if (confidence === null) continue;
+
       predictions.push({
         drug,
-        status: statusRaw === "resistant" ? "Resistant" : "Susceptible",
+        status: resistant ? "Resistant" : "Susceptible",
         confidence,
+        uncertain:
+          p.status === "uncertain" ||
+          (typeof p.confidence === "string" && p.confidence.toUpperCase() === "LOW"),
       });
     }
 

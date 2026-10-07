@@ -315,7 +315,7 @@ export function ProductDemo() {
                         <span className="w-2.5 h-2.5 rounded-full bg-muted-foreground/40" />
                         <span className="w-2.5 h-2.5 rounded-full bg-susceptible/60" />
                         <div className="ml-4 text-xs text-muted-foreground font-mono">
-                          app.bactoai.com/predict
+                          app.bactoai.co.ke/predict
                         </div>
                         <div className="ml-auto flex items-center gap-2">
                           {phase !== "idle" && (
