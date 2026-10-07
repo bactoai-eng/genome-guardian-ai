@@ -72,7 +72,7 @@ export function Partners() {
             Programmes &amp; recognition
           </div>
           <h2 className="mt-4 text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-            {"\n"}
+            Recognised through Kenya and East Africa's innovation ecosystem
           </h2>
           <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
             {"Developed through competitive innovation programmes in Kenya and East Africa, and recognised for translational health-tech impacts\n\n"}
