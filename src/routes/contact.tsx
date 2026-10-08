@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Contact } from "@/components/site/Contact";
-import { ScrollProgressBar } from "@/components/site/ScrollProgressBar";
 import { useAutoReveal } from "@/hooks/use-auto-reveal";
 
 export const Route = createFileRoute("/contact")({
@@ -33,7 +32,6 @@ function ContactPage() {
   useAutoReveal();
   return (
     <div className="min-h-screen bg-background">
-      <ScrollProgressBar />
       <Nav />
       <main className="pt-32">
         <div className="mx-auto max-w-7xl px-6">

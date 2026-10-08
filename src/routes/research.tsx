@@ -4,7 +4,6 @@ import { Footer } from "@/components/site/Footer";
 import { Research } from "@/components/site/Research";
 import { Impact } from "@/components/site/Impact";
 import { PartnerLabs } from "@/components/site/PartnerLabs";
-import { ScrollProgressBar } from "@/components/site/ScrollProgressBar";
 import { useAutoReveal } from "@/hooks/use-auto-reveal";
 
 export const Route = createFileRoute("/research")({
@@ -34,7 +33,6 @@ function ResearchPage() {
   useAutoReveal();
   return (
     <div className="min-h-screen bg-background">
-      <ScrollProgressBar />
       <Nav />
       <main className="pt-32">
         <div className="mx-auto max-w-7xl px-6">
