@@ -451,7 +451,9 @@ export function ProductDemo() {
                                       results: sample.results,
                                     }),
                                   )
-                                  .catch(() => toast.error("Could not create the PDF. Please try again."))
+                                  .catch(() =>
+                                    toast.error("Could not create the PDF. Please try again."),
+                                  )
                               }
                               className="mt-5 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-primary py-3 text-sm font-semibold text-primary-foreground hover:opacity-95 transition"
                             >
