@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown, Play } from "lucide-react";
 
 /** Cinematic Canvas-2D DNA helix with projected depth. Lightweight and mobile-safe. */
@@ -10,7 +12,7 @@ function HelixCanvas() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     let raf = 0;
-    let isVisible = true;
+    let isVisible = false;
     let lastFrame = 0;
     let w = 0,
       h = 0;
@@ -29,24 +31,14 @@ function HelixCanvas() {
     resize();
     window.addEventListener("resize", resize);
 
-    const particles = Array.from({ length: isMobile ? 28 : 64 }).map(() => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 1.5 + 0.25,
-      vx: (Math.random() - 0.5) * 0.18,
-      vy: (Math.random() - 0.5) * 0.18,
-      depth: Math.random(),
-    }));
-
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const targetFrameMs = isMobile ? 1000 / 30 : 1000 / 45;
 
     const draw = (t: number) => {
       if (!isVisible || document.hidden) {
-        raf = requestAnimationFrame(draw);
+        raf = 0;
         return;
       }
-      if (!reduced && t - lastFrame < targetFrameMs) {
+      if (!reduced && t - lastFrame < 1000 / 30) {
         raf = requestAnimationFrame(draw);
         return;
       }
@@ -54,33 +46,11 @@ function HelixCanvas() {
       ctx.clearRect(0, 0, w, h);
 
       const time = reduced ? 0.7 : t * 0.00042;
-      const cx = w < 760 ? w * 0.72 : w * 0.79;
-      const helixHeight = Math.min(h * 0.88, 680);
+      const cx = w < 760 ? w * 0.84 : w * 0.78;
+      const helixHeight = Math.min(h * 0.8, 560);
       const top = (h - helixHeight) * 0.5;
-      const radius = Math.min(w < 760 ? w * 0.2 : w * 0.115, 148);
+      const radius = Math.min(w < 760 ? w * 0.16 : w * 0.115, 148);
       const turns = 3.25;
-
-      // A restrained pool of light gives the molecule volume without obscuring copy.
-      const atmosphere = ctx.createRadialGradient(cx, h * 0.47, 10, cx, h * 0.47, radius * 2.8);
-      atmosphere.addColorStop(0, "rgba(23, 185, 143, 0.105)");
-      atmosphere.addColorStop(0.48, "rgba(56, 189, 248, 0.035)");
-      atmosphere.addColorStop(1, "rgba(10, 15, 13, 0)");
-      ctx.fillStyle = atmosphere;
-      ctx.fillRect(Math.max(0, cx - radius * 3), top - 80, radius * 6, helixHeight + 160);
-
-      // Dust motes drift at different speeds to suggest depth.
-      for (const p of particles) {
-        if (!reduced) {
-          p.x += p.vx * (0.35 + p.depth);
-          p.y += p.vy * (0.35 + p.depth);
-          if (p.x < 0 || p.x > w) p.vx *= -1;
-          if (p.y < 0 || p.y > h) p.vy *= -1;
-        }
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(159, 227, 206, ${0.05 + p.depth * 0.22})`;
-        ctx.arc(p.x, p.y, p.r * (0.45 + p.depth * 0.8), 0, Math.PI * 2);
-        ctx.fill();
-      }
 
       type HelixPoint = { x: number; y: number; z: number; scale: number };
       const pointAt = (progress: number, opposite = false): HelixPoint => {
@@ -123,7 +93,7 @@ function HelixCanvas() {
       }
 
       // Draw each backbone in short depth-aware sections so the front edge glows.
-      const segments = isMobile ? 72 : 132;
+      const segments = isMobile ? 54 : 96;
       const strandSections: Array<{ a: HelixPoint; b: HelixPoint; strand: number }> = [];
       for (let strand = 0; strand < 2; strand++) {
         for (let i = 0; i < segments; i++) {
@@ -192,19 +162,34 @@ function HelixCanvas() {
 
       if (!reduced) raf = requestAnimationFrame(draw);
     };
+    const resume = () => {
+      cancelAnimationFrame(raf);
+      raf = 0;
+      if (isVisible && !document.hidden) {
+        if (reduced) draw(0);
+        else raf = requestAnimationFrame(draw);
+      }
+    };
+    const onResize = () => {
+      resize();
+      resume();
+    };
+    window.removeEventListener("resize", resize);
+    window.addEventListener("resize", onResize);
+    document.addEventListener("visibilitychange", resume);
     const visibilityObserver = new IntersectionObserver(
       ([entry]) => {
         isVisible = entry?.isIntersecting ?? true;
+        resume();
       },
-      { rootMargin: "100px" },
+      { rootMargin: "0px" },
     );
     visibilityObserver.observe(canvas);
-    if (reduced) draw(0);
-    else raf = requestAnimationFrame(draw);
     return () => {
       cancelAnimationFrame(raf);
       visibilityObserver.disconnect();
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", onResize);
+      document.removeEventListener("visibilitychange", resume);
     };
   }, []);
   return (
