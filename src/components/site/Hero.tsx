@@ -197,115 +197,64 @@ function HelixCanvas() {
   );
 }
 
-const words = ["Antibiotic", "resistance", "decisions", "in", "minutes,", "not", "days."];
-
 const stats = [
   { k: "0.952", label: "ROC-AUC on Meropenem", sub: "Internal validation" },
   { k: "<10", label: "under 10 minutes from genome to result", sub: "vs. 48–72 hrs lab" },
-  {
-    k: "3",
-    label: "3 antibiotics currently modeled, with more planned",
-    sub: "Meropenem · Ciprofloxacin · Cefotaxime",
-  },
+  { k: "3", label: "3 antibiotics currently modeled, with more planned", sub: "Meropenem · Ciprofloxacin · Cefotaxime" },
 ];
 
 export function Hero() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
   return (
     <>
-      <section className="bacto-hero relative overflow-hidden bg-ink text-white min-h-[72svh] md:min-h-[92vh] flex items-center pt-28 pb-20">
-        <div className="absolute inset-0 bg-ink-mesh" />
+      <section className="bacto-hero relative overflow-hidden">
         <HelixCanvas />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#070B0A]/95" />
-
-        <div className="relative mx-auto max-w-7xl px-6 grid lg:grid-cols-[1.15fr_.85fr] gap-16 items-center w-full">
-          <div>
-            <div className="hidden md:inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-[color:var(--color-teal-glow-soft)] backdrop-blur">
-              <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--color-teal-glow)] animate-pulse-dot" />
+        <div className="hero-shade absolute inset-0 pointer-events-none" />
+        <div className="relative mx-auto max-w-7xl w-full px-6">
+          <div className="hero-copy">
+            <div className="hero-eyebrow hidden md:flex items-center gap-2 text-xs font-semibold">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary-glow" />
               AI · Genomics · Precision Medicine
             </div>
-
-            <h1 className="mt-6 font-display font-bold tracking-tight text-4xl sm:text-5xl lg:text-7xl leading-[1.02]">
-              {words.map((w, i) => (
-                <span
-                  key={i}
-                  className="inline-block mr-[0.25em] text-hero-gradient"
-                  style={{
-                    opacity: mounted ? undefined : 0,
-                    animation: mounted
-                      ? `word-reveal 0.7s cubic-bezier(.2,.9,.3,1.2) ${i * 90}ms both`
-                      : undefined,
-                  }}
-                >
-                  {w}
-                </span>
-              ))}
+            <h1 className="hero-title font-display font-bold">
+              <span className="hero-brand block">BactoAI</span>
+              Antibiotic resistance decisions in minutes, not days.
             </h1>
-
-            <p className="hidden md:block mt-8 text-lg md:text-xl text-white/70 leading-relaxed max-w-xl">
+            <p className="hero-description hidden md:block">
               BactoAI uses machine learning to predict antimicrobial resistance from bacterial
               genomes — before lab results come back.
             </p>
-
-            <div className="mt-10 grid grid-cols-1 sm:flex sm:flex-wrap gap-3">
-              <a
-                href="#demo"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-[color:var(--color-teal-glow)] px-7 py-3.5 text-sm font-semibold text-[color:var(--color-ink)] shadow-glow-teal hover:brightness-110 transition"
-              >
-                <Play size={16} /> See the Demo
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition"
-              >
-                Request a Pilot
-              </a>
+            <div className="hero-actions grid grid-cols-2 gap-3 sm:flex">
+              <Button asChild className="hero-demo min-h-12 px-4 sm:px-6">
+                <a href="#demo"><Play size={16} /> See the Demo <ArrowRight className="hidden sm:block" size={16} /></a>
+              </Button>
+              <Button asChild variant="outline" className="hero-pilot min-h-12 px-4 sm:px-6">
+                <Link to="/contact">Request a Pilot</Link>
+              </Button>
             </div>
-
-            <div className="hidden md:flex mt-12 items-center gap-4 text-[11px] uppercase tracking-widest text-white/40">
-              <span className="h-px w-8 bg-white/20" />
+            <p className="hero-guidance hidden md:block text-xs">
               Guided by researchers and mentors across Africa and the UK
-            </div>
+            </p>
           </div>
-
-          <div className="hidden md:block relative h-[420px] lg:h-[520px]">
-            {stats.map((s, i) => (
-              <div
-                key={s.k}
-                className="glass-dark rounded-2xl p-5 absolute w-[220px] sm:w-[240px] animate-float-slow"
-                style={{
-                  top: `${[8, 42, 72][i]}%`,
-                  left: `${[6, 42, 12][i]}%`,
-                  animationDelay: `${i * 1.3}s`,
-                }}
-              >
-                <div className="font-stat text-4xl font-bold text-white leading-none">{s.k}</div>
-                <div className="mt-2 text-xs font-semibold text-white/90">{s.label}</div>
-                <div className="mt-1 text-[10px] uppercase tracking-widest text-white/40">
-                  {s.sub}
-                </div>
-                <div className="mt-3 h-0.5 rounded-full bg-gradient-to-r from-[color:var(--color-teal-glow)] to-transparent" />
+          <div className="hero-desktop-stats hidden md:grid md:grid-cols-3" aria-label="BactoAI model statistics">
+            {stats.map((s) => (
+              <div key={s.k} className="hero-stat">
+                <div className="font-stat text-3xl font-bold">{s.k}</div>
+                <div className="mt-2 text-sm font-medium">{s.label}</div>
+                <div className="hero-stat-note mt-1 text-xs">{s.sub}</div>
               </div>
             ))}
           </div>
         </div>
-
-        <a
-          href="#stakes"
-          aria-label="Scroll to next section"
-          className="absolute left-1/2 -translate-x-1/2 bottom-6 text-white/60 hover:text-white transition animate-chevron"
-        >
-          <ChevronDown size={26} />
+        <a href="#stakes" aria-label="Scroll to next section" className="hero-next absolute bottom-5 right-6">
+          <ChevronDown size={22} />
         </a>
       </section>
-      <div className="md:hidden bg-ink px-6 pb-12 space-y-8" aria-label="BactoAI model statistics">
+      <div className="hero-phone-stats md:hidden px-6 py-8" aria-label="BactoAI model statistics">
         {stats.map((s) => (
-          <div key={s.k} className="border-b border-border pb-6">
-            <div className="font-stat text-5xl font-bold text-primary-foreground">{s.k}</div>
-            <div className="mt-2 text-sm text-primary-foreground">{s.label}</div>
-            <div className="mt-1 text-xs text-muted-foreground">{s.sub}</div>
+          <div key={s.k} className="hero-stat py-5">
+            <div className="font-stat text-4xl font-bold">{s.k}</div>
+            <div className="mt-2 text-sm font-medium">{s.label}</div>
+            <div className="hero-stat-note mt-1 text-xs">{s.sub}</div>
           </div>
         ))}
       </div>
