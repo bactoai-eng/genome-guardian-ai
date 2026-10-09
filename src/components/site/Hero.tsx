@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown, Play } from "lucide-react";
 
 /** Cinematic Canvas-2D DNA helix with projected depth. Lightweight and mobile-safe. */
@@ -10,7 +12,7 @@ function HelixCanvas() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     let raf = 0;
-    let isVisible = true;
+    let isVisible = false;
     let lastFrame = 0;
     let w = 0,
       h = 0;
@@ -29,24 +31,14 @@ function HelixCanvas() {
     resize();
     window.addEventListener("resize", resize);
 
-    const particles = Array.from({ length: isMobile ? 28 : 64 }).map(() => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 1.5 + 0.25,
-      vx: (Math.random() - 0.5) * 0.18,
-      vy: (Math.random() - 0.5) * 0.18,
-      depth: Math.random(),
-    }));
-
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const targetFrameMs = isMobile ? 1000 / 30 : 1000 / 45;
 
     const draw = (t: number) => {
       if (!isVisible || document.hidden) {
-        raf = requestAnimationFrame(draw);
+        raf = 0;
         return;
       }
-      if (!reduced && t - lastFrame < targetFrameMs) {
+      if (!reduced && t - lastFrame < 1000 / 30) {
         raf = requestAnimationFrame(draw);
         return;
       }
@@ -54,33 +46,11 @@ function HelixCanvas() {
       ctx.clearRect(0, 0, w, h);
 
       const time = reduced ? 0.7 : t * 0.00042;
-      const cx = w < 760 ? w * 0.72 : w * 0.79;
-      const helixHeight = Math.min(h * 0.88, 680);
+      const cx = w < 760 ? w * 0.84 : w * 0.78;
+      const helixHeight = Math.min(h * 0.8, 560);
       const top = (h - helixHeight) * 0.5;
-      const radius = Math.min(w < 760 ? w * 0.2 : w * 0.115, 148);
+      const radius = Math.min(w < 760 ? w * 0.16 : w * 0.115, 148);
       const turns = 3.25;
-
-      // A restrained pool of light gives the molecule volume without obscuring copy.
-      const atmosphere = ctx.createRadialGradient(cx, h * 0.47, 10, cx, h * 0.47, radius * 2.8);
-      atmosphere.addColorStop(0, "rgba(23, 185, 143, 0.105)");
-      atmosphere.addColorStop(0.48, "rgba(56, 189, 248, 0.035)");
-      atmosphere.addColorStop(1, "rgba(10, 15, 13, 0)");
-      ctx.fillStyle = atmosphere;
-      ctx.fillRect(Math.max(0, cx - radius * 3), top - 80, radius * 6, helixHeight + 160);
-
-      // Dust motes drift at different speeds to suggest depth.
-      for (const p of particles) {
-        if (!reduced) {
-          p.x += p.vx * (0.35 + p.depth);
-          p.y += p.vy * (0.35 + p.depth);
-          if (p.x < 0 || p.x > w) p.vx *= -1;
-          if (p.y < 0 || p.y > h) p.vy *= -1;
-        }
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(159, 227, 206, ${0.05 + p.depth * 0.22})`;
-        ctx.arc(p.x, p.y, p.r * (0.45 + p.depth * 0.8), 0, Math.PI * 2);
-        ctx.fill();
-      }
 
       type HelixPoint = { x: number; y: number; z: number; scale: number };
       const pointAt = (progress: number, opposite = false): HelixPoint => {
@@ -123,7 +93,7 @@ function HelixCanvas() {
       }
 
       // Draw each backbone in short depth-aware sections so the front edge glows.
-      const segments = isMobile ? 72 : 132;
+      const segments = isMobile ? 54 : 96;
       const strandSections: Array<{ a: HelixPoint; b: HelixPoint; strand: number }> = [];
       for (let strand = 0; strand < 2; strand++) {
         for (let i = 0; i < segments; i++) {
@@ -192,19 +162,34 @@ function HelixCanvas() {
 
       if (!reduced) raf = requestAnimationFrame(draw);
     };
+    const resume = () => {
+      cancelAnimationFrame(raf);
+      raf = 0;
+      if (isVisible && !document.hidden) {
+        if (reduced) draw(0);
+        else raf = requestAnimationFrame(draw);
+      }
+    };
+    const onResize = () => {
+      resize();
+      resume();
+    };
+    window.removeEventListener("resize", resize);
+    window.addEventListener("resize", onResize);
+    document.addEventListener("visibilitychange", resume);
     const visibilityObserver = new IntersectionObserver(
       ([entry]) => {
         isVisible = entry?.isIntersecting ?? true;
+        resume();
       },
-      { rootMargin: "100px" },
+      { rootMargin: "0px" },
     );
     visibilityObserver.observe(canvas);
-    if (reduced) draw(0);
-    else raf = requestAnimationFrame(draw);
     return () => {
       cancelAnimationFrame(raf);
       visibilityObserver.disconnect();
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", onResize);
+      document.removeEventListener("visibilitychange", resume);
     };
   }, []);
   return (
@@ -212,115 +197,64 @@ function HelixCanvas() {
   );
 }
 
-const words = ["Antibiotic", "resistance", "decisions", "in", "minutes,", "not", "days."];
-
 const stats = [
   { k: "0.952", label: "ROC-AUC on Meropenem", sub: "Internal validation" },
   { k: "<10", label: "under 10 minutes from genome to result", sub: "vs. 48–72 hrs lab" },
-  {
-    k: "3",
-    label: "3 antibiotics currently modeled, with more planned",
-    sub: "Meropenem · Ciprofloxacin · Cefotaxime",
-  },
+  { k: "3", label: "3 antibiotics currently modeled, with more planned", sub: "Meropenem · Ciprofloxacin · Cefotaxime" },
 ];
 
 export function Hero() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
   return (
     <>
-      <section className="bacto-hero relative overflow-hidden bg-ink text-white min-h-[72svh] md:min-h-[92vh] flex items-center pt-28 pb-20">
-        <div className="absolute inset-0 bg-ink-mesh" />
+      <section className="bacto-hero relative overflow-hidden">
         <HelixCanvas />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#070B0A]/95" />
-
-        <div className="relative mx-auto max-w-7xl px-6 grid lg:grid-cols-[1.15fr_.85fr] gap-16 items-center w-full">
-          <div>
-            <div className="hidden md:inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-[color:var(--color-teal-glow-soft)] backdrop-blur">
-              <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--color-teal-glow)] animate-pulse-dot" />
+        <div className="hero-shade absolute inset-0 pointer-events-none" />
+        <div className="relative mx-auto max-w-7xl w-full px-6">
+          <div className="hero-copy">
+            <div className="hero-eyebrow hidden md:flex items-center gap-2 text-xs font-semibold">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary-glow" />
               AI · Genomics · Precision Medicine
             </div>
-
-            <h1 className="mt-6 font-display font-bold tracking-tight text-4xl sm:text-5xl lg:text-7xl leading-[1.02]">
-              {words.map((w, i) => (
-                <span
-                  key={i}
-                  className="inline-block mr-[0.25em] text-hero-gradient"
-                  style={{
-                    opacity: mounted ? undefined : 0,
-                    animation: mounted
-                      ? `word-reveal 0.7s cubic-bezier(.2,.9,.3,1.2) ${i * 90}ms both`
-                      : undefined,
-                  }}
-                >
-                  {w}
-                </span>
-              ))}
+            <h1 className="hero-title font-display font-bold">
+              <span className="hero-brand block">BactoAI</span>
+              Antibiotic resistance decisions in minutes, not days.
             </h1>
-
-            <p className="hidden md:block mt-8 text-lg md:text-xl text-white/70 leading-relaxed max-w-xl">
+            <p className="hero-description hidden md:block">
               BactoAI uses machine learning to predict antimicrobial resistance from bacterial
               genomes — before lab results come back.
             </p>
-
-            <div className="mt-10 grid grid-cols-1 sm:flex sm:flex-wrap gap-3">
-              <a
-                href="#demo"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-[color:var(--color-teal-glow)] px-7 py-3.5 text-sm font-semibold text-[color:var(--color-ink)] shadow-glow-teal hover:brightness-110 transition"
-              >
-                <Play size={16} /> See the Demo
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/10 transition"
-              >
-                Request a Pilot
-              </a>
+            <div className="hero-actions grid grid-cols-2 gap-3 sm:flex">
+              <Button asChild className="hero-demo min-h-12 px-4 sm:px-6">
+                <a href="#demo"><Play size={16} /> See the Demo <ArrowRight className="hidden sm:block" size={16} /></a>
+              </Button>
+              <Button asChild variant="outline" className="hero-pilot min-h-12 px-4 sm:px-6">
+                <Link to="/contact">Request a Pilot</Link>
+              </Button>
             </div>
-
-            <div className="hidden md:flex mt-12 items-center gap-4 text-[11px] uppercase tracking-widest text-white/40">
-              <span className="h-px w-8 bg-white/20" />
+            <p className="hero-guidance hidden md:block text-xs">
               Guided by researchers and mentors across Africa and the UK
-            </div>
+            </p>
           </div>
-
-          <div className="hidden md:block relative h-[420px] lg:h-[520px]">
-            {stats.map((s, i) => (
-              <div
-                key={s.k}
-                className="glass-dark rounded-2xl p-5 absolute w-[220px] sm:w-[240px] animate-float-slow"
-                style={{
-                  top: `${[8, 42, 72][i]}%`,
-                  left: `${[6, 42, 12][i]}%`,
-                  animationDelay: `${i * 1.3}s`,
-                }}
-              >
-                <div className="font-stat text-4xl font-bold text-white leading-none">{s.k}</div>
-                <div className="mt-2 text-xs font-semibold text-white/90">{s.label}</div>
-                <div className="mt-1 text-[10px] uppercase tracking-widest text-white/40">
-                  {s.sub}
-                </div>
-                <div className="mt-3 h-0.5 rounded-full bg-gradient-to-r from-[color:var(--color-teal-glow)] to-transparent" />
+          <div className="hero-desktop-stats hidden md:grid md:grid-cols-3" aria-label="BactoAI model statistics">
+            {stats.map((s) => (
+              <div key={s.k} className="hero-stat">
+                <div className="font-stat text-3xl font-bold">{s.k}</div>
+                <div className="mt-2 text-sm font-medium">{s.label}</div>
+                <div className="hero-stat-note mt-1 text-xs">{s.sub}</div>
               </div>
             ))}
           </div>
         </div>
-
-        <a
-          href="#stakes"
-          aria-label="Scroll to next section"
-          className="absolute left-1/2 -translate-x-1/2 bottom-6 text-white/60 hover:text-white transition animate-chevron"
-        >
-          <ChevronDown size={26} />
+        <a href="#stakes" aria-label="Scroll to next section" className="hero-next absolute bottom-5 right-6">
+          <ChevronDown size={22} />
         </a>
       </section>
-      <div className="md:hidden bg-ink px-6 pb-12 space-y-8" aria-label="BactoAI model statistics">
+      <div className="hero-phone-stats md:hidden px-6 py-8" aria-label="BactoAI model statistics">
         {stats.map((s) => (
-          <div key={s.k} className="border-b border-border pb-6">
-            <div className="font-stat text-5xl font-bold text-primary-foreground">{s.k}</div>
-            <div className="mt-2 text-sm text-primary-foreground">{s.label}</div>
-            <div className="mt-1 text-xs text-muted-foreground">{s.sub}</div>
+          <div key={s.k} className="hero-stat py-5">
+            <div className="font-stat text-4xl font-bold">{s.k}</div>
+            <div className="mt-2 text-sm font-medium">{s.label}</div>
+            <div className="hero-stat-note mt-1 text-xs">{s.sub}</div>
           </div>
         ))}
       </div>
