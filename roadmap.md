@@ -19,7 +19,7 @@
 - [x] Auto-generated sitemap.xml from registered routes + robots.txt
 - [x] Playwright visual regression for /technology, /research, /about, /contact
 - [x] Remove Carolyne Mboya (resigned) from team
-- [ ] Refine homepage and page-opening layouts; defer heavy demo loading and verify phone/laptop views
+- [x] Refine homepage and page-opening layouts; defer heavy demo loading and verify phone/laptop views
 - [x] AI risk summary from genome + metadata
 - [x] Client-side validation in upload panel
 - [x] Prediction history page with filters + download
