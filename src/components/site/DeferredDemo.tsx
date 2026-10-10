@@ -7,10 +7,16 @@ const ProductDemo = lazy(() =>
 function DemoAnchor() {
   useEffect(() => {
     if (window.location.hash !== "#demo") return;
-    const frame = requestAnimationFrame(() => {
-      document.getElementById("demo")?.scrollIntoView({ behavior: "instant", block: "start" });
-    });
-    return () => cancelAnimationFrame(frame);
+    // Earlier content-visibility sections settle as the anchor crosses them.
+    // Correct that short-lived layout shift after the real demo replaces its placeholder.
+    const timers = [0, 150, 500].map((delay) =>
+      window.setTimeout(() => {
+        if (window.location.hash === "#demo") {
+          document.getElementById("demo")?.scrollIntoView({ behavior: "instant", block: "start" });
+        }
+      }, delay),
+    );
+    return () => timers.forEach((timer) => window.clearTimeout(timer));
   }, []);
   return null;
 }
