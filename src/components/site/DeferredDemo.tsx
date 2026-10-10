@@ -4,6 +4,23 @@ const ProductDemo = lazy(() =>
   import("./ProductDemo").then((module) => ({ default: module.ProductDemo })),
 );
 
+function DemoAnchor() {
+  useEffect(() => {
+    if (window.location.hash !== "#demo") return;
+    // Earlier content-visibility sections settle as the anchor crosses them.
+    // Correct that short-lived layout shift after the real demo replaces its placeholder.
+    const timers = [0, 150, 500].map((delay) =>
+      window.setTimeout(() => {
+        if (window.location.hash === "#demo") {
+          document.getElementById("demo")?.scrollIntoView({ behavior: "instant", block: "start" });
+        }
+      }, delay),
+    );
+    return () => timers.forEach((timer) => window.clearTimeout(timer));
+  }, []);
+  return null;
+}
+
 /** Keep the analyzer and its dependencies out of the first-screen request path. */
 export function DeferredDemo() {
   const ref = useRef<HTMLDivElement>(null);
@@ -43,7 +60,14 @@ export function DeferredDemo() {
 
   return (
     <div ref={ref} className="deferred-demo">
-      {ready ? <Suspense fallback={placeholder}><ProductDemo /></Suspense> : placeholder}
+      {ready ? (
+        <Suspense fallback={placeholder}>
+          <ProductDemo />
+          <DemoAnchor />
+        </Suspense>
+      ) : (
+        placeholder
+      )}
     </div>
   );
 }

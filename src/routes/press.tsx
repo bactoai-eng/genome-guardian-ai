@@ -77,7 +77,7 @@ function PressPage() {
   return (
     <div className="min-h-screen bg-background">
       <Nav />
-      <main className="pt-32 pb-24">
+      <main className="page-opening pt-32 pb-24">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-sm font-semibold text-primary uppercase tracking-widest">
             Press & media

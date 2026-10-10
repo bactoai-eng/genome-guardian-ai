@@ -33,7 +33,7 @@ function ContactPage() {
   return (
     <div className="min-h-screen bg-background">
       <Nav />
-      <main className="pt-32">
+      <main className="page-opening pt-32">
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-sm font-semibold text-primary uppercase tracking-widest">
             Contact
