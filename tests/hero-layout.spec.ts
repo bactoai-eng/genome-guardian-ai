@@ -8,7 +8,9 @@ for (const appearance of ["light", "dark"] as const) {
       await page.goto("/", { waitUntil: "networkidle" });
       await expect(page.locator("html")).toHaveClass(new RegExp(appearance));
       await expect(page.getByRole("heading", { level: 1 })).toContainText("BactoAI");
-      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
+        width,
+      );
       for (const name of ["See the Demo", "Request a Pilot"]) {
         const box = await page.locator(".hero-actions").getByRole("link", { name }).boundingBox();
         expect(box?.height).toBeGreaterThanOrEqual(48);
@@ -19,7 +21,9 @@ for (const appearance of ["light", "dark"] as const) {
   }
 }
 
-test("deferred demo loads and lands on its results section from either anchor entry", async ({ page }) => {
+test("deferred demo loads and lands on its results section from either anchor entry", async ({
+  page,
+}) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/", { waitUntil: "networkidle" });
   await expect(page.locator(".deferred-demo [aria-busy=true]")).toHaveCount(1);
