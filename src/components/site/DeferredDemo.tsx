@@ -43,7 +43,13 @@ export function DeferredDemo() {
 
   return (
     <div ref={ref} className="deferred-demo">
-      {ready ? <Suspense fallback={placeholder}><ProductDemo /></Suspense> : placeholder}
+      {ready ? (
+        <Suspense fallback={placeholder}>
+          <ProductDemo />
+        </Suspense>
+      ) : (
+        placeholder
+      )}
     </div>
   );
 }
