@@ -4,6 +4,17 @@ const ProductDemo = lazy(() =>
   import("./ProductDemo").then((module) => ({ default: module.ProductDemo })),
 );
 
+function DemoAnchor() {
+  useEffect(() => {
+    if (window.location.hash !== "#demo") return;
+    const frame = requestAnimationFrame(() => {
+      document.getElementById("demo")?.scrollIntoView({ behavior: "instant", block: "start" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
+  return null;
+}
+
 /** Keep the analyzer and its dependencies out of the first-screen request path. */
 export function DeferredDemo() {
   const ref = useRef<HTMLDivElement>(null);
@@ -46,6 +57,7 @@ export function DeferredDemo() {
       {ready ? (
         <Suspense fallback={placeholder}>
           <ProductDemo />
+          <DemoAnchor />
         </Suspense>
       ) : (
         placeholder
