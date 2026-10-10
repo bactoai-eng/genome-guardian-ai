@@ -200,7 +200,11 @@ function HelixCanvas() {
 const stats = [
   { k: "0.952", label: "ROC-AUC on Meropenem", sub: "Internal validation" },
   { k: "<10", label: "under 10 minutes from genome to result", sub: "vs. 48–72 hrs lab" },
-  { k: "3", label: "3 antibiotics currently modeled, with more planned", sub: "Meropenem · Ciprofloxacin · Cefotaxime" },
+  {
+    k: "3",
+    label: "3 antibiotics currently modeled, with more planned",
+    sub: "Meropenem · Ciprofloxacin · Cefotaxime",
+  },
 ];
 
 export function Hero() {
@@ -225,7 +229,10 @@ export function Hero() {
             </p>
             <div className="hero-actions grid grid-cols-2 gap-3 sm:flex">
               <Button asChild className="hero-demo min-h-12 px-4 sm:px-6">
-                <a href="#demo"><Play size={16} /> See the Demo <ArrowRight className="hidden sm:block" size={16} /></a>
+                <a href="#demo">
+                  <Play size={16} /> See the Demo{" "}
+                  <ArrowRight className="hidden sm:block" size={16} />
+                </a>
               </Button>
               <Button asChild variant="outline" className="hero-pilot min-h-12 px-4 sm:px-6">
                 <Link to="/contact">Request a Pilot</Link>
@@ -235,7 +242,10 @@ export function Hero() {
               Guided by researchers and mentors across Africa and the UK
             </p>
           </div>
-          <div className="hero-desktop-stats hidden md:grid md:grid-cols-3" aria-label="BactoAI model statistics">
+          <div
+            className="hero-desktop-stats hidden md:grid md:grid-cols-3"
+            aria-label="BactoAI model statistics"
+          >
             {stats.map((s) => (
               <div key={s.k} className="hero-stat">
                 <div className="font-stat text-3xl font-bold">{s.k}</div>
@@ -245,7 +255,11 @@ export function Hero() {
             ))}
           </div>
         </div>
-        <a href="#stakes" aria-label="Scroll to next section" className="hero-next absolute bottom-5 right-6">
+        <a
+          href="#stakes"
+          aria-label="Scroll to next section"
+          className="hero-next absolute bottom-5 right-6"
+        >
           <ChevronDown size={22} />
         </a>
       </section>
