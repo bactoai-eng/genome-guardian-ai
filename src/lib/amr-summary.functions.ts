@@ -1,3 +1,5 @@
+import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "@/integrations/supabase/types";
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { z } from "zod";
@@ -223,11 +225,14 @@ export const generateAmrSummary = createServerFn({ method: "POST" })
       return { ok: false, message: "The prediction engine returned an unexpected format." };
 
     let id = "";
-    if (context && (context as any).supabase && (context as any).userId) {
-      const { data: row, error } = await (context as any).supabase
+    const ctx = context as
+      | { supabase?: SupabaseClient<Database>; userId?: string }
+      | undefined;
+    if (ctx?.supabase && ctx.userId) {
+      const { data: row, error } = await ctx.supabase
         .from("genome_analyses")
         .insert({
-          user_id: (context as any).userId,
+          user_id: ctx.userId,
           isolate_label: meta.isolateLabel,
           organism: meta.organism,
           specimen_source: meta.specimenSource,

@@ -198,10 +198,11 @@ function HelixCanvas() {
 }
 
 const stats = [
-  { k: "0.952", label: "ROC-AUC on Meropenem", sub: "Internal validation" },
-  { k: "<10", label: "under 10 minutes from genome to result", sub: "vs. 48–72 hrs lab" },
+  { k: "0.952", srK: "0.952", label: "ROC-AUC on Meropenem", sub: "Internal validation" },
+  { k: "<10", srK: "Under 10 minutes", label: "under 10 minutes from genome to result", sub: "vs. 48–72 hrs lab" },
   {
     k: "3",
+    srK: "3",
     label: "3 antibiotics currently modeled, with more planned",
     sub: "Meropenem · Ciprofloxacin · Cefotaxime",
   },
@@ -210,17 +211,18 @@ const stats = [
 export function Hero() {
   return (
     <>
-      <section className="bacto-hero relative overflow-hidden">
+      <section className="bacto-hero relative overflow-hidden" aria-labelledby="hero-heading">
         <HelixCanvas />
-        <div className="hero-shade absolute inset-0 pointer-events-none" />
+        <div className="hero-shade absolute inset-0 pointer-events-none" aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl w-full px-6">
           <div className="hero-copy">
             <div className="hero-eyebrow hidden md:flex items-center gap-2 text-xs font-semibold">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary-glow" />
+              <span className="h-1.5 w-1.5 rounded-full bg-primary-glow" aria-hidden="true" />
               AI · Genomics · Precision Medicine
             </div>
-            <h1 className="hero-title font-display font-bold">
+            <h1 id="hero-heading" className="hero-title font-display font-bold">
               <span className="hero-brand block">BactoAI</span>
+              <span className="sr-only">: </span>
               Antibiotic resistance decisions in minutes, not days.
             </h1>
             <p className="hero-description hidden md:block">
@@ -228,13 +230,13 @@ export function Hero() {
               genomes — before lab results come back.
             </p>
             <div className="hero-actions grid grid-cols-2 gap-3 sm:flex">
-              <Button asChild className="hero-demo min-h-12 px-4 sm:px-6">
+              <Button asChild className="hero-demo min-h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background px-4 sm:px-6">
                 <a href="#demo">
-                  <Play size={16} /> See the Demo{" "}
-                  <ArrowRight className="hidden sm:block" size={16} />
+                  <Play size={16} aria-hidden="true" /> See the Demo{" "}
+                  <ArrowRight className="hidden sm:block" size={16} aria-hidden="true" />
                 </a>
               </Button>
-              <Button asChild variant="outline" className="hero-pilot min-h-12 px-4 sm:px-6">
+              <Button asChild variant="outline" className="hero-pilot min-h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background px-4 sm:px-6">
                 <Link to="/contact">Request a Pilot</Link>
               </Button>
             </div>
@@ -242,36 +244,48 @@ export function Hero() {
               Guided by researchers and mentors across Africa and the UK
             </p>
           </div>
-          <div
+          <h2 id="hero-stats-desktop" className="sr-only">
+            BactoAI model statistics
+          </h2>
+          <ul
             className="hero-desktop-stats hidden md:grid md:grid-cols-3"
-            aria-label="BactoAI model statistics"
+            aria-labelledby="hero-stats-desktop"
           >
             {stats.map((s) => (
-              <div key={s.k} className="hero-stat">
-                <div className="font-stat text-3xl font-bold">{s.k}</div>
+              <li key={s.k} className="hero-stat">
+                <div className="font-stat text-3xl font-bold"><span aria-hidden="true">{s.k}</span>
+                  <span className="sr-only">{s.srK}</span>
+                </div>
                 <div className="mt-2 text-sm font-medium">{s.label}</div>
                 <div className="hero-stat-note mt-1 text-xs">{s.sub}</div>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
         <a
           href="#stakes"
-          aria-label="Scroll to next section"
-          className="hero-next absolute bottom-5 right-6"
+          aria-label="Skip to next section"
+          className="hero-next rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background absolute bottom-5 right-6"
         >
-          <ChevronDown size={22} />
+          <ChevronDown size={22} aria-hidden="true" />
         </a>
       </section>
-      <div className="hero-phone-stats md:hidden px-6 py-8" aria-label="BactoAI model statistics">
+      <section className="hero-phone-stats md:hidden px-6 py-8" aria-labelledby="hero-stats-phone">
+        <h2 id="hero-stats-phone" className="sr-only">
+          BactoAI model statistics
+        </h2>
+        <ul>
         {stats.map((s) => (
-          <div key={s.k} className="hero-stat py-5">
-            <div className="font-stat text-4xl font-bold">{s.k}</div>
+          <li key={s.k} className="hero-stat py-5">
+            <div className="font-stat text-4xl font-bold"><span aria-hidden="true">{s.k}</span>
+                  <span className="sr-only">{s.srK}</span>
+                </div>
             <div className="mt-2 text-sm font-medium">{s.label}</div>
             <div className="hero-stat-note mt-1 text-xs">{s.sub}</div>
-          </div>
+          </li>
         ))}
-      </div>
+        </ul>
+      </section>
     </>
   );
 }
