@@ -99,6 +99,7 @@
     "vite": "^8.0.16"
   },
   "overrides": {
-    "@modelcontextprotocol/sdk": "^1.32.1"
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "esbuild": "^0.27.0"
   }
 }
