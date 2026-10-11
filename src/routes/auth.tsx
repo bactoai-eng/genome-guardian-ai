@@ -28,7 +28,14 @@ const ADMIN_HOME = "/admin/submissions";
 
 // Only same-origin relative paths are safe redirect targets.
 function safeNext(next?: string) {
-  return next && next.startsWith("/") && !next.startsWith("//") ? next : null;
+  if (!next || !next.startsWith("/") || /^\/[/\\]/.test(next) || /[\\\s]/.test(next)) return null;
+  try {
+    const base = "https://bactoai.local";
+    const u = new URL(next, base);
+    return u.origin === base ? u.pathname + u.search + u.hash : null;
+  } catch {
+    return null;
+  }
 }
 
 // UX routing only — admin pages still enforce the role server-side.

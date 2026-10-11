@@ -35,7 +35,11 @@ function download(name: string, content: string, type: string) {
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
-const csvCell = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+const csvCell = (v: unknown) => {
+  let s = String(v ?? "");
+  if (/^[=+\-@\t\r]/.test(s)) s = `'${s}`;
+  return `"${s.replace(/"/g, '""')}"`;
+};
 
 function HistoryPage() {
   const qc = useQueryClient();

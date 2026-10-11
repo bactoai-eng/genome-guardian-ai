@@ -78,7 +78,8 @@ function buildWeeks(rows: ContactSubmissionRow[], weeks = 8): WeekBucket[] {
 }
 
 function csvCell(value: string | null) {
-  const v = value ?? "";
+  let v = value ?? "";
+  if (/^[=+\-@\t\r]/.test(v)) v = `'${v}`;
   return /[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v;
 }
 

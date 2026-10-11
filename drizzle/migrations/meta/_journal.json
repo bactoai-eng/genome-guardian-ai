@@ -15,6 +15,13 @@
       "when": 1791585831276,
       "tag": "0001_allow_public_contact_submissions",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791710409105,
+      "tag": "0002_tighten_contact_submissions_insert",
+      "breakpoints": true
     }
   ]
 }
