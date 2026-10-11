@@ -29,11 +29,10 @@ type Errors = Partial<
 const inputCls =
   "w-full rounded-lg border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40";
 
-// Sign-in gate is disabled while the analyzer accepts anonymous samples.
-const showSignInGate: boolean = false;
-
 export function LiveAnalyzer() {
   const [authed, setAuthed] = useState<boolean | null>(null);
+  // Uploading your own genome requires a signed-in account; sample isolates stay open to all.
+  const showSignInGate = authed === false;
   const [file, setFile] = useState<File | null>(null);
   const [stats, setStats] = useState<SequenceStats | null>(null);
   const [parsing, setParsing] = useState(false);
