@@ -199,7 +199,12 @@ function HelixCanvas() {
 
 const stats = [
   { k: "0.952", srK: "0.952", label: "ROC-AUC on Meropenem", sub: "Internal validation" },
-  { k: "<10", srK: "Under 10 minutes", label: "under 10 minutes from genome to result", sub: "vs. 48–72 hrs lab" },
+  {
+    k: "<10",
+    srK: "Under 10 minutes",
+    label: "under 10 minutes from genome to result",
+    sub: "vs. 48–72 hrs lab",
+  },
   {
     k: "3",
     srK: "3",
@@ -230,13 +235,20 @@ export function Hero() {
               genomes — before lab results come back.
             </p>
             <div className="hero-actions grid grid-cols-2 gap-3 sm:flex">
-              <Button asChild className="hero-demo min-h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background px-4 sm:px-6">
+              <Button
+                asChild
+                className="hero-demo min-h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background px-4 sm:px-6"
+              >
                 <a href="#demo">
                   <Play size={16} aria-hidden="true" /> See the Demo{" "}
                   <ArrowRight className="hidden sm:block" size={16} aria-hidden="true" />
                 </a>
               </Button>
-              <Button asChild variant="outline" className="hero-pilot min-h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background px-4 sm:px-6">
+              <Button
+                asChild
+                variant="outline"
+                className="hero-pilot min-h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background px-4 sm:px-6"
+              >
                 <Link to="/contact">Request a Pilot</Link>
               </Button>
             </div>
@@ -253,7 +265,8 @@ export function Hero() {
           >
             {stats.map((s) => (
               <li key={s.k} className="hero-stat">
-                <div className="font-stat text-3xl font-bold"><span aria-hidden="true">{s.k}</span>
+                <div className="font-stat text-3xl font-bold">
+                  <span aria-hidden="true">{s.k}</span>
                   <span className="sr-only">{s.srK}</span>
                 </div>
                 <div className="mt-2 text-sm font-medium">{s.label}</div>
@@ -275,15 +288,16 @@ export function Hero() {
           BactoAI model statistics
         </h2>
         <ul>
-        {stats.map((s) => (
-          <li key={s.k} className="hero-stat py-5">
-            <div className="font-stat text-4xl font-bold"><span aria-hidden="true">{s.k}</span>
-                  <span className="sr-only">{s.srK}</span>
-                </div>
-            <div className="mt-2 text-sm font-medium">{s.label}</div>
-            <div className="hero-stat-note mt-1 text-xs">{s.sub}</div>
-          </li>
-        ))}
+          {stats.map((s) => (
+            <li key={s.k} className="hero-stat py-5">
+              <div className="font-stat text-4xl font-bold">
+                <span aria-hidden="true">{s.k}</span>
+                <span className="sr-only">{s.srK}</span>
+              </div>
+              <div className="mt-2 text-sm font-medium">{s.label}</div>
+              <div className="hero-stat-note mt-1 text-xs">{s.sub}</div>
+            </li>
+          ))}
         </ul>
       </section>
     </>

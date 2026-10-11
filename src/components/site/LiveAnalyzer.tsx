@@ -29,6 +29,9 @@ type Errors = Partial<
 const inputCls =
   "w-full rounded-lg border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40";
 
+// Sign-in gate is disabled while the analyzer accepts anonymous samples.
+const showSignInGate: boolean = false;
+
 export function LiveAnalyzer() {
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [file, setFile] = useState<File | null>(null);
