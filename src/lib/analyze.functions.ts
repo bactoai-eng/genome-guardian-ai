@@ -48,6 +48,7 @@ function fail(code: AnalysisFailure["code"], message: string): AnalysisFailure {
 }
 
 export const analyzeGenome = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
   .inputValidator((data: unknown) => {
     if (!(data instanceof FormData)) throw new Error("Expected multipart form data");
     return data;
