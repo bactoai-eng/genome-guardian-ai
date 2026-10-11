@@ -3,6 +3,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { posts } from "@/content/posts";
+import agarImage from "@/assets/blog-agar.webp";
+import genomeImage from "@/assets/blog-genome.webp";
+import surveillanceImage from "@/assets/blog-surveillance.webp";
+import limsImage from "@/assets/blog-lims.webp";
+import microscopeImage from "@/assets/blog-microscope.webp";
+import networkImage from "@/assets/blog-network.webp";
 
 export const Route = createFileRoute("/blog")({
   head: () => ({
@@ -29,6 +35,33 @@ export const Route = createFileRoute("/blog")({
 
 const categories = ["All", "Research", "Clinical", "Public Health", "Product"] as const;
 type Category = (typeof categories)[number];
+
+const postImages: Record<string, { src: string; alt: string }> = {
+  "why-genomic-amr-prediction": {
+    src: agarImage,
+    alt: "A gloved hand holds an agar plate with bacterial colonies on a laboratory bench.",
+  },
+  "validating-meropenem-model": {
+    src: genomeImage,
+    alt: "Genome sequence strips and a scatter plot on a monitor beside a sequencing instrument.",
+  },
+  "amr-in-lmic-hospitals": {
+    src: surveillanceImage,
+    alt: "Sealed clinical sample tubes and a microscope in an anonymous hospital laboratory.",
+  },
+  "bactoai-api-launch": {
+    src: limsImage,
+    alt: "A laptop displaying genomic data panels beside a scanner and laboratory sample tubes.",
+  },
+  "confidence-scores-clinical": {
+    src: microscopeImage,
+    alt: "Anonymous gloved hands adjust a microscope beside laboratory glassware.",
+  },
+  "who-priority-pathogens": {
+    src: networkImage,
+    alt: "An illustrated world map centred on Africa with connected pathogen surveillance points.",
+  },
+};
 
 function BlogPage() {
   const [active, setActive] = useState<Category>("All");
@@ -71,9 +104,17 @@ function BlogPage() {
                 key={p.slug}
                 className="group rounded-2xl border border-border bg-card overflow-hidden hover:border-primary/40 transition"
               >
-                <div className={`h-40 bg-gradient-to-br ${p.gradient} relative`}>
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.35),transparent_60%)]" />
-                  <div className="absolute bottom-3 left-3 rounded-full bg-white/90 text-primary text-[11px] font-semibold px-3 py-1">
+                <div className="relative aspect-video overflow-hidden rounded-t-[inherit]">
+                  <img
+                    src={postImages[p.slug]?.src}
+                    alt={postImages[p.slug]?.alt}
+                    width={1280}
+                    height={720}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover transition-transform duration-300 motion-safe:group-hover:scale-105"
+                  />
+                  <div className="absolute bottom-3 left-3 rounded-full bg-card/95 text-primary text-[11px] font-semibold px-3 py-1">
                     {p.category}
                   </div>
                 </div>
