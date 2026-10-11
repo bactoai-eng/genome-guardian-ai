@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ExternalLink, Mail, Image as ImageIcon, Download } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { ScrollProgressBar } from "@/components/site/ScrollProgressBar";
 import { useAutoReveal } from "@/hooks/use-auto-reveal";
 import { Reveal } from "@/components/site/Reveal";
 import { Media } from "@/components/site/Media";
@@ -77,9 +76,8 @@ function PressPage() {
   useAutoReveal();
   return (
     <div className="min-h-screen bg-background">
-      <ScrollProgressBar />
       <Nav />
-      <main className="pt-32 pb-24">
+      <main className="page-opening pt-32 pb-24">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-sm font-semibold text-primary uppercase tracking-widest">
             Press & media

@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Improve light/dark contrast and keyboard focus; verify device appearance through reloads and navigation
+
 - [x] Update newsletter, public email, advisor name and data-protection block
 - [ ] Send all form-owner notifications to info@bactoai.co.ke (blocked: email domain setup and verification)
 
@@ -17,7 +19,7 @@
 - [x] Auto-generated sitemap.xml from registered routes + robots.txt
 - [x] Playwright visual regression for /technology, /research, /about, /contact
 - [x] Remove Carolyne Mboya (resigned) from team
-- [ ] Improve the landing page (waiting on direction)
+- [x] Refine homepage and page-opening layouts; defer heavy demo loading and verify phone/laptop views
 - [x] AI risk summary from genome + metadata
 - [x] Client-side validation in upload panel
 - [x] Prediction history page with filters + download

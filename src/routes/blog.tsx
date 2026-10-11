@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
@@ -27,8 +28,11 @@ export const Route = createFileRoute("/blog")({
 });
 
 const categories = ["All", "Research", "Clinical", "Public Health", "Product"] as const;
+type Category = (typeof categories)[number];
 
 function BlogPage() {
+  const [active, setActive] = useState<Category>("All");
+  const shown = active === "All" ? posts : posts.filter((p) => p.category === active);
   return (
     <div className="min-h-screen bg-background">
       <Nav />
@@ -43,23 +47,26 @@ function BlogPage() {
             partners.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-2">
+          <div className="mt-8 flex flex-wrap gap-2" role="group" aria-label="Filter articles">
             {categories.map((c) => (
-              <span
+              <button
                 key={c}
-                className={`rounded-full border px-4 py-1.5 text-xs font-semibold ${
-                  c === "All"
+                type="button"
+                aria-pressed={c === active}
+                onClick={() => setActive(c)}
+                className={`rounded-full border px-4 py-1.5 text-xs font-semibold transition ${
+                  c === active
                     ? "bg-primary text-primary-foreground border-primary"
-                    : "border-border text-foreground/70"
+                    : "border-border text-foreground/70 hover:border-primary/50"
                 }`}
               >
                 {c}
-              </span>
+              </button>
             ))}
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((p) => (
+            {shown.map((p) => (
               <article
                 key={p.slug}
                 className="group rounded-2xl border border-border bg-card overflow-hidden hover:border-primary/40 transition"
@@ -82,6 +89,11 @@ function BlogPage() {
               </article>
             ))}
           </div>
+          {shown.length === 0 && (
+            <p className="mt-6 text-center text-sm text-muted-foreground">
+              No {active} articles yet — check back soon.
+            </p>
+          )}
 
           <p className="mt-12 text-center text-sm text-muted-foreground">
             More articles are on the way. Subscribe below to get them in your inbox.

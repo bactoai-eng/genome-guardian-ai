@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import logoAsset from "@/assets/bactoai-logo-wordmark.png.asset.json";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "./ThemeToggle";
 
 type NavLink = { href: string; label: string; route?: boolean };
 
@@ -47,7 +46,7 @@ export function Nav() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "glass shadow-soft" : "bg-transparent"
+          scrolled ? "glass shadow-soft" : "bg-background"
         }`}
       >
         <div className="mx-auto grid grid-cols-[minmax(0,1fr)_auto] lg:flex max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 py-3">
@@ -94,7 +93,6 @@ export function Nav() {
             </div>
           </nav>
           <div className="hidden lg:flex items-center gap-3">
-            <ThemeToggle />
             <Link
               to="/contact"
               className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft hover:shadow-elegant transition-shadow"
@@ -103,7 +101,6 @@ export function Nav() {
             </Link>
           </div>
           <div className="lg:hidden flex items-center gap-2">
-            <ThemeToggle />
             <button
               className="text-foreground p-2"
               onClick={() => setOpen((v) => !v)}

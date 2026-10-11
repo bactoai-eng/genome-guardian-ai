@@ -439,7 +439,24 @@ export function ProductDemo() {
                               })}
                             </div>
 
-                            <button className="mt-5 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-primary py-3 text-sm font-semibold text-primary-foreground hover:opacity-95 transition">
+                            <button
+                              type="button"
+                              onClick={() =>
+                                import("@/lib/demo-report-pdf")
+                                  .then((m) =>
+                                    m.downloadDemoReport({
+                                      isolate: sample.isolate,
+                                      organism: sample.organism,
+                                      format: sample.format,
+                                      results: sample.results,
+                                    }),
+                                  )
+                                  .catch(() =>
+                                    toast.error("Could not create the PDF. Please try again."),
+                                  )
+                              }
+                              className="mt-5 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-primary py-3 text-sm font-semibold text-primary-foreground hover:opacity-95 transition"
+                            >
                               <FileDown size={16} /> Download Clinical PDF
                             </button>
                             <p className="mt-3 text-center text-xs text-muted-foreground">

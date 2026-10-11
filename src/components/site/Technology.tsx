@@ -30,10 +30,8 @@ export function Technology() {
           <div className="grid gap-4 md:grid-cols-5">
             {flow.map((f, i) => (
               <div key={f} className="relative">
-                <div className="rounded-2xl bg-gradient-hero text-white p-5 h-full text-center shadow-soft">
-                  <div className="text-[10px] uppercase tracking-widest opacity-80">
-                    Stage {i + 1}
-                  </div>
+                <div className="rounded-2xl bg-gradient-hero text-primary-foreground p-5 h-full text-center shadow-soft">
+                  <div className="text-[10px] uppercase tracking-widest">Stage {i + 1}</div>
                   <div className="mt-2 font-semibold text-sm md:text-base">{f}</div>
                 </div>
                 {i < flow.length - 1 && (

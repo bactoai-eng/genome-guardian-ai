@@ -6,10 +6,9 @@ import { Stakes } from "@/components/site/Stakes";
 import { TrustBar } from "@/components/site/TrustBar";
 import { Problem } from "@/components/site/Problem";
 import { Solution } from "@/components/site/Solution";
-import { ProductDemo } from "@/components/site/ProductDemo";
+import { DeferredDemo } from "@/components/site/DeferredDemo";
 import { Validation } from "@/components/site/Validation";
 import { PreFooterCTA } from "@/components/site/PreFooterCTA";
-import { ScrollProgressBar } from "@/components/site/ScrollProgressBar";
 import { useAutoReveal } from "@/hooks/use-auto-reveal";
 
 export const Route = createFileRoute("/")({
@@ -40,7 +39,6 @@ function Index() {
   useAutoReveal();
   return (
     <div className="min-h-screen bg-background">
-      <ScrollProgressBar />
       <Nav />
       <main>
         <Hero />
@@ -48,7 +46,7 @@ function Index() {
         <TrustBar />
         <Problem />
         <Solution />
-        <ProductDemo />
+        <DeferredDemo />
         <Validation />
         <PreFooterCTA />
       </main>
