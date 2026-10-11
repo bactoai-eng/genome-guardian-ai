@@ -28,7 +28,7 @@ const ADMIN_HOME = "/admin/submissions";
 
 // Only same-origin relative paths are safe redirect targets.
 function safeNext(next?: string) {
-  if (!next || !next.startsWith("/") || /^\/[\/\\]/.test(next) || /[\\\s]/.test(next)) return null;
+  if (!next || !next.startsWith("/") || /^\/[/\\]/.test(next) || /[\\\s]/.test(next)) return null;
   try {
     const base = "https://bactoai.local";
     const u = new URL(next, base);
