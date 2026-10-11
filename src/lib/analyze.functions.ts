@@ -163,8 +163,7 @@ export const analyzeGenome = createServerFn({ method: "POST" })
         if (typeof p.probability !== "number" || !Number.isFinite(p.probability)) continue;
       }
       const resistant =
-        label === "resistant" ||
-        (label !== "susceptible" && (p.probability as number) >= 0.5);
+        label === "resistant" || (label !== "susceptible" && (p.probability as number) >= 0.5);
 
       let confidence: number | null = null;
       if (typeof p.probability === "number" && Number.isFinite(p.probability)) {

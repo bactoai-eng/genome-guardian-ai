@@ -29,6 +29,9 @@ type Errors = Partial<
 const inputCls =
   "w-full rounded-lg border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40";
 
+// Sign-in gate is disabled while the analyzer accepts anonymous samples.
+const showSignInGate: boolean = false;
+
 export function LiveAnalyzer() {
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [file, setFile] = useState<File | null>(null);
@@ -171,7 +174,7 @@ export function LiveAnalyzer() {
         </div>
 
         <div className="p-4 sm:p-6 space-y-5 min-h-[400px] md:min-h-[520px]">
-          {false ? (
+          {showSignInGate ? (
             <div className="rounded-2xl border border-dashed border-primary/30 bg-primary/5 p-4 sm:p-8 text-center">
               <Lock size={22} className="mx-auto text-primary" />
               <div className="mt-3 text-sm font-semibold text-foreground">

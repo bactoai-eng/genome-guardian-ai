@@ -1,3 +1,5 @@
+import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "@/integrations/supabase/types";
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { z } from "zod";
@@ -46,8 +48,7 @@ export type AmrSummary = {
 };
 
 export type AmrSummaryResult =
-  | { ok: true; id: string; summary: AmrSummary }
-  | { ok: false; message: string };
+  { ok: true; id: string; summary: AmrSummary } | { ok: false; message: string };
 
 type BackendResult = {
   antibiotic?: unknown;
@@ -125,7 +126,9 @@ function buildSummary(results: BackendResult[], stats: z.infer<typeof Meta>["sta
     recommendations.push(`Avoid ${names(resistant)} until susceptibility is confirmed.`);
   if (uncertain.length)
     recommendations.push(`Repeat or confirm the low-confidence results for ${names(uncertain)}.`);
-  recommendations.push("Confirm every result with phenotypic antimicrobial susceptibility testing.");
+  recommendations.push(
+    "Confirm every result with phenotypic antimicrobial susceptibility testing.",
+  );
   recommendations.push("Follow your facility's antimicrobial stewardship guidance.");
 
   return {
@@ -205,7 +208,8 @@ export const generateAmrSummary = createServerFn({ method: "POST" })
       }
       return {
         ok: false,
-        message: "The prediction engine hit an error while analyzing this genome. Please try again.",
+        message:
+          "The prediction engine hit an error while analyzing this genome. Please try again.",
       };
     }
 
@@ -223,11 +227,12 @@ export const generateAmrSummary = createServerFn({ method: "POST" })
       return { ok: false, message: "The prediction engine returned an unexpected format." };
 
     let id = "";
-    if (context && (context as any).supabase && (context as any).userId) {
-      const { data: row, error } = await (context as any).supabase
+    const ctx = context as { supabase?: SupabaseClient<Database>; userId?: string } | undefined;
+    if (ctx?.supabase && ctx.userId) {
+      const { data: row, error } = await ctx.supabase
         .from("genome_analyses")
         .insert({
-          user_id: (context as any).userId,
+          user_id: ctx.userId,
           isolate_label: meta.isolateLabel,
           organism: meta.organism,
           specimen_source: meta.specimenSource,

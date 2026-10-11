@@ -104,7 +104,8 @@ export function AmrSummaryView({ summary }: { summary: AmrSummary }) {
           ))}
         </ul>
         <p className="mt-2">
-          Predicted by the BactoAI model ensemble. Research use only. Confirm with phenotypic susceptibility testing.
+          Predicted by the BactoAI model ensemble. Research use only. Confirm with phenotypic
+          susceptibility testing.
         </p>
       </div>
     </div>
