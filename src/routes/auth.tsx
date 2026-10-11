@@ -30,8 +30,9 @@ const ADMIN_HOME = "/admin/submissions";
 function safeNext(next?: string) {
   if (!next || !next.startsWith("/") || /^\/[\/\\]/.test(next) || /[\\\s]/.test(next)) return null;
   try {
-    const u = new URL(next, window.location.origin);
-    return u.origin === window.location.origin ? u.pathname + u.search + u.hash : null;
+    const base = "https://bactoai.local";
+    const u = new URL(next, base);
+    return u.origin === base ? u.pathname + u.search + u.hash : null;
   } catch {
     return null;
   }
