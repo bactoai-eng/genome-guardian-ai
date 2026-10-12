@@ -74,25 +74,44 @@ function HelixCanvas() {
         return { a, b, progress, depth: Math.max(a.z, b.z) };
       }).sort((a, b) => a.depth - b.depth);
 
-      for (const { a, b, depth } of rungs) {
-        const alpha = 0.1 + ((depth + 1) / 2) * 0.28;
-        if (isMobile) {
-          ctx.strokeStyle = `rgba(111, 217, 190, ${alpha * 0.82})`;
+      // Appearance-aware palette: deeper, glow-free tones in light; restrained glow in dark.
+      const light = document.documentElement.classList.contains("light");
+      const cA = light ? "11, 116, 84" : "23, 185, 143";
+      const cB = light ? "10, 108, 137" : "72, 190, 230";
+      const cMid = light ? "60, 150, 125" : "194, 244, 229";
+      const cRes = light ? "176, 59, 42" : "232, 119, 106";
+      const glow = light ? 0 : 0.55;
+      const alphaBoost = light ? 1.25 : 0.9;
+      // Story: a scanner sweeps the genome and flags a resistance-gene region.
+      const scan = reduced ? 0.62 : (time * 0.32) % 1;
+      const geneStart = 0.56;
+      const geneEnd = 0.68;
+      const inGene = (p: number) => p >= geneStart && p <= geneEnd;
+      const scanHit = (p: number) => Math.max(0, 1 - Math.abs(p - scan) / 0.07);
+
+      for (const { a, b, depth, progress } of rungs) {
+        const hit = scanHit(progress);
+        const gene = inGene(progress);
+        const alpha = Math.min(1, (0.1 + ((depth + 1) / 2) * 0.28 + hit * 0.35) * alphaBoost);
+        if (gene) {
+          ctx.strokeStyle = `rgba(${cRes}, ${Math.min(1, alpha * 1.4)})`;
+        } else if (isMobile || light) {
+          ctx.strokeStyle = `rgba(${cMid}, ${alpha * 0.85})`;
         } else {
           const bridge = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
-          bridge.addColorStop(0, `rgba(23, 185, 143, ${alpha})`);
-          bridge.addColorStop(0.5, `rgba(194, 244, 229, ${alpha * 0.72})`);
-          bridge.addColorStop(1, `rgba(56, 189, 248, ${alpha * 0.8})`);
+          bridge.addColorStop(0, `rgba(${cA}, ${alpha})`);
+          bridge.addColorStop(0.5, `rgba(${cMid}, ${alpha * 0.72})`);
+          bridge.addColorStop(1, `rgba(${cB}, ${alpha * 0.8})`);
           ctx.strokeStyle = bridge;
         }
-        ctx.lineWidth = 0.7 + ((depth + 1) / 2) * 1.15;
+        ctx.lineWidth = 0.7 + ((depth + 1) / 2) * 1.15 + (gene ? 0.6 : 0);
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(b.x, b.y);
         ctx.stroke();
       }
 
-      // Draw each backbone in short depth-aware sections so the front edge glows.
+      // Draw each backbone in short depth-aware sections so the front edge reads as 3D.
       const segments = isMobile ? 54 : 96;
       const strandSections: Array<{ a: HelixPoint; b: HelixPoint; strand: number }> = [];
       for (let strand = 0; strand < 2; strand++) {
@@ -108,17 +127,14 @@ function HelixCanvas() {
 
       for (const section of strandSections) {
         const depth = (section.a.z + section.b.z) * 0.25 + 0.5;
-        const alpha = 0.16 + depth * 0.7;
+        const alpha = Math.min(1, (0.16 + depth * 0.66) * alphaBoost);
+        const color = section.strand === 0 ? cA : cB;
         ctx.save();
-        ctx.strokeStyle =
-          section.strand === 0
-            ? `rgba(23, 185, 143, ${alpha})`
-            : `rgba(105, 210, 236, ${alpha * 0.86})`;
-        ctx.lineWidth = 1.2 + depth * 3.4;
+        ctx.strokeStyle = `rgba(${color}, ${section.strand === 0 ? alpha : alpha * 0.88})`;
+        ctx.lineWidth = 1.2 + depth * 3.2;
         ctx.lineCap = "round";
-        ctx.shadowBlur = depth > 0.68 ? (isMobile ? 7 : 13) * depth : 0;
-        ctx.shadowColor =
-          section.strand === 0 ? "rgba(23, 185, 143, 0.72)" : "rgba(56, 189, 248, 0.58)";
+        ctx.shadowBlur = glow && depth > 0.72 ? (isMobile ? 5 : 9) * depth * glow : 0;
+        ctx.shadowColor = `rgba(${color}, 0.6)`;
         ctx.beginPath();
         ctx.moveTo(section.a.x, section.a.y);
         ctx.lineTo(section.b.x, section.b.y);
@@ -126,38 +142,41 @@ function HelixCanvas() {
         ctx.restore();
       }
 
-      // Molecular nodes catch light as they rotate toward the viewer.
-      for (const { a, b } of rungs) {
-        for (const [node, color] of [
-          [a, "23, 185, 143"],
-          [b, "56, 189, 248"],
+      // Molecular nodes; flagged resistance-gene nodes take the resistant colour.
+      for (const { a, b, progress } of rungs) {
+        const gene = inGene(progress);
+        const hit = scanHit(progress);
+        for (const [node, base] of [
+          [a, cA],
+          [b, cB],
         ] as const) {
+          const color = gene ? cRes : base;
           const depth = (node.z + 1) / 2;
-          const nodeRadius = 1.5 + depth * 3.4;
+          const nodeRadius = 1.5 + depth * 3.2 + hit * 1.2;
           ctx.save();
-          ctx.shadowBlur = isMobile ? 3 + depth * 7 : 6 + depth * 13;
-          ctx.shadowColor = `rgba(${color}, ${0.35 + depth * 0.5})`;
-          if (isMobile) {
-            ctx.fillStyle = `rgba(${color}, ${0.55 + depth * 0.4})`;
-          } else {
-            const orb = ctx.createRadialGradient(
-              node.x - nodeRadius * 0.28,
-              node.y - nodeRadius * 0.28,
-              0,
-              node.x,
-              node.y,
-              nodeRadius,
-            );
-            orb.addColorStop(0, `rgba(245, 247, 246, ${0.7 + depth * 0.3})`);
-            orb.addColorStop(0.35, `rgba(${color}, ${0.52 + depth * 0.45})`);
-            orb.addColorStop(1, `rgba(${color}, ${0.08 + depth * 0.22})`);
-            ctx.fillStyle = orb;
-          }
+          ctx.shadowBlur = glow ? (isMobile ? 2 + depth * 5 : 4 + depth * 9) * glow : 0;
+          ctx.shadowColor = `rgba(${color}, ${0.3 + depth * 0.4})`;
+          ctx.fillStyle = `rgba(${color}, ${Math.min(1, (0.5 + depth * 0.45) * (light ? 1.1 : 1))})`;
           ctx.beginPath();
           ctx.arc(node.x, node.y, nodeRadius, 0, Math.PI * 2);
           ctx.fill();
           ctx.restore();
         }
+      }
+
+      // Scanner line sweeping down the genome.
+      if (!reduced) {
+        const sy = top + scan * helixHeight;
+        const sg = ctx.createLinearGradient(cx - radius * 1.6, 0, cx + radius * 1.6, 0);
+        sg.addColorStop(0, `rgba(${cMid}, 0)`);
+        sg.addColorStop(0.5, `rgba(${inGene(scan) ? cRes : cMid}, ${light ? 0.55 : 0.45})`);
+        sg.addColorStop(1, `rgba(${cMid}, 0)`);
+        ctx.strokeStyle = sg;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(cx - radius * 1.6, sy);
+        ctx.lineTo(cx + radius * 1.6, sy);
+        ctx.stroke();
       }
 
       if (!reduced) raf = requestAnimationFrame(draw);
