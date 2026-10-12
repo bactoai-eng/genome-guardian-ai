@@ -103,14 +103,6 @@ export function Team() {
           </p>
         </div>
 
-        <div
-          className="mt-14 rounded-3xl border border-dashed border-border/70 bg-card/30 h-64 md:h-80 flex items-center justify-center"
-          aria-hidden="true"
-        >
-          <span className="text-xs uppercase tracking-widest text-muted-foreground">
-            Team photo coming soon
-          </span>
-        </div>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((m) => (
