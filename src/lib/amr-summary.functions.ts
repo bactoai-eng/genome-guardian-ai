@@ -1,5 +1,3 @@
-import type { SupabaseClient } from "@supabase/supabase-js";
-import type { Database } from "@/integrations/supabase/types";
 import { createServerFn } from "@tanstack/react-start";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { z } from "zod";
@@ -228,7 +226,7 @@ export const generateAmrSummary = createServerFn({ method: "POST" })
       return { ok: false, message: "The prediction engine returned an unexpected format." };
 
     let id = "";
-    const ctx = context as { supabase: SupabaseClient<Database>; userId: string };
+    const ctx = context;
     {
       const { data: row, error } = await ctx.supabase
         .from("genome_analyses")
