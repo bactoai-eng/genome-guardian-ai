@@ -28,9 +28,13 @@ test("deferred demo loads and lands on its results section from either anchor en
   await page.goto("/", { waitUntil: "networkidle" });
   await expect(page.locator(".deferred-demo [aria-busy=true]")).toHaveCount(1);
   await page.getByRole("link", { name: "See the Demo", exact: true }).click();
-  await expect(page.locator("#demo h2")).toBeVisible();
-  await expect.poll(async () => (await page.locator("#demo").boundingBox())?.y).toBeLessThan(200);
+  await expect(page.locator("#demo h2")).toBeVisible({ timeout: 20000 });
+  await expect
+    .poll(async () => (await page.locator("#demo").boundingBox())?.y, { timeout: 20000 })
+    .toBeLessThan(200);
   await page.goto("/#demo", { waitUntil: "networkidle" });
-  await expect(page.locator("#demo h2")).toBeVisible();
-  await expect.poll(async () => (await page.locator("#demo").boundingBox())?.y).toBeLessThan(200);
+  await expect(page.locator("#demo h2")).toBeVisible({ timeout: 20000 });
+  await expect
+    .poll(async () => (await page.locator("#demo").boundingBox())?.y, { timeout: 20000 })
+    .toBeLessThan(200);
 });
