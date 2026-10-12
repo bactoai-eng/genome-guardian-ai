@@ -539,12 +539,20 @@ main > section:not(:first-child) {
 }
 
 @media (max-width: 767px) {
+  /* Render every section fully on phones so content never pops in or appears cut while scrolling. */
+  main > section:not(:first-child) {
+    content-visibility: visible;
+    contain-intrinsic-size: none;
+  }
+  main section[id] {
+    scroll-margin-top: 80px;
+  }
+  footer {
+    padding-bottom: 16px;
+  }
   .bacto-hero {
-    padding-top: 128px;
-    padding-bottom: 64px;
-    min-height: min(510px, calc(100svh - 140px));
-    display: flex;
-    align-items: center;
+    padding-top: 112px;
+    padding-bottom: 56px;
   }
   .hero-shade {
     background: linear-gradient(
