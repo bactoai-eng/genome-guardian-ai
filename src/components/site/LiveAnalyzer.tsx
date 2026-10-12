@@ -185,7 +185,7 @@ export function LiveAnalyzer() {
               </p>
               <Link
                 to="/auth"
-                search={{ next: `${window.location.pathname}#demo` }}
+                search={{ next: "/#demo" }}
                 className="mt-5 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-semibold text-primary-foreground"
               >
                 Sign in or create an account <ArrowRight size={14} />

@@ -80,6 +80,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "color-scheme", content: "dark" },
+      { name: "theme-color", content: "#0a0f0d" },
       { title: "BactoAI — AI-Powered Antimicrobial Resistance Prediction" },
       {
         name: "description",
@@ -126,11 +128,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     scripts: [
-      {
-        // Apply the device appearance before first paint so the page never flashes the wrong theme.
-        children: `(function(){var m=window.matchMedia("(prefers-color-scheme: dark)");var apply=function(){var r=document.documentElement;r.classList.toggle("dark",m.matches);r.classList.toggle("light",!m.matches);r.style.colorScheme=m.matches?"dark":"light"};apply();m.addEventListener("change",apply);})();`,
-      },
-      {
+            {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
@@ -156,7 +154,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
       <head>
         <HeadContent />
       </head>
