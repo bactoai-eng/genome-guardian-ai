@@ -18,18 +18,6 @@ function HelixCanvas() {
       h = 0;
     let isMobile = window.matchMedia("(max-width: 767px)").matches;
     let dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.25 : 1.75);
-    let strandColor = "";
-    let complementColor = "";
-    let bridgeColor = "";
-    let lightAppearance = false;
-    const readPalette = () => {
-      const styles = getComputedStyle(canvas);
-      strandColor = styles.getPropertyValue("--dna-strand").trim();
-      complementColor = styles.getPropertyValue("--dna-complement").trim();
-      bridgeColor = styles.getPropertyValue("--dna-bridge").trim();
-      lightAppearance = document.documentElement.classList.contains("light");
-    };
-    readPalette();
 
     const resize = () => {
       isMobile = window.matchMedia("(max-width: 767px)").matches;
@@ -57,12 +45,12 @@ function HelixCanvas() {
       lastFrame = t;
       ctx.clearRect(0, 0, w, h);
 
-      const time = reduced ? 0.7 : t * 0.00022;
-      const cx = isMobile ? w * 0.5 : w * 0.78;
-      const helixHeight = Math.min(h * (isMobile ? 0.9 : 0.8), 560);
+      const time = reduced ? 0.7 : t * 0.00042;
+      const cx = w < 760 ? w * 0.84 : w * 0.78;
+      const helixHeight = Math.min(h * 0.8, 560);
       const top = (h - helixHeight) * 0.5;
-      const radius = Math.min(isMobile ? w * 0.32 : w * 0.115, 148);
-      const turns = isMobile ? 2 : 3.25;
+      const radius = Math.min(w < 760 ? w * 0.16 : w * 0.115, 148);
+      const turns = 3.25;
 
       type HelixPoint = { x: number; y: number; z: number; scale: number };
       const pointAt = (progress: number, opposite = false): HelixPoint => {
@@ -78,7 +66,7 @@ function HelixCanvas() {
       };
 
       // Base-pair bridges are ordered back-to-front, creating real occlusion cues.
-      const rungCount = isMobile ? 14 : 34;
+      const rungCount = isMobile ? 22 : 34;
       const rungs = Array.from({ length: rungCount }, (_, i) => {
         const progress = (i + 0.5) / rungCount;
         const a = pointAt(progress);
@@ -87,15 +75,14 @@ function HelixCanvas() {
       }).sort((a, b) => a.depth - b.depth);
 
       for (const { a, b, depth } of rungs) {
-        const alpha = 0.32 + ((depth + 1) / 2) * 0.3;
-        ctx.globalAlpha = alpha;
+        const alpha = 0.1 + ((depth + 1) / 2) * 0.28;
         if (isMobile) {
-          ctx.strokeStyle = bridgeColor;
+          ctx.strokeStyle = `rgba(111, 217, 190, ${alpha * 0.82})`;
         } else {
           const bridge = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
-          bridge.addColorStop(0, strandColor);
-          bridge.addColorStop(0.5, bridgeColor);
-          bridge.addColorStop(1, complementColor);
+          bridge.addColorStop(0, `rgba(23, 185, 143, ${alpha})`);
+          bridge.addColorStop(0.5, `rgba(194, 244, 229, ${alpha * 0.72})`);
+          bridge.addColorStop(1, `rgba(56, 189, 248, ${alpha * 0.8})`);
           ctx.strokeStyle = bridge;
         }
         ctx.lineWidth = 0.7 + ((depth + 1) / 2) * 1.15;
@@ -104,7 +91,6 @@ function HelixCanvas() {
         ctx.lineTo(b.x, b.y);
         ctx.stroke();
       }
-      ctx.globalAlpha = 1;
 
       // Draw each backbone in short depth-aware sections so the front edge glows.
       const segments = isMobile ? 54 : 96;
@@ -122,14 +108,17 @@ function HelixCanvas() {
 
       for (const section of strandSections) {
         const depth = (section.a.z + section.b.z) * 0.25 + 0.5;
-        const alpha = 0.48 + depth * 0.42;
+        const alpha = 0.16 + depth * 0.7;
         ctx.save();
-        ctx.globalAlpha = alpha;
-        ctx.strokeStyle = section.strand === 0 ? strandColor : complementColor;
-        ctx.lineWidth = isMobile ? 1.3 + depth * 1.4 : 1.4 + depth * 2.8;
+        ctx.strokeStyle =
+          section.strand === 0
+            ? `rgba(23, 185, 143, ${alpha})`
+            : `rgba(105, 210, 236, ${alpha * 0.86})`;
+        ctx.lineWidth = 1.2 + depth * 3.4;
         ctx.lineCap = "round";
-        ctx.shadowBlur = lightAppearance || isMobile ? 0 : 4 * depth;
-        ctx.shadowColor = ctx.strokeStyle;
+        ctx.shadowBlur = depth > 0.68 ? (isMobile ? 7 : 13) * depth : 0;
+        ctx.shadowColor =
+          section.strand === 0 ? "rgba(23, 185, 143, 0.72)" : "rgba(56, 189, 248, 0.58)";
         ctx.beginPath();
         ctx.moveTo(section.a.x, section.a.y);
         ctx.lineTo(section.b.x, section.b.y);
@@ -140,16 +129,30 @@ function HelixCanvas() {
       // Molecular nodes catch light as they rotate toward the viewer.
       for (const { a, b } of rungs) {
         for (const [node, color] of [
-          [a, strandColor],
-          [b, complementColor],
+          [a, "23, 185, 143"],
+          [b, "56, 189, 248"],
         ] as const) {
           const depth = (node.z + 1) / 2;
-          const nodeRadius = isMobile ? 1 + depth * 1.1 : 1.5 + depth * 2.6;
+          const nodeRadius = 1.5 + depth * 3.4;
           ctx.save();
-          ctx.globalAlpha = 0.6 + depth * 0.35;
-          ctx.shadowBlur = lightAppearance || isMobile ? 0 : depth * 4;
-          ctx.shadowColor = color;
-          ctx.fillStyle = color;
+          ctx.shadowBlur = isMobile ? 3 + depth * 7 : 6 + depth * 13;
+          ctx.shadowColor = `rgba(${color}, ${0.35 + depth * 0.5})`;
+          if (isMobile) {
+            ctx.fillStyle = `rgba(${color}, ${0.55 + depth * 0.4})`;
+          } else {
+            const orb = ctx.createRadialGradient(
+              node.x - nodeRadius * 0.28,
+              node.y - nodeRadius * 0.28,
+              0,
+              node.x,
+              node.y,
+              nodeRadius,
+            );
+            orb.addColorStop(0, `rgba(245, 247, 246, ${0.7 + depth * 0.3})`);
+            orb.addColorStop(0.35, `rgba(${color}, ${0.52 + depth * 0.45})`);
+            orb.addColorStop(1, `rgba(${color}, ${0.08 + depth * 0.22})`);
+            ctx.fillStyle = orb;
+          }
           ctx.beginPath();
           ctx.arc(node.x, node.y, nodeRadius, 0, Math.PI * 2);
           ctx.fill();
@@ -174,14 +177,6 @@ function HelixCanvas() {
     window.removeEventListener("resize", resize);
     window.addEventListener("resize", onResize);
     document.addEventListener("visibilitychange", resume);
-    const appearanceObserver = new MutationObserver(() => {
-      readPalette();
-      resume();
-    });
-    appearanceObserver.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
     const visibilityObserver = new IntersectionObserver(
       ([entry]) => {
         isVisible = entry?.isIntersecting ?? true;
@@ -193,17 +188,12 @@ function HelixCanvas() {
     return () => {
       cancelAnimationFrame(raf);
       visibilityObserver.disconnect();
-      appearanceObserver.disconnect();
       window.removeEventListener("resize", onResize);
       document.removeEventListener("visibilitychange", resume);
     };
   }, []);
   return (
-    <canvas
-      ref={ref}
-      className="hero-dna absolute inset-0 w-full h-full pointer-events-none"
-      aria-hidden
-    />
+    <canvas ref={ref} className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden />
   );
 }
 

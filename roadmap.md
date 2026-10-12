@@ -1,7 +1,5 @@
 # Roadmap
 
-- [ ] Tighten mobile reading layouts and scrolling; balance DNA visibility in both device appearances
-
 - [x] Improve light/dark contrast and keyboard focus; verify device appearance through reloads and navigation
 
 - [x] Update newsletter, public email, advisor name and data-protection block
