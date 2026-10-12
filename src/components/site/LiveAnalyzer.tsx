@@ -177,7 +177,7 @@ export function LiveAnalyzer() {
             <div className="rounded-2xl border border-dashed border-primary/30 bg-primary/5 p-4 sm:p-8 text-center">
               <Lock size={22} className="mx-auto text-primary" />
               <div className="mt-3 text-sm font-semibold text-foreground">
-                Sign in to analyze your own genomes
+                Sign in to run an analysis
               </div>
               <p className="mt-2 text-xs text-muted-foreground max-w-sm mx-auto">
                 Risk predictions for uploaded FASTA/FASTQ files are available to registered lab
@@ -185,6 +185,7 @@ export function LiveAnalyzer() {
               </p>
               <Link
                 to="/auth"
+                search={{ next: `${window.location.pathname}#demo` }}
                 className="mt-5 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-semibold text-primary-foreground"
               >
                 Sign in or create an account <ArrowRight size={14} />

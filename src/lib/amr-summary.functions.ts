@@ -228,7 +228,7 @@ export const generateAmrSummary = createServerFn({ method: "POST" })
       return { ok: false, message: "The prediction engine returned an unexpected format." };
 
     let id = "";
-    const ctx = context as { supabase: SupabaseClient<Database>; userId: string };
+    const ctx = context;
     {
       const { data: row, error } = await ctx.supabase
         .from("genome_analyses")

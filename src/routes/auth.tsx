@@ -53,7 +53,7 @@ async function destinationFor(userId: string, next: string | null) {
 
 function AuthPage() {
   const { next } = Route.useSearch();
-  const target = safeNext(next);
+  const target = next ? (safeNext(next) ?? "/") : null;
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
