@@ -11,7 +11,7 @@ export function PreFooterCTA() {
         <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-[color:var(--color-teal-glow-soft)]">
           Ready to transform AMR diagnostics?
         </div>
-        <h2 className="mt-6 text-3xl md:text-5xl font-bold tracking-tight text-foreground">
+        <h2 className="mt-6 text-3xl md:text-5xl font-bold tracking-tight text-primary-foreground">
           Bring genome-driven decisions into your hospital or lab.
         </h2>
         <p className="mt-5 text-white/70 text-lg max-w-2xl mx-auto">

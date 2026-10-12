@@ -10,6 +10,8 @@
 <!-- LOVABLE:END -->
 
 - Keep the hero DNA on adaptive Canvas 2D with reduced mobile detail and paused off-screen rendering; this preserves its cinematic depth without a heavy 3D dependency.
+- Read DNA drawing colours from live appearance tokens and reserve a separate phone illustration area; this keeps the molecule recognisable without obscuring the headline.
+- Use actual section layout rather than content-visibility estimates on phones; this prevents scrolling jumps while keeping every section's final text reachable.
 - Keep MCP server endpoints separate from public site documentation and navigation; internal integrations must remain available without a public documentation page.
 - Keep phone hero statistics in a separate band and the shared pilot CTA fixed outside page sections; this preserves readable content and stable touch access.
 - Load the homepage demo near the viewport or on its anchor request using DeferredDemo; this keeps analyzer dependencies off the initial request path without removing demo access.
