@@ -252,9 +252,6 @@ export function Hero() {
                 <Link to="/contact">Request a Pilot</Link>
               </Button>
             </div>
-            <p className="hero-guidance hidden md:block text-xs">
-              Guided by researchers and mentors across Africa and the UK
-            </p>
           </div>
           <h2 id="hero-stats-desktop" className="sr-only">
             BactoAI model statistics
