@@ -479,11 +479,6 @@ main > section:not(:first-child) {
   background: var(--secondary);
   color: var(--secondary-foreground);
 }
-.hero-guidance {
-  margin-top: 24px;
-  color: var(--hero-muted);
-  line-height: 1.6;
-}
 .hero-desktop-stats {
   max-width: 1000px;
   margin-top: 48px;
