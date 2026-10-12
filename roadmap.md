@@ -24,3 +24,4 @@
 - [x] Client-side validation in upload panel
 - [x] Prediction history page with filters + download
 - [x] Optimize cinematic DNA and below-fold rendering for mobile performance
+- [x] Remove team photo placeholder; balance the five member cards on desktop, tablet and phone
