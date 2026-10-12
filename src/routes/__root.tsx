@@ -127,6 +127,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     scripts: [
       {
+        // Apply the device appearance before first paint so the page never flashes the wrong theme.
+        children: `(function(){var m=window.matchMedia("(prefers-color-scheme: dark)");var apply=function(){var r=document.documentElement;r.classList.toggle("dark",m.matches);r.classList.toggle("light",!m.matches);r.style.colorScheme=m.matches?"dark":"light"};apply();m.addEventListener("change",apply);})();`,
+      },
+      {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",

@@ -3,6 +3,7 @@ import sheilaPhoto from "@/assets/sheila-okwisa.png.asset.json";
 import williamPhoto from "@/assets/william-otieno.jpg.asset.json";
 import sylviaPhoto from "@/assets/sylvia-jane-nyambura.jpg.asset.json";
 import thomasPhoto from "@/assets/thomas-bonuke.jpg.asset.json";
+import { cn } from "@/lib/utils";
 
 type Member = {
   name: string;
@@ -103,20 +104,16 @@ export function Team() {
           </p>
         </div>
 
-        <div
-          className="mt-14 rounded-3xl border border-dashed border-border/70 bg-card/30 h-64 md:h-80 flex items-center justify-center"
-          aria-hidden="true"
-        >
-          <span className="text-xs uppercase tracking-widest text-muted-foreground">
-            Team photo coming soon
-          </span>
-        </div>
-
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {team.map((m) => (
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-6">
+          {team.map((m, i) => (
             <div
               key={m.name}
-              className="rounded-2xl border border-border bg-background p-6 shadow-soft hover:shadow-elegant transition"
+              className={cn(
+                "rounded-2xl border border-border bg-background p-6 shadow-soft hover:shadow-elegant transition lg:col-span-2",
+                i === 3 && "lg:col-start-2",
+                i === 4 &&
+                  "sm:col-span-2 sm:mx-auto sm:max-w-[calc(50%_-_0.75rem)] lg:col-start-4 lg:mx-0 lg:max-w-none",
+              )}
             >
               <div className="flex items-center gap-4">
                 {m.photo ? (
