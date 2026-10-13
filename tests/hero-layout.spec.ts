@@ -6,7 +6,7 @@ for (const appearance of ["light", "dark"] as const) {
       await page.setViewportSize({ width, height: width < 768 ? 844 : 900 });
       await page.emulateMedia({ colorScheme: appearance, reducedMotion: "reduce" });
       await page.goto("/", { waitUntil: "networkidle" });
-      await expect(page.locator("html")).toHaveClass(new RegExp(appearance));
+      await expect(page.locator("html")).toHaveClass(/dark/);
       await expect(page.getByRole("heading", { level: 1 })).toContainText("BactoAI");
       expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
         width,

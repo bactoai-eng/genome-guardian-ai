@@ -9,7 +9,7 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Keep the hero DNA on adaptive Canvas 2D with reduced mobile detail and paused off-screen rendering; this preserves its cinematic depth without a heavy 3D dependency.
+- Keep the hero DNA on adaptive, depth-sorted Canvas 2D using CSS palette tokens, reduced mobile detail and paused off-screen rendering; this preserves cinematic depth without a heavy 3D dependency and keeps decorative animation separate from layout.
 - Keep MCP server endpoints separate from public site documentation and navigation; internal integrations must remain available without a public documentation page.
 - Keep phone hero statistics in a separate band and the shared pilot CTA fixed outside page sections; this preserves readable content and stable touch access.
 - Load the homepage demo near the viewport or on its anchor request using DeferredDemo; this keeps analyzer dependencies off the initial request path without removing demo access.
