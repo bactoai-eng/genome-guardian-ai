@@ -3,216 +3,199 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronDown, Play } from "lucide-react";
 
-/** Cinematic Canvas-2D DNA helix with projected depth. Lightweight and mobile-safe. */
+/** Decorative, depth-sorted Canvas 2D DNA; animation never changes page layout. */
 function HelixCanvas() {
   const ref = useRef<HTMLCanvasElement | null>(null);
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const scene = canvas.parentElement;
+    if (!ctx || !scene) return;
+
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let raf = 0;
-    let isVisible = false;
+    let visible = false;
     let lastFrame = 0;
-    let w = 0,
-      h = 0;
-    let isMobile = window.matchMedia("(max-width: 767px)").matches;
-    let dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.25 : 1.75);
+    let phase = 0.7;
+    let w = 0;
+    let h = 0;
+    let mobile = false;
+    let pointerX = 0;
+    let pointerY = 0;
+    let scrollY = 0;
+    let offsetX = 0;
+    let offsetY = 0;
+    let palette: string[] = [];
 
     const resize = () => {
-      isMobile = window.matchMedia("(max-width: 767px)").matches;
-      dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.25 : 1.75);
+      mobile = canvas.clientWidth < 768;
+      const dpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 2.5);
       w = canvas.clientWidth;
       h = canvas.clientHeight;
       canvas.width = Math.round(w * dpr);
       canvas.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const style = getComputedStyle(canvas);
+      palette = [
+        "--dna-backbone-a",
+        "--dna-backbone-b",
+        "--dna-base-a",
+        "--dna-base-t",
+        "--dna-base-c",
+        "--dna-base-g",
+        "--resistant",
+      ].map((token) => style.getPropertyValue(token).trim());
     };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    type Point = { x: number; y: number; z: number };
+    type Stroke = { a: Point; b: Point; color: string; backbone: boolean; depth: number };
 
     const draw = (t: number) => {
-      if (!isVisible || document.hidden) {
-        raf = 0;
-        return;
-      }
-      if (!reduced && t - lastFrame < 1000 / 30) {
+      raf = 0;
+      if (!visible || document.hidden) return;
+      if (!motion.matches && lastFrame && t - lastFrame < 1000 / 30) {
         raf = requestAnimationFrame(draw);
         return;
       }
+      if (!motion.matches) {
+        phase += lastFrame ? Math.min(t - lastFrame, 70) * 0.00018 : 0;
+        offsetX += (pointerX * 6 - offsetX) * 0.065;
+        offsetY += (pointerY * 4 + scrollY - offsetY) * 0.065;
+      } else {
+        phase = 0.7;
+        offsetX = 0;
+        offsetY = 0;
+      }
       lastFrame = t;
       ctx.clearRect(0, 0, w, h);
-
-      const time = reduced ? 0.7 : t * 0.00042;
-      const cx = w < 760 ? w * 0.84 : w * 0.78;
-      const helixHeight = Math.min(h * 0.8, 560);
-      const top = (h - helixHeight) * 0.5;
-      const radius = Math.min(w < 760 ? w * 0.16 : w * 0.115, 148);
-      const turns = 3.25;
-
-      type HelixPoint = { x: number; y: number; z: number; scale: number };
-      const pointAt = (progress: number, opposite = false): HelixPoint => {
-        const phase = progress * Math.PI * 2 * turns + time + (opposite ? Math.PI : 0);
-        const z = Math.sin(phase);
-        const perspective = 0.72 + (z + 1) * 0.18;
-        return {
-          x: cx + Math.cos(phase) * radius * perspective,
-          y: top + progress * helixHeight,
-          z,
-          scale: perspective,
-        };
+      const cx = w * (mobile ? 0.84 : 0.78) + offsetX;
+      const height = Math.min(h * 0.8, 560);
+      const top = (h - height) * 0.5 + offsetY;
+      const radius = Math.min(w * (mobile ? 0.16 : 0.115), 148);
+      const point = (p: number, opposite = false): Point => {
+        const angle = p * Math.PI * 2 * 2.65 + phase + (opposite ? Math.PI : 0);
+        const z = Math.sin(angle);
+        const perspective = 1 + z * 0.12;
+        return { x: cx + Math.cos(angle) * radius * perspective, y: top + p * height, z };
       };
-
-      // Base-pair bridges are ordered back-to-front, creating real occlusion cues.
-      const rungCount = isMobile ? 22 : 34;
-      const rungs = Array.from({ length: rungCount }, (_, i) => {
-        const progress = (i + 0.5) / rungCount;
-        const a = pointAt(progress);
-        const b = pointAt(progress, true);
-        return { a, b, progress, depth: Math.max(a.z, b.z) };
-      }).sort((a, b) => a.depth - b.depth);
-
-      // Appearance-aware palette: deeper, glow-free tones in light; restrained glow in dark.
-      const light = document.documentElement.classList.contains("light");
-      const cA = light ? "11, 116, 84" : "23, 185, 143";
-      const cB = light ? "10, 108, 137" : "72, 190, 230";
-      const cMid = light ? "60, 150, 125" : "194, 244, 229";
-      const cRes = light ? "176, 59, 42" : "232, 119, 106";
-      const glow = light ? 0 : 0.55;
-      const alphaBoost = light ? 1.25 : 0.9;
-      // Story: a scanner sweeps the genome and flags a resistance-gene region.
-      const scan = reduced ? 0.62 : (time * 0.32) % 1;
-      const geneStart = 0.56;
-      const geneEnd = 0.68;
-      const inGene = (p: number) => p >= geneStart && p <= geneEnd;
-      const scanHit = (p: number) => Math.max(0, 1 - Math.abs(p - scan) / 0.07);
-
-      for (const { a, b, depth, progress } of rungs) {
-        const hit = scanHit(progress);
-        const gene = inGene(progress);
-        const alpha = Math.min(1, (0.1 + ((depth + 1) / 2) * 0.28 + hit * 0.35) * alphaBoost);
-        if (gene) {
-          ctx.strokeStyle = `rgba(${cRes}, ${Math.min(1, alpha * 1.4)})`;
-        } else if (isMobile || light) {
-          ctx.strokeStyle = `rgba(${cMid}, ${alpha * 0.85})`;
-        } else {
-          const bridge = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
-          bridge.addColorStop(0, `rgba(${cA}, ${alpha})`);
-          bridge.addColorStop(0.5, `rgba(${cMid}, ${alpha * 0.72})`);
-          bridge.addColorStop(1, `rgba(${cB}, ${alpha * 0.8})`);
-          ctx.strokeStyle = bridge;
-        }
-        ctx.lineWidth = 0.7 + ((depth + 1) / 2) * 1.15 + (gene ? 0.6 : 0);
-        ctx.beginPath();
-        ctx.moveTo(a.x, a.y);
-        ctx.lineTo(b.x, b.y);
-        ctx.stroke();
-      }
-
-      // Draw each backbone in short depth-aware sections so the front edge reads as 3D.
-      const segments = isMobile ? 54 : 96;
-      const strandSections: Array<{ a: HelixPoint; b: HelixPoint; strand: number }> = [];
+      const strokes: Stroke[] = [];
+      const nodes: { p: Point; color: string }[] = [];
+      const segments = mobile ? 100 : 180;
       for (let strand = 0; strand < 2; strand++) {
         for (let i = 0; i < segments; i++) {
-          strandSections.push({
-            a: pointAt(i / segments, strand === 1),
-            b: pointAt((i + 1) / segments, strand === 1),
-            strand,
-          });
+          const a = point(i / segments, strand === 1);
+          const b = point((i + 1) / segments, strand === 1);
+          strokes.push({ a, b, color: palette[strand], backbone: true, depth: (a.z + b.z) / 2 });
         }
       }
-      strandSections.sort((a, b) => a.a.z + a.b.z - (b.a.z + b.b.z));
-
-      for (const section of strandSections) {
-        const depth = (section.a.z + section.b.z) * 0.25 + 0.5;
-        const alpha = Math.min(1, (0.16 + depth * 0.66) * alphaBoost);
-        const color = section.strand === 0 ? cA : cB;
-        ctx.save();
-        ctx.strokeStyle = `rgba(${color}, ${section.strand === 0 ? alpha : alpha * 0.88})`;
-        ctx.lineWidth = 1.2 + depth * 3.2;
-        ctx.lineCap = "round";
-        ctx.shadowBlur = glow && depth > 0.72 ? (isMobile ? 5 : 9) * depth * glow : 0;
-        ctx.shadowColor = `rgba(${color}, 0.6)`;
-        ctx.beginPath();
-        ctx.moveTo(section.a.x, section.a.y);
-        ctx.lineTo(section.b.x, section.b.y);
-        ctx.stroke();
-        ctx.restore();
+      // Complementary A–T / C–G pairs; each half follows its own depth.
+      const pairs = mobile ? 26 : 38;
+      for (let i = 0; i < pairs; i++) {
+        const p = (i + 0.5) / pairs;
+        const a = point(p);
+        const b = point(p, true);
+        const mid = { x: (a.x + b.x) / 2, y: a.y, z: 0 };
+        const base = i % 4;
+        const complement = [1, 0, 3, 2][base];
+        const flagged = p >= 0.56 && p <= 0.68;
+        strokes.push(
+          { a, b: mid, color: palette[base + 2], backbone: false, depth: a.z / 2 },
+          { a: mid, b, color: palette[complement + 2], backbone: false, depth: b.z / 2 },
+        );
+        nodes.push(
+          { p: a, color: palette[flagged ? 6 : 0] },
+          { p: b, color: palette[flagged ? 6 : 1] },
+        );
       }
-
-      // Molecular nodes; flagged resistance-gene nodes take the resistant colour.
-      for (const { a, b, progress } of rungs) {
-        const gene = inGene(progress);
-        const hit = scanHit(progress);
-        for (const [node, base] of [
-          [a, cA],
-          [b, cB],
-        ] as const) {
-          const color = gene ? cRes : base;
-          const depth = (node.z + 1) / 2;
-          const nodeRadius = 1.5 + depth * 3.2 + hit * 1.2;
-          ctx.save();
-          ctx.shadowBlur = glow ? (isMobile ? 2 + depth * 5 : 4 + depth * 9) * glow : 0;
-          ctx.shadowColor = `rgba(${color}, ${0.3 + depth * 0.4})`;
-          ctx.fillStyle = `rgba(${color}, ${Math.min(1, (0.5 + depth * 0.45) * (light ? 1.1 : 1))})`;
+      // One painter's-order list: rear rungs never paint over the front backbone.
+      const layers = [
+        ...strokes.map((stroke) => ({ depth: stroke.depth, stroke, node: null })),
+        ...nodes.map((node) => ({ depth: node.p.z, stroke: null, node })),
+      ].sort((a, b) => a.depth - b.depth);
+      ctx.lineCap = "round";
+      for (const layer of layers) {
+        const depth = (layer.depth + 1) / 2;
+        ctx.shadowBlur = 0;
+        if (layer.stroke) {
+          const { a, b, color, backbone } = layer.stroke;
+          ctx.globalAlpha = backbone ? 0.32 + depth * 0.6 : 0.22 + depth * 0.38;
+          ctx.strokeStyle = color;
+          ctx.lineWidth = backbone ? 1.3 + depth * 2.8 : 0.85 + depth * 1.1;
+          // Gentle optical softness at the rear, restrained halo at the front.
+          ctx.shadowColor = color;
+          ctx.shadowBlur = backbone ? (mobile ? 2 : 4) * (0.45 + depth * 0.55) : 0;
           ctx.beginPath();
-          ctx.arc(node.x, node.y, nodeRadius, 0, Math.PI * 2);
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        } else if (layer.node) {
+          const { p, color } = layer.node;
+          ctx.globalAlpha = 0.4 + depth * 0.52;
+          ctx.fillStyle = color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 1.3 + depth * 2.5, 0, Math.PI * 2);
           ctx.fill();
-          ctx.restore();
         }
       }
-
-      // Scanner line sweeping down the genome.
-      if (!reduced) {
-        const sy = top + scan * helixHeight;
-        const sg = ctx.createLinearGradient(cx - radius * 1.6, 0, cx + radius * 1.6, 0);
-        sg.addColorStop(0, `rgba(${cMid}, 0)`);
-        sg.addColorStop(0.5, `rgba(${inGene(scan) ? cRes : cMid}, ${light ? 0.55 : 0.45})`);
-        sg.addColorStop(1, `rgba(${cMid}, 0)`);
-        ctx.strokeStyle = sg;
-        ctx.lineWidth = 1.2;
-        ctx.beginPath();
-        ctx.moveTo(cx - radius * 1.6, sy);
-        ctx.lineTo(cx + radius * 1.6, sy);
-        ctx.stroke();
-      }
-
-      if (!reduced) raf = requestAnimationFrame(draw);
+      ctx.globalAlpha = 1;
+      ctx.shadowBlur = 0;
+      if (!motion.matches) raf = requestAnimationFrame(draw);
     };
     const resume = () => {
       cancelAnimationFrame(raf);
-      raf = 0;
-      if (isVisible && !document.hidden) {
-        if (reduced) draw(0);
-        else raf = requestAnimationFrame(draw);
-      }
+      lastFrame = 0;
+      raf = visible && !document.hidden ? requestAnimationFrame(draw) : 0;
     };
     const onResize = () => {
       resize();
       resume();
     };
-    window.removeEventListener("resize", resize);
-    window.addEventListener("resize", onResize);
-    document.addEventListener("visibilitychange", resume);
-    const visibilityObserver = new IntersectionObserver(
-      ([entry]) => {
-        isVisible = entry?.isIntersecting ?? true;
-        resume();
-      },
-      { rootMargin: "0px" },
-    );
+    const onPointer = (event: PointerEvent) => {
+      if (motion.matches || mobile || !visible) return;
+      const rect = scene.getBoundingClientRect();
+      pointerX = Math.max(-1, Math.min(1, ((event.clientX - rect.left) / rect.width) * 2 - 1));
+      pointerY = Math.max(-1, Math.min(1, ((event.clientY - rect.top) / rect.height) * 2 - 1));
+    };
+    const resetPointer = () => {
+      pointerX = 0;
+      pointerY = 0;
+    };
+    const onScroll = () => {
+      if (!visible || motion.matches) return;
+      scrollY = Math.max(-5, Math.min(5, -scene.getBoundingClientRect().top * 0.015));
+    };
+    resize();
+    const sizeObserver = new ResizeObserver(onResize);
+    sizeObserver.observe(canvas);
+    const visibilityObserver = new IntersectionObserver(([entry]) => {
+      visible = entry?.isIntersecting ?? false;
+      resume();
+    });
     visibilityObserver.observe(canvas);
+    window.addEventListener("resize", onResize);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    scene.addEventListener("pointermove", onPointer, { passive: true });
+    scene.addEventListener("pointerleave", resetPointer);
+    document.addEventListener("visibilitychange", resume);
+    motion.addEventListener("change", resume);
     return () => {
       cancelAnimationFrame(raf);
+      sizeObserver.disconnect();
       visibilityObserver.disconnect();
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("scroll", onScroll);
+      scene.removeEventListener("pointermove", onPointer);
+      scene.removeEventListener("pointerleave", resetPointer);
       document.removeEventListener("visibilitychange", resume);
+      motion.removeEventListener("change", resume);
     };
   }, []);
   return (
-    <canvas ref={ref} className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden />
+    <canvas
+      ref={ref}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      aria-hidden="true"
+    />
   );
 }
 
