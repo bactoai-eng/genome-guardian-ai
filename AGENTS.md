@@ -17,3 +17,5 @@
 - Force the dark theme centrally in the root (html class, color-scheme meta, useTheme); light tokens stay in CSS unused so the site looks identical on every device.
 - Use a dedicated primary-text token for emerald labels, input-boundary tokens for fields, and a shared focus-visible outline; text and controls require separate contrast from filled buttons.
 - Use ResultsWatermark for all result views and draw the same asset before content via the PDF addPage event; this keeps watermark placement consistent across sample results, saved summaries, and every report page.
+
+- Keep model-result presentation in a browser-safe adapter shared by AmrSummaryView and its lazily loaded PDF exporter; this keeps displayed/exported fields identical without changing analysis handling or history storage.

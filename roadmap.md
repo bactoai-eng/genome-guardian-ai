@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Improve model-backed results and downloadable reports without changing the analysis pipeline
+
 - [x] Add and verify existing-logo watermarks behind results and every downloaded report page
 
 - [x] Improve light/dark contrast and keyboard focus; verify device appearance through reloads and navigation
