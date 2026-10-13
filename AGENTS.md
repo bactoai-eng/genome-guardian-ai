@@ -16,3 +16,4 @@
 - Scope shared secondary-page opening typography through page-opening; this keeps heading rhythm consistent without affecting content-section typography.
 - Force the dark theme centrally in the root (html class, color-scheme meta, useTheme); light tokens stay in CSS unused so the site looks identical on every device.
 - Use a dedicated primary-text token for emerald labels, input-boundary tokens for fields, and a shared focus-visible outline; text and controls require separate contrast from filled buttons.
+- Use ResultsWatermark for all result views and draw the same asset before content via the PDF addPage event; this keeps watermark placement consistent across sample results, saved summaries, and every report page.

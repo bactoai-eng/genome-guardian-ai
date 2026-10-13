@@ -14,6 +14,7 @@ import {
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { LiveAnalyzer } from "./LiveAnalyzer";
+import { ResultsWatermark } from "./ResultsWatermark";
 
 type Result = { drug: string; status: "Resistant" | "Susceptible"; confidence: number };
 
@@ -392,7 +393,7 @@ export function ProductDemo() {
                         </div>
 
                         {phase === "done" && (
-                          <div>
+                          <ResultsWatermark>
                             <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
                               Prediction Results
                             </div>
@@ -469,7 +470,7 @@ export function ProductDemo() {
                               </a>
                               .
                             </p>
-                          </div>
+                          </ResultsWatermark>
                         )}
 
                         {phase === "idle" && (
