@@ -15,6 +15,12 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ContrastAudit } from "../components/dev/ContrastAudit";
 import { useTheme } from "../hooks/use-theme";
 
+// Silence browser console output on the live site so nothing internal is printed.
+if (import.meta.env.PROD && typeof window !== "undefined") {
+  const noop = () => {};
+  for (const m of ["log", "info", "debug", "warn", "table", "trace"] as const) console[m] = noop;
+}
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
