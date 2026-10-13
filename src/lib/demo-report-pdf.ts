@@ -35,6 +35,20 @@ export async function downloadDemoReport(input: {
   const doc = new jsPDF({ unit: "mm", format: "a4" });
   let y = 18;
   const img = await loadLogo();
+  const addWatermark = () => {
+    if (!img) return;
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const w = Math.min(pageWidth * 0.72, (pageHeight * 0.7 * img.w) / img.h);
+    const h = (w * img.h) / img.w;
+    doc.saveGraphicsState();
+    doc.setGState(new doc.GState({ opacity: 0.07 }));
+    doc.addImage(img.data, "PNG", (pageWidth - w) / 2, (pageHeight - h) / 2, w, h);
+    doc.restoreGraphicsState();
+  };
+  // Draw first on each page so all report text remains above the watermark.
+  addWatermark();
+  doc.internal.events.subscribe("addPage", addWatermark);
   if (img) {
     const w = 45;
     doc.addImage(img.data, "PNG", 15, y - 6, w, (w * img.h) / img.w);
@@ -65,6 +79,10 @@ export async function downloadDemoReport(input: {
   doc.line(15, y + 2, 195, y + 2);
   y += 9;
   for (const r of input.results) {
+    if (y > 265) {
+      doc.addPage();
+      y = 22;
+    }
     doc.text(r.drug, 15, y);
     doc.text(r.status, 90, y);
     doc.text(`${r.confidence}%`, 150, y);
@@ -75,6 +93,11 @@ export async function downloadDemoReport(input: {
   doc.setTextColor(90);
   const disclaimer =
     "Research-use demonstration. Predictions support, and do not replace, laboratory testing and clinical judgment. Do not upload identifiable patient data. Uploaded files are not stored.";
-  doc.text(doc.splitTextToSize(disclaimer, 180), 15, y);
+  const disclaimerLines = doc.splitTextToSize(disclaimer, 180);
+  if (y + disclaimerLines.length * 4 > 282) {
+    doc.addPage();
+    y = 22;
+  }
+  doc.text(disclaimerLines, 15, y);
   doc.save(`bactoai-report-${input.isolate.replace(/\s+/g, "-").toLowerCase()}.pdf`);
 }

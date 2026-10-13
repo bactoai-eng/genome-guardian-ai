@@ -1,5 +1,6 @@
 import { AlertOctagon, CheckCircle2, AlertTriangle, Info } from "lucide-react";
 import type { AmrSummary } from "@/lib/amr-summary.functions";
+import { ResultsWatermark } from "./ResultsWatermark";
 
 export const riskStyles: Record<string, string> = {
   low: "bg-susceptible/10 text-susceptible border-susceptible/30",
@@ -10,6 +11,7 @@ export const riskStyles: Record<string, string> = {
 
 export function AmrSummaryView({ summary }: { summary: AmrSummary }) {
   return (
+    <ResultsWatermark>
     <div className="space-y-5">
       <div className={`rounded-2xl border p-4 ${riskStyles[summary.overall_risk]}`}>
         <div className="text-[10px] font-semibold uppercase tracking-wider">
@@ -109,5 +111,6 @@ export function AmrSummaryView({ summary }: { summary: AmrSummary }) {
         </p>
       </div>
     </div>
+    </ResultsWatermark>
   );
 }
