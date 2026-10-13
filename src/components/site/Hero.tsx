@@ -37,8 +37,15 @@ function HelixCanvas() {
       canvas.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       const style = getComputedStyle(canvas);
-      palette = ["--dna-backbone-a", "--dna-backbone-b", "--dna-base-a", "--dna-base-t", "--dna-base-c", "--dna-base-g", "--resistant"]
-        .map((token) => style.getPropertyValue(token).trim());
+      palette = [
+        "--dna-backbone-a",
+        "--dna-backbone-b",
+        "--dna-base-a",
+        "--dna-base-t",
+        "--dna-base-c",
+        "--dna-base-g",
+        "--resistant",
+      ].map((token) => style.getPropertyValue(token).trim());
     };
     type Point = { x: number; y: number; z: number };
     type Stroke = { a: Point; b: Point; color: string; backbone: boolean; depth: number };
@@ -95,7 +102,10 @@ function HelixCanvas() {
           { a, b: mid, color: palette[base + 2], backbone: false, depth: a.z / 2 },
           { a: mid, b, color: palette[complement + 2], backbone: false, depth: b.z / 2 },
         );
-        nodes.push({ p: a, color: palette[flagged ? 6 : 0] }, { p: b, color: palette[flagged ? 6 : 1] });
+        nodes.push(
+          { p: a, color: palette[flagged ? 6 : 0] },
+          { p: b, color: palette[flagged ? 6 : 1] },
+        );
       }
       // One painter's-order list: rear rungs never paint over the front backbone.
       const layers = [
@@ -136,14 +146,20 @@ function HelixCanvas() {
       lastFrame = 0;
       raf = visible && !document.hidden ? requestAnimationFrame(draw) : 0;
     };
-    const onResize = () => { resize(); resume(); };
+    const onResize = () => {
+      resize();
+      resume();
+    };
     const onPointer = (event: PointerEvent) => {
       if (motion.matches || mobile || !visible) return;
       const rect = scene.getBoundingClientRect();
-      pointerX = Math.max(-1, Math.min(1, (event.clientX - rect.left) / rect.width * 2 - 1));
-      pointerY = Math.max(-1, Math.min(1, (event.clientY - rect.top) / rect.height * 2 - 1));
+      pointerX = Math.max(-1, Math.min(1, ((event.clientX - rect.left) / rect.width) * 2 - 1));
+      pointerY = Math.max(-1, Math.min(1, ((event.clientY - rect.top) / rect.height) * 2 - 1));
     };
-    const resetPointer = () => { pointerX = 0; pointerY = 0; };
+    const resetPointer = () => {
+      pointerX = 0;
+      pointerY = 0;
+    };
     const onScroll = () => {
       if (!visible || motion.matches) return;
       scrollY = Math.max(-5, Math.min(5, -scene.getBoundingClientRect().top * 0.015));
@@ -174,7 +190,13 @@ function HelixCanvas() {
       motion.removeEventListener("change", resume);
     };
   }, []);
-  return <canvas ref={ref} className="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true" />;
+  return (
+    <canvas
+      ref={ref}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      aria-hidden="true"
+    />
+  );
 }
 
 const stats = [
