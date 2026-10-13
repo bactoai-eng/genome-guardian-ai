@@ -42,7 +42,7 @@ export async function downloadDemoReport(input: {
     const w = Math.min(pageWidth * 0.72, (pageHeight * 0.7 * img.w) / img.h);
     const h = (w * img.h) / img.w;
     doc.saveGraphicsState();
-    doc.setGState(new doc.GState({ opacity: 0.07 }));
+    doc.setGState(doc.GState({ opacity: 0.07 }));
     doc.addImage(img.data, "PNG", (pageWidth - w) / 2, (pageHeight - h) / 2, w, h);
     doc.restoreGraphicsState();
   };
