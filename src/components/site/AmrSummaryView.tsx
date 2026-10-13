@@ -1,5 +1,8 @@
-import { AlertOctagon, CheckCircle2, AlertTriangle, Info } from "lucide-react";
+import { useState } from "react";
+import { AlertOctagon, CheckCircle2, AlertTriangle, Info, FileDown, Loader2 } from "lucide-react";
 import type { AmrSummary } from "@/lib/amr-summary.functions";
+import { presentResults, RESEARCH_DISCLAIMER } from "@/lib/result-presentation";
+import { Button } from "@/components/ui/button";
 import { ResultsWatermark } from "./ResultsWatermark";
 
 export const riskStyles: Record<string, string> = {
@@ -10,109 +13,95 @@ export const riskStyles: Record<string, string> = {
 };
 
 export function AmrSummaryView({ summary }: { summary: AmrSummary }) {
+  const results = presentResults(summary);
+  const [downloading, setDownloading] = useState(false);
+  const [downloadError, setDownloadError] = useState<string | null>(null);
+  const download = async () => {
+    setDownloading(true);
+    setDownloadError(null);
+    try {
+      const { downloadResultsReport } = await import("@/lib/results-report-pdf");
+      await downloadResultsReport(results);
+    } catch {
+      setDownloadError("Could not create the report. Please try again.");
+    } finally {
+      setDownloading(false);
+    }
+  };
   return (
     <ResultsWatermark>
-      <div className="space-y-5">
-        <div className={`rounded-2xl border p-4 ${riskStyles[summary.overall_risk]}`}>
-          <div className="text-[10px] font-semibold uppercase tracking-wider">
-            Overall AMR risk · {summary.overall_risk}
-          </div>
-          <div className="mt-1 text-sm font-semibold text-foreground">{summary.headline}</div>
-          <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{summary.summary}</p>
-        </div>
-
-        <div>
-          <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-            Antibiotic risk estimates
-          </div>
-          <div className="grid sm:grid-cols-2 gap-3">
-            {summary.drug_risks.map((d) => {
-              const Icon =
-                d.risk === "high"
-                  ? AlertOctagon
-                  : d.risk === "moderate"
-                    ? AlertTriangle
-                    : CheckCircle2;
-              const color =
-                d.risk === "high"
-                  ? "text-resistant"
-                  : d.risk === "moderate"
-                    ? "text-primary"
-                    : "text-susceptible";
-              const bar =
-                d.risk === "high"
-                  ? "bg-resistant"
-                  : d.risk === "moderate"
-                    ? "bg-primary"
-                    : "bg-susceptible";
-              return (
-                <div key={d.drug} className="rounded-xl border border-border p-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-sm font-semibold">
-                      <Icon size={14} className={color} /> {d.drug}
-                    </div>
-                    <span className={`text-[11px] font-semibold capitalize ${color}`}>
-                      {d.risk} risk
-                    </span>
-                  </div>
-                  <div className="mt-2 flex items-center gap-2">
-                    <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
-                      <div className={`h-full ${bar}`} style={{ width: `${d.confidence}%` }} />
-                    </div>
-                    <span className="text-[11px] font-mono text-muted-foreground">
-                      {d.confidence}%
-                    </span>
-                  </div>
-                  <p className="mt-2 text-[11px] text-muted-foreground leading-snug">
-                    {d.rationale}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-4">
+      <section aria-label="Model analysis results" className="space-y-6">
+        <header className="flex flex-wrap items-start justify-between gap-4 border-b border-border pb-5">
           <div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-              Why — supporting evidence
-            </div>
-            <ul className="space-y-2">
-              {summary.evidence.map((e, i) => (
-                <li key={i} className="text-xs">
-                  <span className="font-semibold text-foreground">{e.finding}</span>
-                  <span className="text-muted-foreground"> — {e.significance}</span>
-                </li>
-              ))}
-            </ul>
+            <p className="text-xs font-semibold text-primary-text">BactoAI · Research use only</p>
+            <h3 className="mt-2 text-xl font-display font-semibold text-foreground">
+              Resistance predictions
+            </h3>
           </div>
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-              Recommended next steps
-            </div>
-            <ul className="space-y-1.5 list-disc pl-4 text-xs text-muted-foreground">
-              {summary.recommendations.map((r, i) => (
-                <li key={i}>{r}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className="rounded-xl bg-muted/50 p-3 text-[11px] text-muted-foreground">
-          <div className="flex items-center gap-1.5 font-semibold text-foreground">
-            <Info size={12} /> Limitations
-          </div>
-          <ul className="mt-1 list-disc pl-4 space-y-0.5">
-            {summary.limitations.map((l, i) => (
-              <li key={i}>{l}</li>
-            ))}
-          </ul>
-          <p className="mt-2">
-            Predicted by the BactoAI model ensemble. Research use only. Confirm with phenotypic
-            susceptibility testing.
+          <Button onClick={download} disabled={downloading} className="min-h-11">
+            {downloading ? <Loader2 className="animate-spin" /> : <FileDown />}
+            {downloading ? "Creating report…" : "Download PDF report"}
+          </Button>
+        </header>
+        {downloadError && (
+          <p role="alert" className="text-sm text-resistant">
+            {downloadError}
           </p>
+        )}
+        <div className="divide-y divide-border">
+          {results.map((row) => {
+            const uncertain = row.status === "Uncertain";
+            const resistant = row.status === "Resistant";
+            const Icon = uncertain ? AlertTriangle : resistant ? AlertOctagon : CheckCircle2;
+            const color = uncertain
+              ? "text-primary-text"
+              : resistant
+                ? "text-resistant"
+                : "text-susceptible";
+            return (
+              <article key={row.drug} className="py-5 first:pt-0 last:pb-0">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <h4 className="min-w-0 break-words text-base font-semibold text-foreground">
+                    {row.drug}
+                  </h4>
+                  <span className={`inline-flex items-center gap-2 text-sm font-semibold ${color}`}>
+                    <Icon size={16} aria-hidden="true" />
+                    {row.status}
+                  </span>
+                </div>
+                {row.probability !== undefined && (
+                  <dl className="mt-4 flex flex-wrap items-baseline justify-between gap-2 text-sm">
+                    <dt className="text-muted-foreground">Resistance probability</dt>
+                    <dd className="font-mono text-lg text-foreground">{row.probability}%</dd>
+                  </dl>
+                )}
+                {row.interval && (
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    95% probability interval: {row.interval.lower}%–{row.interval.upper}%
+                  </p>
+                )}
+                {row.recommendation && (
+                  <div className="mt-3 border-l-2 border-border pl-3">
+                    <p className="text-xs font-semibold text-muted-foreground">
+                      Model recommendation
+                    </p>
+                    <p className="mt-1 break-words text-sm leading-relaxed text-foreground">
+                      {row.recommendation}
+                    </p>
+                  </div>
+                )}
+              </article>
+            );
+          })}
         </div>
-      </div>
+        <footer className="border-t border-border pt-4 text-xs leading-relaxed text-muted-foreground">
+          <p className="mb-2 inline-flex items-center gap-2 font-semibold text-foreground">
+            <Info size={14} aria-hidden="true" />
+            Research-use disclaimer
+          </p>
+          <p>{RESEARCH_DISCLAIMER}</p>
+        </footer>
+      </section>
     </ResultsWatermark>
   );
 }
