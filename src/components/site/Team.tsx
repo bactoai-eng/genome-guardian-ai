@@ -99,7 +99,7 @@ export function Team() {
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             Different expertise. One system. One company. BactoAI is a multidisciplinary team
-            building one AMR intelligence platform — the product, models, and technology belong to
+            building one AMR intelligence platform. The product, models, and technology belong to
             the company, and each of us leads a defined part of it.
           </p>
         </div>

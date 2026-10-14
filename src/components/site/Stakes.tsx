@@ -118,7 +118,7 @@ export function Stakes() {
             humanity."
           </blockquote>
           <figcaption className="mt-4 text-xs uppercase tracking-widest text-white/50">
-            — World Health Organization
+            World Health Organization
           </figcaption>
         </figure>
 

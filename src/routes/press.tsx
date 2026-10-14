@@ -103,8 +103,8 @@ function PressPage() {
                 className="font-semibold text-primary hover:underline"
               >
                 Get in touch
-              </a>{" "}
-              — we're happy to share data, context, and expert comment.
+              </a>
+              . We're happy to share data, context, and expert comment.
             </div>
           </Reveal>
 

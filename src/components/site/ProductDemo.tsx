@@ -119,7 +119,7 @@ export function ProductDemo() {
       organization: req.organization.trim() || null,
       message:
         (req.message.trim() ? `${req.message.trim()}\n\n` : "") +
-        `[Requested from live demo — sample of interest: ${sample.isolate} (${sample.organism})]`,
+        `[Requested from live demo. Sample of interest: ${sample.isolate} (${sample.organism})]`,
     });
     if (error) {
       console.error("Demo request failed", error);

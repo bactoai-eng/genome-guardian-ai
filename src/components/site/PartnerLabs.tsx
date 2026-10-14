@@ -131,7 +131,7 @@ export function PartnerLabs() {
           ))}
           {filtered.length === 0 && (
             <div className="md:col-span-2 lg:col-span-3 rounded-3xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
-              No target clinical sites match that search —{" "}
+              No target clinical sites match that search. Please{" "}
               <a href="/contact" className="text-primary font-semibold hover:underline">
                 tell us where you need coverage
               </a>
