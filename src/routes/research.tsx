@@ -43,8 +43,8 @@ function ResearchPage() {
             Evidence, outcomes, and target validation sites.
           </h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
-            Research progress, measured impact, and intended clinical validation settings. These are not
-            confirmed partnerships.
+            Research progress, measured impact, and intended clinical validation settings. These are
+            not confirmed partnerships.
           </p>
         </div>
         <Research />

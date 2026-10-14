@@ -128,7 +128,9 @@ export function ProductDemo() {
       return;
     }
     setReqStatus("success");
-    toast.success("Your demo request has been received. We will be in touch within 2 business days.");
+    toast.success(
+      "Your demo request has been received. We will be in touch within 2 business days.",
+    );
   }
 
   useEffect(

@@ -31,7 +31,8 @@ export function WhyBactoAI() {
             Why BactoAI
           </div>
           <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-            BactoAI is a genomic prediction engine and the diagnostic layer other AMR tools build on.
+            BactoAI is a genomic prediction engine and the diagnostic layer other AMR tools build
+            on.
           </h2>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
             BactoAI predicts antimicrobial resistance directly from a bacterial genome sequence,
