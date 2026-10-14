@@ -14,7 +14,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Meet the BactoAI team, the institutions behind us, what customers say, and where the platform is heading next.",
+          "Meet the BactoAI team, our programmes and recognition, how to join our validation pilots, and where the platform is heading next.",
       },
       { property: "og:title", content: "About BactoAI" },
       {
