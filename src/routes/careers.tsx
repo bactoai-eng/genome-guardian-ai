@@ -41,9 +41,9 @@ function CareersPage() {
           </h1>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
             BactoAI is a small, focused team building precision AMR diagnostics from bacterial
-            genomes. We're not running an active hiring round right now, but we're always
-            interested in hearing from exceptional scientists, ML engineers, bioinformaticians,
-            clinicians, and operators who want to work on this problem.
+            genomes. We're not running an active hiring round right now, but we're always interested
+            in hearing from exceptional scientists, ML engineers, bioinformaticians, clinicians, and
+            operators who want to work on this problem.
           </p>
 
           <div className="mt-10 rounded-2xl border border-border bg-card p-8 shadow-soft">
