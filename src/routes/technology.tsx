@@ -10,13 +10,13 @@ import { useAutoReveal } from "@/hooks/use-auto-reveal";
 export const Route = createFileRoute("/technology")({
   head: () => ({
     meta: [
-      { title: "Technology — BactoAI · Genomic AI for resistance prediction" },
+      { title: "Technology | BactoAI · Genomic AI for resistance prediction" },
       {
         name: "description",
         content:
           "How BactoAI turns a bacterial genome into a clinician-ready resistance prediction: feature extraction, machine-learning models, and validated reporting.",
       },
-      { property: "og:title", content: "Technology — BactoAI" },
+      { property: "og:title", content: "Technology | BactoAI" },
       {
         property: "og:description",
         content:

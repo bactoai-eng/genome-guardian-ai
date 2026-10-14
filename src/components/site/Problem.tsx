@@ -9,7 +9,7 @@ export function Problem() {
     },
     {
       icon: Clock,
-      k: "48–72 hrs",
+      k: "48 to 72 hrs",
       v: "Traditional antimicrobial susceptibility testing turnaround.",
     },
     {

@@ -9,7 +9,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/_authenticated/admin/submissions")({
   head: () => ({
     meta: [
-      { title: "Contact submissions — BactoAI Admin" },
+      { title: "Contact submissions | BactoAI Admin" },
       {
         name: "description",
         content: "Review demo and partnership inquiries submitted through the BactoAI website.",

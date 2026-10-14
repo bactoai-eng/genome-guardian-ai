@@ -4,13 +4,13 @@ import { LegalLayout } from "@/components/site/LegalLayout";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — BactoAI" },
+      { title: "Privacy Policy | BactoAI" },
       {
         name: "description",
         content:
           "How BactoAI collects, stores, and protects information provided through our website and platform.",
       },
-      { property: "og:title", content: "Privacy Policy — BactoAI" },
+      { property: "og:title", content: "Privacy Policy | BactoAI" },
       {
         property: "og:description",
         content:
@@ -32,7 +32,7 @@ function PrivacyPage() {
         BactoAI ("we", "us", "our") is an early-stage research and technology group building
         AI-driven diagnostics for antimicrobial resistance (AMR). This policy explains what
         information we collect through <a href="https://bactoai.co.ke">our website</a> and, when
-        applicable, our platform — and how we handle it.
+        applicable, our platform, and how we handle it.
       </p>
 
       <h2>Data protection</h2>
@@ -45,7 +45,7 @@ function PrivacyPage() {
       <h2>1. Information we collect</h2>
       <h3>Contact and inquiry data</h3>
       <p>
-        When you submit our demo, partner, or contact forms we collect the fields you provide —
+        When you submit our demo, partner, or contact forms we collect the fields you provide:
         typically your name, work email, organization, role, and the content of your message. We use
         this only to respond to your inquiry and, with your consent, to keep you informed about
         BactoAI updates.
@@ -112,7 +112,7 @@ function PrivacyPage() {
       <h2>6. Contact</h2>
       <p>
         Questions about this policy or our data practices:{" "}
-        <a href="mailto:info@bactoai.co.ke">info@bactoai.co.ke</a> — BactoAI, Nairobi, Kenya.
+        <a href="mailto:info@bactoai.co.ke">info@bactoai.co.ke</a>. BactoAI, Nairobi, Kenya.
       </p>
     </LegalLayout>
   );

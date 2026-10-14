@@ -13,13 +13,13 @@ import networkImage from "@/assets/blog-network.webp";
 export const Route = createFileRoute("/blog")({
   head: () => ({
     meta: [
-      { title: "Blog — BactoAI · AMR research, clinical, and product notes" },
+      { title: "Blog | BactoAI · AMR research, clinical, and product notes" },
       {
         name: "description",
         content:
           "Research notes, clinical perspectives, and public-health analysis on antimicrobial resistance from the BactoAI team and partners.",
       },
-      { property: "og:title", content: "Blog — BactoAI" },
+      { property: "og:title", content: "Blog | BactoAI" },
       {
         property: "og:description",
         content: "AMR research, clinical, and product notes from BactoAI.",
@@ -132,7 +132,7 @@ function BlogPage() {
           </div>
           {shown.length === 0 && (
             <p className="mt-6 text-center text-sm text-muted-foreground">
-              No {active} articles yet — check back soon.
+              There are no {active} articles yet. Please check back soon.
             </p>
           )}
 

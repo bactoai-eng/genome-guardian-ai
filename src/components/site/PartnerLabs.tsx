@@ -11,10 +11,10 @@ type Lab = {
 
 const labs: Lab[] = [
   {
-    name: "Kenyatta National Hospital — Microbiology Lab",
+    name: "Kenyatta National Hospital Microbiology Lab",
     location: "Upper Hill, Nairobi",
     city: "Nairobi",
-    turnaround: "48–72 hrs",
+    turnaround: "48 to 72 hrs",
     services: ["Culture & sensitivity", "Blood cultures"],
   },
   {
@@ -28,7 +28,7 @@ const labs: Lab[] = [
     name: "Aga Khan University Hospital Laboratory",
     location: "Parklands, Nairobi",
     city: "Nairobi",
-    turnaround: "24–48 hrs",
+    turnaround: "24 to 48 hrs",
     services: ["Culture & sensitivity", "MIC panels"],
   },
   {

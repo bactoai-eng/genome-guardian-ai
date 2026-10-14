@@ -49,7 +49,7 @@ export function Media() {
                     Watch the interview
                   </div>
                   <h3 className="mt-3 text-xl md:text-2xl font-bold text-white leading-snug">
-                    KUTV Kenya — Art & Culture Monday
+                    KUTV Kenya: Art & Culture Monday
                   </h3>
                   <p className="mt-2 text-sm text-white/80">
                     Monday 31st August 2026 · Rise Today segment
@@ -64,7 +64,7 @@ export function Media() {
               <div className="rounded-3xl border border-border bg-card p-6 shadow-soft">
                 <Quote className="text-primary/40" size={28} />
                 <blockquote className="mt-4 text-lg md:text-xl font-display italic text-foreground leading-snug">
-                  “AMR is not just a lab problem — it is a public health emergency that needs to be
+                  “AMR is not just a lab problem. It is a public health emergency that needs to be
                   part of everyday conversation.”
                 </blockquote>
                 <div className="mt-4 flex items-center gap-3">
@@ -124,7 +124,7 @@ export function Media() {
             </h3>
             <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
               In May 2026, Samwel Elegwa and William Otieno represented BactoAI at the BIK Ventures
-              Hub startup pitch event at Kenyatta University — a landmark competition bringing
+              Hub startup pitch event at Kenyatta University, a landmark competition bringing
               together founders, investors, and industry leaders. The event was covered in print and
               on BIK’s YouTube channel.
             </p>

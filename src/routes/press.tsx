@@ -10,13 +10,13 @@ import logoWordmark from "@/assets/bactoai-logo-wordmark.png.asset.json";
 export const Route = createFileRoute("/press")({
   head: () => ({
     meta: [
-      { title: "Press & media — BactoAI coverage and press kit" },
+      { title: "Press & media | BactoAI coverage and press kit" },
       {
         name: "description",
         content:
           "BactoAI in the media: KUTV Kenya's AMR interview, BIK Ventures Hub coverage, plus our press kit, brand assets, and media contact.",
       },
-      { property: "og:title", content: "Press & media — BactoAI" },
+      { property: "og:title", content: "Press & media | BactoAI" },
       {
         property: "og:description",
         content:
@@ -162,7 +162,7 @@ function PressPage() {
                 </h2>
                 <p className="mt-3 max-w-2xl text-white/85 leading-relaxed">
                   For interviews, event invitations, data requests, or fact-checking, email us
-                  directly — we usually reply within two working days.
+                  directly. We usually reply within two working days.
                 </p>
                 <div className="mt-7 flex flex-wrap items-center gap-3">
                   <a

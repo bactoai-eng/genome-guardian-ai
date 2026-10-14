@@ -2,7 +2,7 @@ export function Validation() {
   const stats = [
     { k: "1,800+", v: "Training bacterial genomes" },
     { k: "3", v: "Antibiotics currently modeled" },
-    { k: "0.952", v: "ROC-AUC — Meropenem (internal)" },
+    { k: "0.952", v: "ROC-AUC for Meropenem (internal)" },
   ];
   return (
     <section id="validation" className="py-24 md:py-32">

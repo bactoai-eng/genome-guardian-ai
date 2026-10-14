@@ -33,7 +33,7 @@ export const posts: Post[] = [
     slug: "amr-in-lmic-hospitals",
     title: "AMR in LMIC hospitals: what the surveillance data isn't telling you",
     excerpt:
-      "A short field note from our pilot deployments across East African hospitals — and why local genomic surveillance changes the risk picture entirely.",
+      "A short field note from our pilot deployments across East African hospitals, and why local genomic surveillance changes the risk picture entirely.",
     category: "Public Health",
     date: "April 3, 2026",
     readTime: "5 min read",
@@ -63,7 +63,7 @@ export const posts: Post[] = [
     slug: "who-priority-pathogens",
     title: "Mapping the WHO priority pathogens list to our roadmap",
     excerpt:
-      "How the WHO priority pathogens list shapes the antibiotics we support next — and where LMIC-specific resistance patterns diverge from global rankings.",
+      "How the WHO priority pathogens list shapes the antibiotics we support next, and where LMIC-specific resistance patterns diverge from global rankings.",
     category: "Public Health",
     date: "February 14, 2026",
     readTime: "8 min read",

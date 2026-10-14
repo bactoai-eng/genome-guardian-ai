@@ -27,7 +27,7 @@ export function Contact() {
       return;
     }
     setStatus("success");
-    toast.success("Thanks — we'll be in touch within 2 business days.");
+    toast.success("Thank you. We will be in touch within 2 business days.");
   }
 
   return (

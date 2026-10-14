@@ -11,7 +11,7 @@ export const Route = createFileRoute("/auth")({
 
   head: () => ({
     meta: [
-      { title: "Sign in — BactoAI" },
+      { title: "Sign in | BactoAI" },
       {
         name: "description",
         content:

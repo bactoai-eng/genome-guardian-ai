@@ -7,13 +7,13 @@ import { FAQ } from "@/components/site/FAQ";
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "Pilot access — BactoAI · Research, clinical and partnership" },
+      { title: "Pilot access | BactoAI · Research, clinical and partnership" },
       {
         name: "description",
         content:
           "Explore Research Access, supervised Clinical Pilots, and Partnerships for co-development and data collaboration.",
       },
-      { property: "og:title", content: "Pilot access — BactoAI" },
+      { property: "og:title", content: "Pilot access | BactoAI" },
       {
         property: "og:description",
         content: "Research Access, Clinical Pilot, and Partnership options, by agreement.",

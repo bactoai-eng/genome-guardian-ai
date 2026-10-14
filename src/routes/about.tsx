@@ -10,7 +10,7 @@ import { useAutoReveal } from "@/hooks/use-auto-reveal";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About BactoAI — Team, media, partners, and roadmap" },
+      { title: "About BactoAI | Team, media, partners, and roadmap" },
       {
         name: "description",
         content:

@@ -31,7 +31,7 @@ export function WhyBactoAI() {
             Why BactoAI
           </div>
           <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-            A genomic prediction engine — the diagnostic layer other AMR tools build on.
+            BactoAI is a genomic prediction engine and the diagnostic layer other AMR tools build on.
           </h2>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
             BactoAI predicts antimicrobial resistance directly from a bacterial genome sequence,
@@ -45,14 +45,14 @@ export function WhyBactoAI() {
           {[
             {
               label: "Lab-booking / logistics tools",
-              body: "Route samples to labs faster — but still wait 48–72 hrs for a culture result.",
+              body: "These tools route samples to labs faster, but teams still wait 48 to 72 hours for a culture result.",
             },
             {
               label: "Prescribing-guideline chatbots",
-              body: "Apply WHO or national decision trees to symptoms — no organism-specific resistance evidence.",
+              body: "These tools apply WHO or national decision trees to symptoms without organism-specific resistance evidence.",
             },
             {
-              label: "BactoAI — genomic prediction",
+              label: "BactoAI genomic prediction",
               body: "Predicts per-antibiotic resistance from the genome in under 10 minutes from genome to result. Complementary infrastructure both categories can plug into.",
               highlight: true,
             },

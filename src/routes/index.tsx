@@ -14,13 +14,13 @@ import { useAutoReveal } from "@/hooks/use-auto-reveal";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "BactoAI — Predict antibiotic resistance from bacterial genomes" },
+      { title: "BactoAI | Predict antibiotic resistance from bacterial genomes" },
       {
         name: "description",
         content:
           "BactoAI is a genomic AI prediction engine that turns bacterial whole-genome sequences into clinician-ready antimicrobial resistance predictions in minutes.",
       },
-      { property: "og:title", content: "BactoAI — Genomic AI for antimicrobial resistance" },
+      { property: "og:title", content: "BactoAI | Genomic AI for antimicrobial resistance" },
       {
         property: "og:description",
         content:

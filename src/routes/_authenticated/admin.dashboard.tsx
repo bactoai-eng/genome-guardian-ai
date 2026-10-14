@@ -10,7 +10,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/_authenticated/admin/dashboard")({
   head: () => ({
     meta: [
-      { title: "Weekly enquiries dashboard — BactoAI Admin" },
+      { title: "Weekly enquiries dashboard | BactoAI Admin" },
       {
         name: "description",
         content:

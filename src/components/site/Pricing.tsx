@@ -43,7 +43,7 @@ export function Pricing({ compact = false }: { compact?: boolean }) {
             Explore a BactoAI pilot.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Research, supervised clinical evaluation, and collaborative development — by agreement.
+            We offer research access, supervised clinical evaluation, and collaborative development by agreement.
           </p>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-3">

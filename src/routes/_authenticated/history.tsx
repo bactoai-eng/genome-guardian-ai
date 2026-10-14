@@ -12,12 +12,12 @@ import type { AmrSummary } from "@/lib/amr-summary.functions";
 export const Route = createFileRoute("/_authenticated/history")({
   head: () => ({
     meta: [
-      { title: "Prediction history — BactoAI" },
+      { title: "Prediction history | BactoAI" },
       {
         name: "description",
         content: "Review, filter, and download your previous BactoAI genome analyses.",
       },
-      { property: "og:title", content: "Prediction history — BactoAI" },
+      { property: "og:title", content: "Prediction history | BactoAI" },
       { property: "og:description", content: "Your previous genome AMR risk analyses on BactoAI." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

@@ -87,7 +87,7 @@ export function LiveAnalyzer() {
     const e: Errors = {};
     if (!file) e.file = "Choose a genome file to analyze.";
     else if (errors.file) e.file = errors.file;
-    else if (!stats) e.file = "The file is still being checked — wait a moment.";
+    else if (!stats) e.file = "The file is still being checked. Please wait a moment.";
     if (!meta.isolate.trim()) e.isolate = "Isolate ID is required.";
     else if (meta.isolate.trim().length > 80)
       e.isolate = "Keep the isolate ID under 80 characters.";
@@ -330,7 +330,7 @@ export function LiveAnalyzer() {
                     className={`${inputCls} ${border("notes")}`}
                     value={meta.notes}
                     maxLength={1000}
-                    placeholder="Optional — no patient identifiers"
+                    placeholder="Optional, with no patient identifiers"
                     onChange={(e) => setMeta({ ...meta, notes: e.target.value })}
                   />
                   {fieldErr("notes")}
