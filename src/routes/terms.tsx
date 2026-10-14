@@ -4,13 +4,13 @@ import { LegalLayout } from "@/components/site/LegalLayout";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms of Service — BactoAI" },
+      { title: "Terms of Service | BactoAI" },
       {
         name: "description",
         content:
           "Terms governing use of the BactoAI website and platform, including acceptable use and decision-support limitations.",
       },
-      { property: "og:title", content: "Terms of Service — BactoAI" },
+      { property: "og:title", content: "Terms of Service | BactoAI" },
       {
         property: "og:description",
         content: "Terms governing use of the BactoAI website and genomic AMR prediction platform.",
@@ -41,7 +41,7 @@ function TermsPage() {
         </li>
       </ul>
 
-      <h2>2. Decision-support only — not a substitute for laboratory confirmation</h2>
+      <h2>2. Decision support only and not a substitute for laboratory confirmation</h2>
       <p>
         BactoAI's AMR predictions are intended as <strong>clinical decision support</strong> for
         qualified microbiologists, clinicians, and researchers. They are not a diagnosis and{" "}

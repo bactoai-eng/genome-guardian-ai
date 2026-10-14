@@ -205,7 +205,7 @@ const stats = [
     k: "<10",
     srK: "Under 10 minutes",
     label: "under 10 minutes from genome to result",
-    sub: "vs. 48–72 hrs lab",
+    sub: "compared with 48 to 72 hours in the lab",
   },
   {
     k: "3",
@@ -234,7 +234,7 @@ export function Hero() {
             </h1>
             <p className="hero-description hidden md:block">
               BactoAI uses machine learning to predict antimicrobial resistance from bacterial
-              genomes — before lab results come back.
+              genomes before laboratory results come back.
             </p>
             <div className="hero-actions grid grid-cols-2 gap-3 sm:flex">
               <Button

@@ -49,7 +49,7 @@ function BigCount() {
 }
 
 const cards = [
-  { icon: Clock, k: "48–72h", label: "Traditional lab turnaround", tone: "text-resistant" },
+  { icon: Clock, k: "48 to 72h", label: "Traditional lab turnaround", tone: "text-resistant" },
   {
     icon: Skull,
     k: "10M",
@@ -100,7 +100,7 @@ export function Stakes() {
         <div className="mt-16 grid md:grid-cols-[1fr_auto_1fr] items-center gap-8 max-w-4xl mx-auto">
           <div className="glass-dark rounded-2xl p-6 text-center">
             <div className="text-xs uppercase tracking-widest text-white/50">Today</div>
-            <div className="mt-2 font-stat text-5xl font-bold text-resistant">48–72h</div>
+            <div className="mt-2 font-stat text-5xl font-bold text-resistant">48 to 72h</div>
             <div className="mt-2 text-sm text-white/60">Culture + susceptibility testing</div>
           </div>
           <div className="text-4xl text-white/40 text-center">→</div>
@@ -118,7 +118,7 @@ export function Stakes() {
             humanity."
           </blockquote>
           <figcaption className="mt-4 text-xs uppercase tracking-widest text-white/50">
-            — World Health Organization
+            World Health Organization
           </figcaption>
         </figure>
 

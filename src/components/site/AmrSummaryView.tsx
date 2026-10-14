@@ -77,7 +77,7 @@ export function AmrSummaryView({ summary }: { summary: AmrSummary }) {
                 )}
                 {row.interval && (
                   <p className="mt-1 text-xs text-muted-foreground">
-                    95% probability interval: {row.interval.lower}%–{row.interval.upper}%
+                    95% probability interval: {row.interval.lower}% to {row.interval.upper}%
                   </p>
                 )}
                 {row.recommendation && (

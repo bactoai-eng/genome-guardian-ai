@@ -6,13 +6,13 @@ import { Footer } from "@/components/site/Footer";
 export const Route = createFileRoute("/careers")({
   head: () => ({
     meta: [
-      { title: "Careers — BactoAI" },
+      { title: "Careers | BactoAI" },
       {
         name: "description",
         content:
           "BactoAI isn't actively hiring, but we're always interested in scientists, engineers, and clinicians who want to work on AMR.",
       },
-      { property: "og:title", content: "Careers — BactoAI" },
+      { property: "og:title", content: "Careers | BactoAI" },
       {
         property: "og:description",
         content:
@@ -41,7 +41,7 @@ function CareersPage() {
           </h1>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
             BactoAI is a small, focused team building precision AMR diagnostics from bacterial
-            genomes. We're not running an active hiring round right now — but we're always
+            genomes. We're not running an active hiring round right now, but we're always
             interested in hearing from exceptional scientists, ML engineers, bioinformaticians,
             clinicians, and operators who want to work on this problem.
           </p>

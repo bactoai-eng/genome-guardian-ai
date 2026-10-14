@@ -46,7 +46,7 @@ export function Footer() {
         <div className="md:col-span-1">
           <img
             src={logoAsset.url}
-            alt="BactoAI — Resistance. Predicted."
+            alt="BactoAI. Resistance. Predicted."
             className="h-20 md:h-24 w-auto rounded-xl"
           />
           <p className="mt-4 text-sm leading-relaxed text-white/60">

@@ -54,7 +54,7 @@ export function Partners() {
       return;
     }
     setStatus("success");
-    toast.success("Thanks — we'll be in touch within 2 business days.");
+    toast.success("Thank you. We will be in touch within 2 business days.");
   }
 
   return (
@@ -100,7 +100,7 @@ export function Partners() {
               <Handshake size={14} /> Partner with us
             </div>
             <h3 className="mt-5 text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-              Let's build the AMR response of the next decade — together.
+              Let's build the AMR response of the next decade together.
             </h3>
             <p className="mt-4 text-muted-foreground leading-relaxed">
               We work with hospitals, sequencing providers, public-health agencies and academic

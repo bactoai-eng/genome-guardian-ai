@@ -53,7 +53,7 @@ export function Nav() {
           <Link to="/" className="flex min-w-0 items-center gap-2">
             <img
               src={logoAsset.url}
-              alt="BactoAI logo — AI-powered antimicrobial resistance prediction"
+              alt="BactoAI logo, AI-powered antimicrobial resistance prediction"
               className="h-14 md:h-16 w-auto max-w-full object-contain rounded-xl"
             />
           </Link>

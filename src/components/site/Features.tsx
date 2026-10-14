@@ -34,7 +34,7 @@ const features = [
   {
     icon: LayoutDashboard,
     title: "Web dashboard",
-    desc: "Browser-based interface — no local setup.",
+    desc: "It runs in your web browser, so no local setup is needed.",
   },
   {
     icon: Plug,

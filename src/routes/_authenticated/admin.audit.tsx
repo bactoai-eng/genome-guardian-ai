@@ -9,7 +9,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/_authenticated/admin/audit")({
   head: () => ({
     meta: [
-      { title: "Audit log — BactoAI Admin" },
+      { title: "Audit log | BactoAI Admin" },
       {
         name: "description",
         content: "Immutable record of admin access to contact submissions and admin role changes.",

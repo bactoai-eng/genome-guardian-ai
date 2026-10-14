@@ -9,13 +9,13 @@ import { useAutoReveal } from "@/hooks/use-auto-reveal";
 export const Route = createFileRoute("/research")({
   head: () => ({
     meta: [
-      { title: "Research & Impact — BactoAI · Evidence and partner labs" },
+      { title: "Research & Impact | BactoAI · Evidence and partner labs" },
       {
         name: "description",
         content:
           "BactoAI research output, clinical and public-health impact, and target clinical sites for planned validation.",
       },
-      { property: "og:title", content: "Research & Impact — BactoAI" },
+      { property: "og:title", content: "Research & Impact | BactoAI" },
       {
         property: "og:description",
         content: "Research, measured impact, and target clinical settings for future validation.",
@@ -43,7 +43,7 @@ function ResearchPage() {
             Evidence, outcomes, and target validation sites.
           </h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl">
-            Research progress, measured impact, and intended clinical validation settings — not
+            Research progress, measured impact, and intended clinical validation settings. These are not
             confirmed partnerships.
           </p>
         </div>

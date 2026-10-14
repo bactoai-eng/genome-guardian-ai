@@ -119,7 +119,7 @@ export function ProductDemo() {
       organization: req.organization.trim() || null,
       message:
         (req.message.trim() ? `${req.message.trim()}\n\n` : "") +
-        `[Requested from live demo — sample of interest: ${sample.isolate} (${sample.organism})]`,
+        `[Requested from live demo. Sample of interest: ${sample.isolate} (${sample.organism})]`,
     });
     if (error) {
       console.error("Demo request failed", error);
@@ -128,7 +128,7 @@ export function ProductDemo() {
       return;
     }
     setReqStatus("success");
-    toast.success("Demo request received — we'll be in touch within 2 business days.");
+    toast.success("Your demo request has been received. We will be in touch within 2 business days.");
   }
 
   useEffect(
@@ -181,7 +181,7 @@ export function ProductDemo() {
             </h2>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
               Pick a sample isolate, then click <em>Analyze sample</em> to simulate the BactoAI
-              workflow — upload, pre-processing, model inference, and clinician-ready report.
+              workflow: upload, pre-processing, model inference, and clinician-ready report.
             </p>
             <ul className="mt-8 space-y-3 text-sm text-muted-foreground">
               {[

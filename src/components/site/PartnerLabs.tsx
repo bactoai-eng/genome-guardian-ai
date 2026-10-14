@@ -11,10 +11,10 @@ type Lab = {
 
 const labs: Lab[] = [
   {
-    name: "Kenyatta National Hospital — Microbiology Lab",
+    name: "Kenyatta National Hospital Microbiology Lab",
     location: "Upper Hill, Nairobi",
     city: "Nairobi",
-    turnaround: "48–72 hrs",
+    turnaround: "48 to 72 hrs",
     services: ["Culture & sensitivity", "Blood cultures"],
   },
   {
@@ -28,7 +28,7 @@ const labs: Lab[] = [
     name: "Aga Khan University Hospital Laboratory",
     location: "Parklands, Nairobi",
     city: "Nairobi",
-    turnaround: "24–48 hrs",
+    turnaround: "24 to 48 hrs",
     services: ["Culture & sensitivity", "MIC panels"],
   },
   {
@@ -131,7 +131,7 @@ export function PartnerLabs() {
           ))}
           {filtered.length === 0 && (
             <div className="md:col-span-2 lg:col-span-3 rounded-3xl border border-dashed border-border p-10 text-center text-sm text-muted-foreground">
-              No target clinical sites match that search —{" "}
+              No target clinical sites match that search. Please{" "}
               <a href="/contact" className="text-primary font-semibold hover:underline">
                 tell us where you need coverage
               </a>

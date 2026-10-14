@@ -88,14 +88,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "color-scheme", content: "dark" },
       { name: "theme-color", content: "#0a0f0d" },
-      { title: "BactoAI — AI-Powered Antimicrobial Resistance Prediction" },
+      { title: "BactoAI | AI-Powered Antimicrobial Resistance Prediction" },
       {
         name: "description",
         content:
           "BactoAI predicts antibiotic resistance from bacterial whole-genome sequences in minutes, enabling faster precision antimicrobial treatment decisions.",
       },
       { name: "author", content: "BactoAI" },
-      { property: "og:title", content: "BactoAI — AI-Powered Antimicrobial Resistance Prediction" },
+      { property: "og:title", content: "BactoAI | AI-Powered Antimicrobial Resistance Prediction" },
       {
         property: "og:description",
         content:
@@ -105,7 +105,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       {
         name: "twitter:title",
-        content: "BactoAI — AI-Powered Antimicrobial Resistance Prediction",
+        content: "BactoAI | AI-Powered Antimicrobial Resistance Prediction",
       },
       {
         name: "twitter:description",

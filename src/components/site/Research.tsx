@@ -4,7 +4,7 @@ import award from "@/assets/award-ceremony.jpg";
 export function Research() {
   const awards = [
     {
-      t: "Second Place — KU × Lancaster Workshop",
+      t: "Second Place at the KU × Lancaster Workshop",
       d: "Science, Engineering & Technology Innovation Workshop.",
     },
     { t: "CDIE Catalyst Grant", d: "Awarded for translational health-tech impact." },

@@ -32,7 +32,7 @@ const faqs = [
   },
   {
     q: "How do pilot programs work?",
-    a: "Pilots are 8–12 weeks, include onboarding for your lab, model validation against your isolates, and a joint outcomes review. Pilot pricing is available for LMIC academic and public-health partners.",
+    a: "Pilots are 8 to 12 weeks, include onboarding for your lab, model validation against your isolates, and a joint outcomes review. Pilot pricing is available for LMIC academic and public-health partners.",
   },
   {
     q: "Which antibiotics do you support today?",
@@ -40,7 +40,7 @@ const faqs = [
   },
   {
     q: "How is BactoAI different from lab-booking apps or prescribing-guideline chatbots?",
-    a: "Lab-booking and sample-logistics apps get a specimen to a laboratory faster, but the answer still waits on a completed culture — typically 48–72 hours. Prescribing-guideline chatbots apply WHO or national decision trees to reported symptoms, but they have no organism-specific resistance evidence to work from. BactoAI predicts per-antibiotic resistance directly from the bacterial genome in under 10 minutes from genome to result, producing a data point that simply doesn't exist in those systems. We see them as complementary infrastructure rather than rivals: a lab-booking platform could route a case to a BactoAI prediction, and a prescribing assistant could take that prediction as an input.",
+    a: "Lab-booking and sample-logistics apps get a specimen to a laboratory faster, but the answer still waits on a completed culture, which typically takes 48 to 72 hours. Prescribing-guideline chatbots apply WHO or national decision trees to reported symptoms, but they have no organism-specific resistance evidence to work from. BactoAI predicts per-antibiotic resistance directly from the bacterial genome in under 10 minutes from genome to result, producing a data point that simply doesn't exist in those systems. We see them as complementary infrastructure rather than rivals: a lab-booking platform could route a case to a BactoAI prediction, and a prescribing assistant could take that prediction as an input.",
   },
   {
     q: "Is BactoAI a competitor to existing AMR digital-health platforms?",

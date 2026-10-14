@@ -7,12 +7,12 @@ import { BlogPreview } from "@/components/site/BlogPreview";
 export const Route = createFileRoute("/resources")({
   head: () => ({
     meta: [
-      { title: "Resources — BactoAI" },
+      { title: "Resources | BactoAI" },
       {
         name: "description",
         content: "AMR education, press mentions, and downloadable materials from the BactoAI team.",
       },
-      { property: "og:title", content: "Resources — BactoAI" },
+      { property: "og:title", content: "Resources | BactoAI" },
       {
         property: "og:description",
         content: "AMR education, press mentions, and downloadable materials from the BactoAI team.",
@@ -31,7 +31,7 @@ const resources = [
     icon: Linkedin,
     title: "AMR Awareness Weekly",
     tag: "LinkedIn series",
-    body: "A short weekly series on antimicrobial resistance — the science, the numbers, and what precision diagnostics can change. Coming soon on our LinkedIn.",
+    body: "A short weekly series on antimicrobial resistance: the science, the numbers, and what precision diagnostics can change. Coming soon on our LinkedIn.",
     href: "https://www.linkedin.com/in/bactoai-model-32303335a",
     external: true,
     cta: "Follow on LinkedIn",
@@ -48,7 +48,7 @@ const resources = [
     icon: Newspaper,
     title: "Press & mentions",
     tag: "Updated periodically",
-    body: "KUTV Kenya's AMR interview, BIK Ventures Hub coverage, our press kit, brand assets, and a direct media contact — all on the press page.",
+    body: "KUTV Kenya's AMR interview, BIK Ventures Hub coverage, our press kit, brand assets, and a direct media contact are all on the press page.",
     href: "/press",
     cta: "Visit the press page",
   },

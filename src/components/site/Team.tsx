@@ -21,7 +21,7 @@ const team: Member[] = [
     photo: samwelPhoto.url,
     bio: "Biotechnology researcher at Kenyatta University with hands-on analytical experience from a Kenya Bureau of Standards attachment in gravimetry, titrimetry, spectroscopy, and related laboratory methods. An alumnus of the NextGen Antimicrobial Stewards Initiative and 2nd-place finisher at Kenyatta University's Research in Science bootcamp, where BactoAI was first pitched.",
     extended:
-      "Leads BactoAI's vision, scientific direction, and strategic growth — representing the company with hospitals, universities, funders, and antimicrobial stewardship networks across East Africa.",
+      "Leads BactoAI's vision, scientific direction, and strategic growth, representing the company with hospitals, universities, funders, and antimicrobial stewardship networks across East Africa.",
     focus: ["Vision & strategy", "Scientific direction", "Strategic growth"],
   },
   {
@@ -95,11 +95,11 @@ export function Team() {
         <div className="max-w-3xl">
           <div className="text-sm font-semibold text-primary uppercase tracking-widest">Team</div>
           <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-            Scientists, engineers, and clinicians — building precision AMR diagnostics.
+            Our scientists, engineers, and clinicians are building precision AMR diagnostics.
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             Different expertise. One system. One company. BactoAI is a multidisciplinary team
-            building one AMR intelligence platform — the product, models, and technology belong to
+            building one AMR intelligence platform. The product, models, and technology belong to
             the company, and each of us leads a defined part of it.
           </p>
         </div>

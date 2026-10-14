@@ -6,13 +6,13 @@ import { formatRatio, type AuditResult } from "@/lib/contrast";
 export const Route = createFileRoute("/theme-tokens")({
   head: () => ({
     meta: [
-      { title: "Theme Tokens — BactoAI Design System" },
+      { title: "Theme Tokens | BactoAI Design System" },
       {
         name: "description",
         content:
           "Preview BactoAI's base, text, and accent design tokens in light and dark mode with live WCAG AA contrast checks.",
       },
-      { property: "og:title", content: "Theme Tokens — BactoAI Design System" },
+      { property: "og:title", content: "Theme Tokens | BactoAI Design System" },
       {
         property: "og:description",
         content:
