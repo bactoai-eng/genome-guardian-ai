@@ -122,44 +122,129 @@ const labs: Lab[] = [
   },
 ];
 
-// Simplified outline of Kenya (lon, lat). Drawn locally; no external map service.
+// Kenya border (lon, lat), traced from national boundary reference points. Drawn locally; no external map service.
 const outline: [number, number][] = [
-  [34.0, -1.0],
-  [33.9, 0.1],
+  [33.91, -1.0],
+  [33.91, 0.1],
+  [34.0, 0.24],
+  [34.1, 0.37],
+  [34.28, 0.62],
+  [34.42, 0.82],
   [34.5, 1.1],
-  [34.8, 1.9],
-  [35.0, 3.6],
-  [35.8, 4.6],
-  [35.9, 5.0],
-  [36.8, 4.4],
+  [34.8, 1.25],
+  [35.0, 1.6],
+  [34.95, 2.0],
+  [34.9, 2.5],
+  [34.6, 3.0],
+  [34.45, 3.5],
+  [34.2, 3.9],
+  [34.0, 4.25],
+  [33.99, 4.62],
+  [34.4, 4.62],
+  [35.0, 4.85],
+  [35.3, 5.0],
+  [35.8, 4.78],
+  [35.95, 4.6],
+  [36.05, 4.45],
+  [36.85, 4.45],
+  [37.6, 4.0],
   [38.1, 3.6],
-  [39.6, 3.4],
-  [40.8, 4.2],
-  [41.9, 3.9],
-  [41.0, 2.8],
-  [41.0, -0.9],
-  [41.6, -1.7],
-  [40.2, -2.6],
-  [39.6, -4.4],
-  [39.2, -4.7],
-  [37.7, -3.5],
+  [38.6, 3.6],
+  [39.0, 3.45],
+  [39.5, 3.43],
+  [39.9, 3.85],
+  [40.4, 4.0],
+  [40.8, 4.25],
+  [41.2, 3.95],
+  [41.85, 3.95],
+  [41.6, 3.6],
+  [41.3, 3.2],
+  [40.99, 2.8],
+  [40.99, 1.5],
+  [40.99, 0.0],
+  [41.0, -0.87],
+  [41.55, -1.68],
+  [41.1, -1.9],
+  [40.85, -2.2],
+  [40.6, -2.4],
+  [40.2, -2.75],
+  [40.1, -3.2],
+  [39.85, -3.6],
+  [39.65, -4.0],
+  [39.5, -4.35],
+  [39.2, -4.68],
+  [38.4, -4.1],
+  [37.7, -3.6],
   [37.6, -3.0],
-  [34.0, -1.0],
+  [36.5, -2.4],
+  [35.5, -1.85],
+  [34.6, -1.35],
+  [34.07, -1.05],
 ];
+const lakeVictoria: [number, number][] = [
+  [33.91, -1.0],
+  [34.07, -1.05],
+  [34.25, -0.75],
+  [34.35, -0.5],
+  [34.6, -0.42],
+  [34.82, -0.32],
+  [34.7, -0.18],
+  [34.45, -0.2],
+  [34.2, -0.08],
+  [34.05, 0.05],
+  [33.91, 0.1],
+];
+const lakeTurkana: [number, number][] = [
+  [35.95, 4.55],
+  [36.12, 4.45],
+  [36.2, 4.0],
+  [36.3, 3.55],
+  [36.5, 3.0],
+  [36.68, 2.5],
+  [36.6, 2.4],
+  [36.4, 2.8],
+  [36.15, 3.3],
+  [35.98, 3.8],
+  [35.88, 4.2],
+];
+const landmarks = [
+  { name: "Mt Kenya", lon: 37.3, lat: -0.15 },
+  { name: "Mt Kilimanjaro", lon: 37.35, lat: -3.07 },
+];
+const regionLabels = [
+  { name: "UGANDA", lon: 33.95, lat: 2.0 },
+  { name: "ETHIOPIA", lon: 38.6, lat: 4.6 },
+  { name: "SOMALIA", lon: 41.75, lat: 1.2 },
+  { name: "TANZANIA", lon: 35.3, lat: -3.8 },
+  { name: "SOUTH SUDAN", lon: 34.4, lat: 5.1 },
+  { name: "INDIAN OCEAN", lon: 41.0, lat: -3.9 },
+];
+const cityLabels = [
+  { name: "Nairobi", lon: 36.82, lat: -1.29, dx: -8, anchor: "end" },
+  { name: "Mombasa", lon: 39.67, lat: -4.05, dx: -8, anchor: "end" },
+  { name: "Kisumu", lon: 34.76, lat: -0.09, dx: 0, dy: 16, anchor: "middle" },
+  { name: "Eldoret", lon: 35.27, lat: 0.51, dx: 8, anchor: "start" },
+  { name: "Nyeri", lon: 36.95, lat: -0.42, dx: 8, anchor: "start" },
+  { name: "Kilifi", lon: 39.85, lat: -3.63, dx: 8, anchor: "start" },
+] as const;
 
 const W = 400;
 const H = 460;
 const project = (lon: number, lat: number) => ({
-  x: ((lon - 33.5) / (42.3 - 33.5)) * W,
-  y: ((5.3 - lat) / (5.3 + 5.0)) * H,
+  x: ((lon - 33.3) / (42.5 - 33.3)) * W,
+  y: ((5.4 - lat) / (5.4 + 5.0)) * H,
 });
-const outlinePath =
-  outline
+const toPath = (pts: [number, number][]) =>
+  pts
     .map(([lo, la], i) => {
       const p = project(lo, la);
       return `${i ? "L" : "M"}${p.x.toFixed(1)},${p.y.toFixed(1)}`;
     })
     .join(" ") + " Z";
+const outlinePath = toPath(outline);
+const victoriaPath = toPath(lakeVictoria);
+const turkanaPath = toPath(lakeTurkana);
+const equatorY = project(0, 0).y;
 
 function HubMap({
   items,
@@ -179,12 +264,101 @@ function HubMap({
         role="group"
         aria-label="Map of target validation sites in Kenya"
       >
+        <defs>
+          <pattern id="kenya-grid" width="16" height="16" patternUnits="userSpaceOnUse">
+            <circle cx="1" cy="1" r="0.8" className="fill-primary/20" />
+          </pattern>
+        </defs>
+        {regionLabels.map((r) => {
+          const p = project(r.lon, r.lat);
+          return (
+            <text
+              key={r.name}
+              x={p.x}
+              y={p.y}
+              textAnchor="middle"
+              className="fill-muted-foreground/50"
+              style={{ fontSize: 9, letterSpacing: 2 }}
+            >
+              {r.name}
+            </text>
+          );
+        })}
+        <line
+          x1={0}
+          x2={W}
+          y1={equatorY}
+          y2={equatorY}
+          className="stroke-muted-foreground/30"
+          strokeDasharray="3 5"
+          strokeWidth={0.8}
+        />
+        <text
+          x={W - 4}
+          y={equatorY - 4}
+          textAnchor="end"
+          className="fill-muted-foreground/60"
+          style={{ fontSize: 8 }}
+        >
+          Equator
+        </text>
         <path
           d={outlinePath}
-          className="fill-primary/5 stroke-primary/40"
-          strokeWidth={1.5}
+          className="fill-primary/10 stroke-primary/60"
+          strokeWidth={1.4}
           strokeLinejoin="round"
         />
+        <path d={outlinePath} fill="url(#kenya-grid)" />
+        <path d={victoriaPath} className="fill-accent/40 stroke-primary/40" strokeWidth={0.8} />
+        <path d={turkanaPath} className="fill-accent/40 stroke-primary/40" strokeWidth={0.8} />
+        {(() => {
+          const p = project(34.25, -0.55);
+          return (
+            <text
+              x={p.x}
+              y={p.y}
+              textAnchor="middle"
+              className="fill-muted-foreground/70"
+              style={{ fontSize: 7 }}
+            >
+              L. Victoria
+            </text>
+          );
+        })()}
+        {(() => {
+          const p = project(36.75, 3.4);
+          return (
+            <text x={p.x} y={p.y} className="fill-muted-foreground/70" style={{ fontSize: 7 }}>
+              L. Turkana
+            </text>
+          );
+        })()}
+        {landmarks.map((m) => {
+          const p = project(m.lon, m.lat);
+          return (
+            <g key={m.name} transform={`translate(${p.x},${p.y})`}>
+              <path d="M0,-5 L5,4 L-5,4 Z" className="fill-muted-foreground/40" />
+              <text x={7} y={4} className="fill-muted-foreground/60" style={{ fontSize: 7 }}>
+                {m.name}
+              </text>
+            </g>
+          );
+        })}
+        {cityLabels.map((c) => {
+          const p = project(c.lon, c.lat);
+          return (
+            <text
+              key={c.name}
+              x={p.x + c.dx}
+              y={p.y + ("dy" in c ? c.dy : 3)}
+              textAnchor={c.anchor}
+              className="fill-foreground/80 font-medium"
+              style={{ fontSize: 9 }}
+            >
+              {c.name}
+            </text>
+          );
+        })}
         {labs.map((l) => {
           const p = project(l.lon, l.lat);
           const visible = shown.has(l.name);
