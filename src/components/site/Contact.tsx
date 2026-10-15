@@ -37,14 +37,13 @@ export function Contact() {
           <div className="rounded-[calc(theme(borderRadius.3xl)-4px)] bg-background p-4 sm:p-8 md:p-14 grid lg:grid-cols-2 gap-12">
             <div>
               <div className="text-sm font-semibold text-primary uppercase tracking-widest">
-                Get in touch
+                Request a Demo
               </div>
               <h2 className="mt-4 text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-                Help shape the future of precision antibiotic decision-making.
+                Request a technical demo for your laboratory.
               </h2>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Partner with BactoAI to accelerate AMR diagnostics through AI and genomics. Join our
-                pilot program or request a live demonstration.
+                Partner with BactoAI to accelerate AMR diagnostics through AI and genomics. Tell us about your hospital or laboratory, and we'll schedule a technical demonstration with your isolates.
               </p>
               <ul className="mt-8 space-y-3 text-sm">
                 <li className="flex items-center gap-3">
@@ -113,7 +112,7 @@ export function Contact() {
                   htmlFor="contact-org"
                   className="text-xs font-semibold text-muted-foreground"
                 >
-                  Organization
+                  Hospital / Laboratory
                 </label>
                 <input
                   id="contact-org"
@@ -129,7 +128,7 @@ export function Contact() {
                   htmlFor="contact-message"
                   className="text-xs font-semibold text-muted-foreground"
                 >
-                  How can we help?
+                  Reason for demo request & technical needs
                 </label>
                 <textarea
                   id="contact-message"
@@ -158,7 +157,7 @@ export function Contact() {
                 )}
                 {(status === "idle" || status === "error") && (
                   <>
-                    Request a Pilot <ArrowRight size={16} />
+                    Request a Demo <ArrowRight size={16} />
                   </>
                 )}
               </button>

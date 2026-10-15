@@ -7,18 +7,19 @@ import { Button } from "@/components/ui/button";
 type NavLink = { href: string; label: string; route?: boolean };
 
 const primaryLinks: NavLink[] = [
-  { href: "/technology", label: "Technology", route: true },
+  { href: "/", label: "Home", route: true },
+  { href: "/#demo", label: "Model", route: false },
   { href: "/pricing", label: "Product & Pricing", route: true },
-  { href: "/research", label: "Research", route: true },
   { href: "/about", label: "About", route: true },
 ];
 
 const moreLinks: NavLink[] = [
+  { href: "/technology", label: "Technology", route: true },
+  { href: "/research", label: "Research", route: true },
   { href: "/resources", label: "Resources", route: true },
   { href: "/blog", label: "Blog", route: true },
   { href: "/press", label: "Press & media", route: true },
   { href: "/careers", label: "Careers", route: true },
-  { href: "/contact", label: "Contact", route: true },
 ];
 
 export function Nav() {
@@ -58,16 +59,26 @@ export function Nav() {
             />
           </Link>
           <nav className="hidden lg:flex items-center gap-7">
-            {primaryLinks.map((l) => (
-              <Link
-                key={l.href}
-                to={l.href}
-                className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
-                activeProps={{ className: "text-sm font-medium text-primary" }}
-              >
-                {l.label}
-              </Link>
-            ))}
+            {primaryLinks.map((l) =>
+              l.route !== false ? (
+                <Link
+                  key={l.href}
+                  to={l.href}
+                  className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
+                  activeProps={{ className: "text-sm font-medium text-primary" }}
+                >
+                  {l.label}
+                </Link>
+              ) : (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  className="text-sm font-medium text-foreground/70 hover:text-primary transition-colors"
+                >
+                  {l.label}
+                </a>
+              )
+            )}
             <div className="relative" ref={moreRef}>
               <button
                 onClick={() => setMoreOpen((v) => !v)}
@@ -78,16 +89,27 @@ export function Nav() {
               </button>
               {moreOpen && (
                 <div className="absolute right-0 mt-3 w-56 rounded-2xl border border-border bg-card p-2 shadow-elegant">
-                  {moreLinks.map((l) => (
-                    <Link
-                      key={l.href}
-                      to={l.href}
-                      onClick={() => setMoreOpen(false)}
-                      className="block rounded-xl px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-muted hover:text-primary transition-colors"
-                    >
-                      {l.label}
-                    </Link>
-                  ))}
+                  {moreLinks.map((l) =>
+                    l.route !== false ? (
+                      <Link
+                        key={l.href}
+                        to={l.href}
+                        onClick={() => setMoreOpen(false)}
+                        className="block rounded-xl px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-muted hover:text-primary transition-colors"
+                      >
+                        {l.label}
+                      </Link>
+                    ) : (
+                      <a
+                        key={l.href}
+                        href={l.href}
+                        onClick={() => setMoreOpen(false)}
+                        className="block rounded-xl px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-muted hover:text-primary transition-colors"
+                      >
+                        {l.label}
+                      </a>
+                    )
+                  )}
                 </div>
               )}
             </div>
@@ -97,7 +119,7 @@ export function Nav() {
               to="/contact"
               className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-soft hover:shadow-elegant transition-shadow"
             >
-              Request a Pilot
+              Request a Demo
             </Link>
           </div>
           <div className="lg:hidden flex items-center gap-2">
@@ -112,22 +134,33 @@ export function Nav() {
         </div>
         {open && (
           <div className="lg:hidden max-h-[calc(100dvh-90px)] overflow-y-auto glass border-t border-border px-6 py-4 space-y-3">
-            {[...primaryLinks, ...moreLinks].map((l) => (
-              <Link
-                key={l.href}
-                to={l.href}
-                className="block text-base font-medium text-foreground/80"
-                onClick={() => setOpen(false)}
-              >
-                {l.label}
-              </Link>
-            ))}
+            {[...primaryLinks, ...moreLinks].map((l) =>
+              l.route !== false ? (
+                <Link
+                  key={l.href}
+                  to={l.href}
+                  className="block text-base font-medium text-foreground/80"
+                  onClick={() => setOpen(false)}
+                >
+                  {l.label}
+                </Link>
+              ) : (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  className="block text-base font-medium text-foreground/80"
+                  onClick={() => setOpen(false)}
+                >
+                  {l.label}
+                </a>
+              )
+            )}
             <Link
               to="/contact"
               onClick={() => setOpen(false)}
               className="block text-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
             >
-              Request a Pilot
+              Request a Demo
             </Link>
           </div>
         )}
